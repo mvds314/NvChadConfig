@@ -1,2 +1,2 @@
 # NvChadConfig
-My config for NvChad
+My config for [NvChad](https://nvchad.com/)
