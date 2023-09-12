@@ -119,12 +119,14 @@ local plugins = {
     },
     config = function(_, opts)
       -- https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
+      dofile(vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup {
         highlight = {
           enable = true, -- false will disable the whole extension
           disable = { "tex", "latex" }, -- list of language that will be disabled
           use_languagetree = true,
         },
+        indent = { enable = true },
       }
     end,
   },
