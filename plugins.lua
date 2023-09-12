@@ -22,19 +22,19 @@ local plugins = {
     end,
   },
   { "epheien/termdbg" },
-  { "lervag/vimtex", ft = "tex", event="VeryLazy"},
+  { "lervag/vimtex", ft = "tex", event = "VeryLazy" },
   { "psliwka/vim-smoothie", lazy = false },
   {
-		"github/copilot.vim",
-		-- https://github.com/NvChad/NvChad/issues/2020
+    "github/copilot.vim",
+    -- https://github.com/NvChad/NvChad/issues/2020
     lazy = false,
     config = function()
-			-- Mapping tab is already used by NvChad
-			vim.g.copilot_no_tab_map = true
-			vim.g.copilot_assume_mapped = true
-			vim.g.copilot_tab_fallback = ""
-			-- The mapping is set to other key, see custom/lua/mappings
-			-- or run <leader>ch to see copilot mapping section
+      -- Mapping tab is already used by NvChad
+      vim.g.copilot_no_tab_map = true
+      vim.g.copilot_assume_mapped = true
+      vim.g.copilot_tab_fallback = ""
+      -- The mapping is set to other key, see custom/lua/mappings
+      -- or run <leader>ch to see copilot mapping section
     end,
   },
   {
@@ -117,23 +117,24 @@ local plugins = {
     opts = {
       ensure_installed = { "html", "css", "bash", "python", "latex", "json", "lua", "vim", "yaml" },
     },
-	config = function(_, opts)
-	  -- https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
-      require "nvim-treesitter.configs".setup {
-	    highlight = { enable = true, -- false will disable the whole extension
-                      disable = { "tex", "latex" }, -- list of language that will be disabled
-					  use_languagetree = true,
-					},
-	  }
+    config = function(_, opts)
+      -- https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
+      require("nvim-treesitter.configs").setup {
+        highlight = {
+          enable = true, -- false will disable the whole extension
+          disable = { "tex", "latex" }, -- list of language that will be disabled
+          use_languagetree = true,
+        },
+      }
     end,
   },
   {
     "hrsh7th/nvim-cmp", -- https://github.com/NvChad/NvChad/discussions/2193
-	opts = {
+    opts = {
       completion = {
         autocomplete = false,
       },
     },
-  }
+  },
 }
 return plugins
