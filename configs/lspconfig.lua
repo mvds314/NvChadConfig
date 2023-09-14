@@ -10,7 +10,17 @@ lspconfig.pyright.setup {
   capabilities = capabilities,
   filetypes = { "python" },
   -- https://github.com/microsoft/pyright/blob/main/docs/settings.md
-  settings = {python = {analysis={diagnosticSeverityOverrides = { reportUnusedVariable = false, reportMissingImports=true, reportUndefinedVariable="none"}}}},
+  settings = {
+    python = {
+      analysis = {
+        diagnosticSeverityOverrides = {
+          reportUnusedVariable = false,
+          reportMissingImports = true,
+          reportUndefinedVariable = "none",
+        },
+      },
+    },
+  },
 }
 
 lspconfig.lua_ls.setup {
