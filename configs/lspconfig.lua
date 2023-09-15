@@ -38,13 +38,19 @@ lspconfig.jsonls.setup {
 lspconfig.yamlls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "yaml", "yml" },
+  filetypes = { "yaml" },
 }
 
 lspconfig.marksman.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "markdown", "md" },
+  filetypes = { "markdown" },
+}
+
+lspconfig.vimls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "vim" },
 }
 
 lspconfig.texlab.setup {

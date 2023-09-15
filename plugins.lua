@@ -116,7 +116,7 @@ local plugins = {
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
-    ft = { "python", "lua", "tex", "json", "yaml", "yml", "markdown", "md" },
+    ft = { "python", "lua", "tex", "json", "yaml", "yml", "markdown", "vimscript" },
     opts = function()
       return require "custom.configs.null-ls"
     end,
@@ -138,7 +138,8 @@ local plugins = {
         "marksman",
         "mdformat",
         -- "prettierd",
-        --"vim-language-server",
+        "vim-language-server",
+        "vint",
         "yaml-language-server",
         "yamlfix",
       },

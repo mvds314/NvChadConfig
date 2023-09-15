@@ -8,6 +8,7 @@ local opts = {
     null_ls.builtins.formatting.fixjson,
     null_ls.builtins.formatting.yamlfix,
     null_ls.builtins.formatting.mdformat,
+    null_ls.builtins.diagnostics.vint,
     -- null_ls.builtins.formatting.prettierd,
     --null_ls.builtins.diagnostics.textidote,
     --null_ls.builtins.diagnostics.mypy,
