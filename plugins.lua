@@ -131,6 +131,7 @@ local plugins = {
         "lua-language-server",
         "stylua",
         "texlab",
+        -- "ltex-ls",
         "latexindent",
         "json-lsp",
         "fixjson",
