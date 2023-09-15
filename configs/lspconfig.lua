@@ -35,6 +35,18 @@ lspconfig.jsonls.setup {
   filetypes = { "json" },
 }
 
+lspconfig.yamlls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "yaml", "yml" },
+}
+
+lspconfig.marksman.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "markdown", "md" },
+}
+
 lspconfig.texlab.setup {
   on_attach = on_attach,
   capabilities = capabilities,
