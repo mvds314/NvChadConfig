@@ -29,6 +29,12 @@ lspconfig.lua_ls.setup {
   filetypes = { "lua" },
 }
 
+lspconfig.jsonls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "json" },
+}
+
 lspconfig.texlab.setup {
   on_attach = on_attach,
   capabilities = capabilities,

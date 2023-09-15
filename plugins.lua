@@ -93,16 +93,31 @@ local plugins = {
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
-    ft = { "python", "lua", "tex" },
+    ft = { "python", "lua", "tex", "json" },
     opts = function()
       return require "custom.configs.null-ls"
     end,
   },
   {
     "williamboman/mason.nvim",
-    --opts = {ensure_installed = {"pyright", "black","ruff", "mypy","debugpy"}}
     opts = {
-      ensure_installed = { "pyright", "black", "debugpy", "lua-language-server", "stylua", "texlab", "latexindent" },
+      ensure_installed = {
+        "pyright",
+        "black",
+        "debugpy",
+        "lua-language-server",
+        "stylua",
+        "texlab",
+        "latexindent",
+        "json-lsp",
+        "fixjson",
+        --"jsonlint",
+        --"marksman",
+        --"mdformat",
+        -- "prettierd",
+        --"vim-language-server",
+        --"yaml-language-server",
+      },
     },
   },
   {
