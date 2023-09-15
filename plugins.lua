@@ -78,6 +78,29 @@ local plugins = {
       require("core.utils").load_mappings "dap"
     end,
   },
+  -- {
+  --   "MunifTanjim/prettier.nvim",
+  --   ft = { "json", "yaml", "markdown" },
+  --   config = function(_, opts)
+  --     require("prettier").setup {
+  --       bin = "prettierd",
+  --       filetypes = {
+  --         "css",
+  --         "graphql",
+  --         "html",
+  --         "javascript",
+  --         "javascriptreact",
+  --         "json",
+  --         "less",
+  --         "markdown",
+  --         "scss",
+  --         "typescript",
+  --         "typescriptreact",
+  --         "yaml",
+  --       },
+  --     }
+  --   end,
+  -- },
   {
     "mfussenegger/nvim-dap-python",
     ft = "python",
