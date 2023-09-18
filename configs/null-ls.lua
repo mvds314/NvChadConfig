@@ -1,5 +1,6 @@
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local null_ls = require "null-ls"
+local cspell = require "cspell"
 
 local opts = {
   sources = {
@@ -9,10 +10,12 @@ local opts = {
     null_ls.builtins.formatting.yamlfix,
     null_ls.builtins.formatting.mdformat,
     null_ls.builtins.diagnostics.vint,
+    -- cspell.diagnostics,
+    -- cspell.code_actions
     -- null_ls.builtins.formatting.prettierd,
-    --null_ls.builtins.diagnostics.textidote,
-    --null_ls.builtins.diagnostics.mypy,
-    --null_ls.builtins.diagnostics.ruff.with({ extra_args = { "--ignore","E501" } }),
+    -- null_ls.builtins.diagnostics.textidote,
+    -- null_ls.builtins.diagnostics.mypy,
+    -- null_ls.builtins.diagnostics.ruff.with({ extra_args = { "--ignore","E501" } }),
   },
   on_attach = function(client, bufnr)
     if client.supports_method "textDocument/formatting" then
