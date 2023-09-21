@@ -7,17 +7,33 @@ local plugins = {
       iron.setup {
         config = {
           --  should_map_plug = false,
-          --  scratch_repl = true,
+          scratch_repl = true,
           repl_definition = {
-            python = {
-              command = { "ipython" },
-              -- format = require("iron.fts.common").bracketed_paste,
-            },
-            --      sh = {command = { "zsh" }}
+            python = require("iron.fts.python").ipython,
+            -- python = {command = { "ipython" }},
+            -- sh = {command = { "zsh" }}
           },
-          repl_open_cmd = "topleft vertical 100 split",
+          close_winow_on_exit = true,
+          -- repl_open_cmd = "belowright vertical 120 split",
+          repl_open_cmd = "topright vertical 120 split",
+          buflisted = false,
         },
-        --  keymaps = {send_motion = "ctr",},
+        keymaps = {
+          send_motion = "<space>sc",
+          visual_send = "<space>sc",
+          send_file = "<space>sf",
+          send_line = "<space>sl",
+          send_until_cursor = "<space>su",
+          send_mark = "<space>sm",
+          mark_motion = "<space>mc",
+          mark_visual = "<space>mc",
+          remove_mark = "<space>md",
+          cr = "<space>s<cr>",
+          interrupt = "<space>s<space>",
+          exit = "<space>sq",
+          clear = "<space>cl",
+        },
+        ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
       }
     end,
   },
