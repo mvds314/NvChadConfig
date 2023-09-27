@@ -14,8 +14,8 @@ local plugins = {
             -- sh = {command = { "zsh" }}
           },
           close_winow_on_exit = true,
-          -- repl_open_cmd = "belowright vertical 120 split",
-          repl_open_cmd = "topright vertical 120 split",
+          repl_open_cmd = "belowright vertical 120 split",
+          -- repl_open_cmd = "topleft vertical 120 split",
           buflisted = false,
         },
         keymaps = {
