@@ -18,6 +18,7 @@ lspconfig.pyright.setup {
           reportMissingImports = true,
           reportUndefinedVariable = "none",
         },
+        typeCheckingMode = "off",
       },
     },
   },
