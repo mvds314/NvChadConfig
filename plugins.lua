@@ -41,6 +41,10 @@ local plugins = {
   { "lervag/vimtex", ft = "tex", event = "VeryLazy" },
   { "psliwka/vim-smoothie", lazy = false },
   {
+    "ThePrimeagen/harpoon",
+    cmd = "Harpoon",
+  },
+  {
     "github/copilot.vim",
     -- https://github.com/NvChad/NvChad/issues/2020
     lazy = false,
