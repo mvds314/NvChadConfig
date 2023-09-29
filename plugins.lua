@@ -155,7 +155,8 @@ local plugins = {
     end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    -- "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     ft = { "python", "lua", "tex", "json", "yaml", "yml", "markdown", "vimscript" },
     opts = function()
       return require "custom.configs.null-ls"
@@ -165,7 +166,8 @@ local plugins = {
     "davidmh/cspell.nvim",
     ft = { "tex", "markdown" },
     dependencies = {
-      "jose-elias-alvarez/null-ls.nvim",
+      -- "jose-elias-alvarez/null-ls.nvim",
+      "nvimtools/none-ls.nvim",
     },
   },
   {
