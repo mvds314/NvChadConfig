@@ -41,6 +41,26 @@ local plugins = {
   { "lervag/vimtex", ft = "tex", event = "VeryLazy" },
   { "psliwka/vim-smoothie", lazy = false },
   {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "antosha417/nvim-lsp-file-operations" },
+    opts = {
+      git = {
+        enable = true,
+      },
+      renderer = {
+        highlight_git = true,
+        icons = {
+          show = {
+            git = true,
+          },
+        },
+      },
+      view = {
+        side = "right",
+      },
+    },
+  },
+  {
     "ThePrimeagen/harpoon",
     cmd = "Harpoon",
   },
