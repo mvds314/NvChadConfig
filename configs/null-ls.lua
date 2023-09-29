@@ -53,6 +53,7 @@ local opts = {
     null_ls.builtins.formatting.yamlfix,
     null_ls.builtins.formatting.mdformat,
     null_ls.builtins.diagnostics.vint,
+    null_ls.builtins.formatting.latexindent,
     -- cspell.diagnostics.with { config = cspellconfig },
     -- cspell.code_actions.with { config = cspellconfig },
     -- null_ls.builtins.formatting.prettierd,
