@@ -183,6 +183,7 @@ local plugins = {
         -- "ltex-ls",
         "latexindent",
         "cspell",
+        "vale",
         "json-lsp",
         "fixjson",
         --"jsonlint",
