@@ -183,7 +183,7 @@ local plugins = {
         -- "ltex-ls",
         "latexindent",
         "cspell",
-        "vale",
+        -- "vale", -- vale.init not found
         "json-lsp",
         "fixjson",
         --"jsonlint",

@@ -56,7 +56,7 @@ local opts = {
     null_ls.builtins.formatting.latexindent,
     -- cspell.diagnostics.with { config = cspellconfig },
     -- cspell.code_actions.with { config = cspellconfig },
-    null_ls.builtins.diagnostics.vale,
+    -- null_ls.builtins.diagnostics.vale,
     -- null_ls.builtins.formatting.prettierd,
     -- null_ls.builtins.diagnostics.textidote,
     -- null_ls.builtins.diagnostics.mypy,
