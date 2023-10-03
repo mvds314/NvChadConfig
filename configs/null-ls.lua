@@ -54,9 +54,14 @@ local opts = {
     null_ls.builtins.formatting.mdformat,
     null_ls.builtins.diagnostics.vint,
     null_ls.builtins.formatting.latexindent,
+    -- cspell works, but your whole document will be underlined
     -- cspell.diagnostics.with { config = cspellconfig },
     -- cspell.code_actions.with { config = cspellconfig },
+    -- other spell checkers I tried
     -- null_ls.builtins.diagnostics.vale,
+    -- null_ls.builtins.code_actions.proselint,
+    -- chktex does not work well when using \input{myfile.tex}
+    -- null_ls.builtins.diagnostics.chktex,
     -- null_ls.builtins.formatting.prettierd,
     -- null_ls.builtins.diagnostics.textidote,
     -- null_ls.builtins.diagnostics.mypy,

@@ -184,6 +184,7 @@ local plugins = {
         "latexindent",
         "cspell",
         -- "vale", -- vale.init not found
+        -- "proselint",
         "json-lsp",
         "fixjson",
         --"jsonlint",

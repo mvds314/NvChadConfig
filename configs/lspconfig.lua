@@ -62,8 +62,8 @@ lspconfig.texlab.setup {
 }
 
 -- lspconfig.ltex.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   filetypes = { "tex" },
---   settings = { texlab = { diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } } } },
+-- on_attach = on_attach,
+-- capabilities = capabilities,
+-- filetypes = { "tex" },
+-- settings = { texlab = { diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } } } },
 -- }
