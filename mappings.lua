@@ -98,4 +98,22 @@ M.nvim_tree = {
   },
 }
 
+M.neogit = {
+  n = {
+    ["<leader>gs"] = { "<cmd>Neogit<CR>", "󱈜 Neogit status" },
+    -- ["<leader>gc"] = { "<cmd>Neogit commit<CR>", "󱈜 Neogit commit" },
+    -- ["<leader>gp"] = { "<cmd>Neogit push<CR>", "󱈜 Neogit push" },
+    -- ["<leader>gl"] = { "<cmd>Neogit pull<CR>", "󱈜 Neogit pull" },
+    -- ["<leader>gb"] = { "<cmd>Neogit branch<CR>", "󱈜 Neogit branch" },
+    -- ["<leader>gd"] = { "<cmd>Neogit diff<CR>", "󱈜 Neogit diff" },
+    -- ["<leader>gD"] = { "<cmd>Neogit diff<CR>", "󱈜 Neogit diff" },
+    -- ["<leader>gC"] = { "<cmd>Neogit commit --amend<CR>", "󱈜 Neogit commit --amend" },
+    -- ["<leader>gR"] = { "<cmd>Neogit reset<CR>", "󱈜 Neogit reset" },
+    -- ["<leader>gS"] = { "<cmd>Neogit stash<CR>", "󱈜 Neogit stash" },
+    -- ["<leader>gP"] = { "<cmd>Neogit pull --rebase<CR>", "󱈜 Neogit pull --rebase" },
+    -- ["<leader>gB"] = { "<cmd>Neogit branch -d<CR>", "󱈜 Neogit branch -d" },
+    -- ["<leader>gA"] = { "<cmd>Neogit add --all<CR>", "󱈜 Neogit add --all" },
+  },
+}
+
 return M
