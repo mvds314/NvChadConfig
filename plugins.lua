@@ -38,7 +38,16 @@ local plugins = {
     end,
   },
   { "epheien/termdbg" },
-  { "lervag/vimtex", ft = "tex", event = "VeryLazy" },
+  {
+    "lervag/vimtex",
+    ft = "tex",
+    event = "VeryLazy",
+    config = function()
+      -- vim.g.vimtex_view_general_viewer = "SumatraPDF"
+      -- vim.g.vimtex_view_general_view = "C:/Users/ROB6027/AppData/Local/SumatraPDF/SumatraPDF.exe"
+      vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"
+    end,
+  },
   { "psliwka/vim-smoothie", lazy = false },
   {
     "nvim-tree/nvim-tree.lua",
