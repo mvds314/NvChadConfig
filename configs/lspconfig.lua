@@ -34,7 +34,7 @@ lspconfig.pylsp.setup {
       -- configurationSources = { "black" },
       plugins = {
         -- formatters
-        black = { enabled = true, line_length = 100 },
+        black = { enabled = false, line_length = 99 },
         autopep8 = { enabled = false },
         yapf = { enabled = false },
         --linters
