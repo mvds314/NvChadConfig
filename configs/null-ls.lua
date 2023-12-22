@@ -53,6 +53,7 @@ local opts = {
     null_ls.builtins.formatting.yamlfix,
     null_ls.builtins.formatting.mdformat,
     null_ls.builtins.diagnostics.vint,
+    null_ls.builtins.diagnostics.flake8,
     null_ls.builtins.formatting.latexindent,
     -- cspell works, but your whole document will be underlined
     -- cspell.diagnostics.with { config = cspellconfig },

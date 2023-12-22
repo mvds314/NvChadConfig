@@ -24,55 +24,51 @@ local lspconfig = require "lspconfig"
 --   },
 -- }
 
--- https://jdhao.github.io/2023/07/22/neovim-pylsp-setup/
-lspconfig.pylsp.setup {
+lspconfig.jedi_language_server.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "python" },
-  settings = {
-    pylsp = {
-      -- configurationSources = { "flake8" },
-      plugins = {
-        -- formatters
-        black = { enabled = false, line_length = 99 },
-        autopep8 = { enabled = false },
-        yapf = { enabled = false },
-        --linters
-        pycodestyle = { enabled = false },
-        pydocstyle = { enabled = false },
-        pylint = { enabled = false },
-        flake8 = {
-          enabled = true,
-          ignore = { "E501", "W503", "E741", "E731", "C901" },
-          maxComplexity = 10,
-          maxLineLength = 99,
-        },
-        pyflakes = { enabled = false },
-        maccabe = { enabled = false, threshold = 20 },
-        -- completion
-        jedi_completion = { enabled = false },
-        -- jedi_hover = { enabled = true },
-        -- jedi_references = { enabled = true },
-        -- jedi_signature_help = { enabled = true },
-        -- jedi_symbols = { enabled = true },
-        -- mccabe = { enabled = false },
-        -- preload = { enabled = false },
-        -- rope_completion = { enabled = false },
-        -- rope_rename = { enabled = false },
-      },
-    },
-    --     python = {
-    --       analysis = {
-    --         diagnosticSeverityOverrides = {
-    --           reportUnusedVariable = false,
-    --           reportMissingImports = true,
-    --           reportUndefinedVariable = "none",
-    --         },
-    --         typeCheckingMode = "off",
-    --       },
-    --     },
-  },
 }
+
+-- https://jdhao.github.io/2023/07/22/neovim-pylsp-setup/
+-- lspconfig.pylsp.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = { "python" },
+--   settings = {
+--     pylsp = {
+--       -- configurationSources = { "flake8" },
+--       plugins = {
+--         -- formatters
+--         black = { enabled = false, line_length = 99 },
+--         autopep8 = { enabled = false },
+--         yapf = { enabled = false },
+--         --linters
+--         pycodestyle = { enabled = false },
+--         pydocstyle = { enabled = false },
+--         pylint = { enabled = false },
+--         flake8 = {
+--           enabled = true,
+--           ignore = { "E501", "W503", "E741", "E731", "C901" },
+--           maxComplexity = 10,
+--           maxLineLength = 99,
+--         },
+--         pyflakes = { enabled = false },
+--         maccabe = { enabled = false, threshold = 20 },
+--         -- completion
+--         jedi_completion = { enabled = false },
+--         -- jedi_hover = { enabled = true },
+--         -- jedi_references = { enabled = true },
+--         -- jedi_signature_help = { enabled = true },
+--         -- jedi_symbols = { enabled = true },
+--         -- mccabe = { enabled = false },
+--         -- preload = { enabled = false },
+--         -- rope_completion = { enabled = false },
+--         -- rope_rename = { enabled = false },
+--       },
+--     },
+--   },
+-- }
 
 lspconfig.lua_ls.setup {
   on_attach = on_attach,

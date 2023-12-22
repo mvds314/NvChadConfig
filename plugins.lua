@@ -192,8 +192,10 @@ local plugins = {
     opts = {
       ensure_installed = {
         -- "pyright",
-        "python-lsp-server",
+        -- "python-lsp-server",
+        "jedi-language-server",
         "black",
+        "flake8",
         "debugpy",
         "lua-language-server",
         "stylua",
