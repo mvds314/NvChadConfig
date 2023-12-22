@@ -47,14 +47,20 @@ local cspellconfig = {
 
 local opts = {
   sources = {
+    -- Python
     null_ls.builtins.formatting.black.with { extra_args = { "--line-length", 99 }, timeout = -1 },
+    null_ls.builtins.diagnostics.pylint,
+    -- null_ls.builtins.diagnostics.flake8,
+    -- null_ls.builtins.diagnostics.mypy,
+    -- null_ls.builtins.diagnostics.ruff.with({ extra_args = { "--ignore","E501" } }),
+    -- Formatters: Lua, json, yaml, md
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.fixjson,
     null_ls.builtins.formatting.yamlfix,
     null_ls.builtins.formatting.mdformat,
+    -- Vim script
     null_ls.builtins.diagnostics.vint,
-    -- null_ls.builtins.diagnostics.flake8,
-    null_ls.builtins.diagnostics.pylint,
+    -- LaTeX
     null_ls.builtins.formatting.latexindent,
     -- cspell works, but your whole document will be underlined
     -- cspell.diagnostics.with { config = cspellconfig },
@@ -66,8 +72,6 @@ local opts = {
     -- null_ls.builtins.diagnostics.chktex,
     -- null_ls.builtins.formatting.prettierd,
     -- null_ls.builtins.diagnostics.textidote,
-    -- null_ls.builtins.diagnostics.mypy,
-    -- null_ls.builtins.diagnostics.ruff.with({ extra_args = { "--ignore","E501" } }),
   },
   on_attach = function(client, bufnr)
     if client.supports_method "textDocument/formatting" then
