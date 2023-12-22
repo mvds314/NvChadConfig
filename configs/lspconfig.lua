@@ -31,7 +31,7 @@ lspconfig.pylsp.setup {
   filetypes = { "python" },
   settings = {
     pylsp = {
-      -- configurationSources = { "black" },
+      -- configurationSources = { "flake8" },
       plugins = {
         -- formatters
         black = { enabled = false, line_length = 99 },
@@ -41,10 +41,16 @@ lspconfig.pylsp.setup {
         pycodestyle = { enabled = false },
         pydocstyle = { enabled = false },
         pylint = { enabled = false },
-        flake8 = { enabled = true, ignore = { "E501", "W503", "E741", "E731" } },
+        flake8 = {
+          enabled = true,
+          ignore = { "E501", "W503", "E741", "E731", "C901" },
+          maxComplexity = 10,
+          maxLineLength = 99,
+        },
         pyflakes = { enabled = false },
+        maccabe = { enabled = false, threshold = 20 },
         -- completion
-        jedi_completion = { enabled = true },
+        jedi_completion = { enabled = false },
         -- jedi_hover = { enabled = true },
         -- jedi_references = { enabled = true },
         -- jedi_signature_help = { enabled = true },

@@ -167,7 +167,7 @@ local plugins = {
   {
     -- "jose-elias-alvarez/null-ls.nvim",
     "nvimtools/none-ls.nvim",
-    ft = { "python", "lua", "tex", "json", "yaml", "yml", "markdown", "vimscript" },
+    ft = { "lua", "tex", "json", "yaml", "yml", "markdown", "vimscript" },
     opts = function()
       return require "custom.configs.null-ls"
     end,
@@ -192,8 +192,8 @@ local plugins = {
     opts = {
       ensure_installed = {
         -- "pyright",
-        -- "python-lsp-server",
-        -- "black",
+        "python-lsp-server",
+        "black",
         "debugpy",
         "lua-language-server",
         "stylua",
