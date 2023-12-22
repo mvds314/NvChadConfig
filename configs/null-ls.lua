@@ -47,7 +47,7 @@ local cspellconfig = {
 
 local opts = {
   sources = {
-    -- null_ls.builtins.formatting.black.with { extra_args = { "--line-length", 99 } },
+    null_ls.builtins.formatting.black.with { extra_args = { "--line-length", 99 } },
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.fixjson,
     null_ls.builtins.formatting.yamlfix,
