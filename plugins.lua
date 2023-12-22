@@ -184,8 +184,9 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "pyright",
-        "black",
+        -- "pyright",
+        -- "python-lsp-server",
+        -- "black",
         "debugpy",
         "lua-language-server",
         "stylua",
