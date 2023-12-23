@@ -194,7 +194,8 @@ local plugins = {
         -- "pyright",
         -- "python-lsp-server",
         "jedi-language-server",
-        "black",
+        -- "black",
+        "ruff",
         -- "flake8",
         "pylint",
         "debugpy",
@@ -227,6 +228,7 @@ local plugins = {
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
+      -- Toggle load mappings on loading plugin?
     end,
   },
   {

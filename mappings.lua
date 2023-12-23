@@ -18,6 +18,13 @@ M.dap_python = {
   },
 }
 
+M.nvim_lsp = {
+  n = {
+    ["]g"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>" },
+    ["[g"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>" },
+  },
+}
+
 M.copilot = {
   i = {
     ["<C-l>"] = {
