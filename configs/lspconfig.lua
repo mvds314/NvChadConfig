@@ -4,7 +4,6 @@ local on_attach = config.on_attach
 local capabilities = config.capabilities
 
 local lspconfig = require "lspconfig"
-
 -- lspconfig.pyright.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities,
@@ -23,12 +22,16 @@ local lspconfig = require "lspconfig"
 --     },
 --   },
 -- }
-
 lspconfig.jedi_language_server.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "python" },
 }
+-- lspconfig.ruff_lsp.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = { "python" },
+-- }
 
 -- https://jdhao.github.io/2023/07/22/neovim-pylsp-setup/
 -- lspconfig.pylsp.setup {
