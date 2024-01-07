@@ -37,6 +37,20 @@ local plugins = {
       }
     end,
   },
+  {
+    "stevearc/aerial.nvim",
+    ft = "python",
+    config = function(_, opts)
+      local aerial = require "aerial"
+      aerial.setup {
+        on_attach = function(bufnr)
+          -- Jump forwards/backwards with '{' and '}'
+          vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+          vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+        end,
+      }
+    end,
+  },
   { "epheien/termdbg" },
   {
     "lervag/vimtex",
@@ -90,9 +104,9 @@ local plugins = {
     "NeogitOrg/neogit",
     lazy = false,
     dependencies = {
-      "nvim-lua/plenary.nvim", -- required
+      "nvim-lua/plenary.nvim",         -- required
       "nvim-telescope/telescope.nvim", -- optional
-      "sindrets/diffview.nvim", -- optional
+      "sindrets/diffview.nvim",        -- optional
       -- "ibhagwan/fzf-lua",              -- optional
     },
     config = true,
@@ -241,7 +255,7 @@ local plugins = {
       dofile(vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup {
         highlight = {
-          enable = true, -- false will disable the whole extension
+          enable = true,                -- false will disable the whole extension
           disable = { "tex", "latex" }, -- list of language that will be disabled
           use_languagetree = true,
         },
