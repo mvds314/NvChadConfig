@@ -25,6 +25,12 @@ M.nvim_lsp = {
   },
 }
 
+M.aerial = {
+  n = {
+    ["<leader>a"] = { "<cmd>AerialToggle!<CR>" },
+  },
+}
+
 M.copilot = {
   i = {
     ["<C-l>"] = {
@@ -89,7 +95,7 @@ M.nvim_tree = {
         -- If the current node is a directory get children status
         if gs == nil then
           gs = (node.git_status.dir.direct ~= nil and node.git_status.dir.direct[1])
-            or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
+              or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
         end
         -- If the file is untracked, unstaged or partially staged, we stage it
         if gs == "??" or gs == "MM" or gs == "AM" or gs == " M" then
