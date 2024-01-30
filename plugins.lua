@@ -104,9 +104,9 @@ local plugins = {
     "NeogitOrg/neogit",
     lazy = false,
     dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
+      "nvim-lua/plenary.nvim", -- required
       "nvim-telescope/telescope.nvim", -- optional
-      "sindrets/diffview.nvim",        -- optional
+      "sindrets/diffview.nvim", -- optional
       -- "ibhagwan/fzf-lua",              -- optional
     },
     config = true,
@@ -255,7 +255,7 @@ local plugins = {
       dofile(vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup {
         highlight = {
-          enable = true,                -- false will disable the whole extension
+          enable = true, -- false will disable the whole extension
           disable = { "tex", "latex" }, -- list of language that will be disabled
           use_languagetree = true,
         },
@@ -272,6 +272,9 @@ local plugins = {
         autocomplete = false,
       },
     },
+  },
+  {
+    "equalsraf/neovim-gui-shim", --https://github.com/equalsraf/neovim-qt#why-are-the-gui-commands-missing
   },
 }
 return plugins
