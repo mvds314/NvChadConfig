@@ -266,6 +266,10 @@ local plugins = {
     end,
   },
   {
+    "rafamadriz/friendly-snippets",
+    enabled = false,
+  },
+  {
     "hrsh7th/nvim-cmp", -- https://github.com/NvChad/NvChad/discussions/2193
     opts = {
       completion = {
