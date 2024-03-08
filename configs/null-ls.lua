@@ -49,13 +49,13 @@ local opts = {
   sources = {
     -- Python
     -- null_ls.builtins.formatting.black.with { extra_args = { "--line-length", 99 } },
-    null_ls.builtins.formatting.ruff.with { extra_args = { "--line-length", 99 } },
+    -- null_ls.builtins.formatting.ruff.with { extra_args = { "--line-length", 99 } },
     -- null_ls.builtins.diagnostics.pylint,
     -- null_ls.builtins.diagnostics.flake8,
     -- null_ls.builtins.diagnostics.mypy,
-    null_ls.builtins.diagnostics.ruff.with {
-      extra_args = { "--ignore", "E501", "--ignore", "E741", "--ignore", "E731", "--ignore", "E402" },
-    },
+    -- null_ls.builtins.diagnostics.ruff.with {
+      -- extra_args = { "--ignore", "E501", "--ignore", "E741", "--ignore", "E731", "--ignore", "E402" },
+    -- },
     -- Formatters: Lua, json, yaml, md
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.fixjson,
