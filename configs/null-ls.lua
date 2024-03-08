@@ -58,13 +58,13 @@ local opts = {
     -- },
     -- Formatters: Lua, json, yaml, md
     null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.fixjson,
+    -- null_ls.builtins.formatting.fixjson,
     null_ls.builtins.formatting.yamlfix,
     null_ls.builtins.formatting.mdformat,
     -- Vim script
     null_ls.builtins.diagnostics.vint,
     -- LaTeX
-    null_ls.builtins.formatting.latexindent,
+    -- null_ls.builtins.formatting.latexindent,
     -- cspell works, but your whole document will be underlined
     -- cspell.diagnostics.with { config = cspellconfig },
     -- cspell.code_actions.with { config = cspellconfig },
