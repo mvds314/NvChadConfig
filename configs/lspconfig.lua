@@ -27,10 +27,12 @@ lspconfig.jedi_language_server.setup {
   capabilities = capabilities,
   filetypes = { "python" },
 }
+
+-- https://github.com/astral-sh/ruff-lsp/issues/177
 -- lspconfig.ruff_lsp.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   filetypes = { "python" },
+  -- on_attach = on_attach,
+  -- capabilities = capabilities,
+  -- filetypes = { "python" },
 -- }
 
 -- https://jdhao.github.io/2023/07/22/neovim-pylsp-setup/
