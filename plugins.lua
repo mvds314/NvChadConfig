@@ -113,7 +113,7 @@ local plugins = {
   },
   {
     "rcarriga/nvim-dap-ui",
-    dependencies = { "mfussenegger/nvim-dap", "LiadOz/nvim-dap-repl-highlights" },
+    dependencies = { "mfussenegger/nvim-dap", "LiadOz/nvim-dap-repl-highlights", "nvim-neotest/nvim-nio" },
     config = function()
       local dap = require "dap"
       local dapui = require "dapui"
@@ -142,6 +142,7 @@ local plugins = {
       require("core.utils").load_mappings "dap"
     end,
   },
+  { "nvim-neotest/nvim-nio" },
   -- {
   --   "MunifTanjim/prettier.nvim",
   --   ft = { "json", "yaml", "markdown" },
