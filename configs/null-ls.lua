@@ -48,8 +48,7 @@ local cspellconfig = {
 local opts = {
   sources = {
     -- Python
-    -- null_ls.builtins.formatting.black.with { extra_args = { "--line-length", 99 } },
-    -- null_ls.builtins.formatting.ruff.with { extra_args = { "--line-length", 99 } },
+    null_ls.builtins.formatting.black.with { extra_args = { "--line-length", 99 } },
     -- require("none-ls.formatting.ruff"),--.with { extra_args = { "--line-length", 99 } }, -- for some reason this does not work
     -- null_ls.builtins.diagnostics.pylint,
     -- null_ls.builtins.diagnostics.flake8,
@@ -60,8 +59,8 @@ local opts = {
     -- Formatters: Lua, json, yaml, md
     null_ls.builtins.formatting.stylua,
     -- null_ls.builtins.formatting.fixjson,
-    null_ls.builtins.formatting.yamlfix,
-    null_ls.builtins.formatting.mdformat,
+    -- null_ls.builtins.formatting.yamlfix,
+    -- null_ls.builtins.formatting.mdformat,
     -- Vim script
     null_ls.builtins.diagnostics.vint,
     -- LaTeX
@@ -74,7 +73,9 @@ local opts = {
     -- null_ls.builtins.code_actions.proselint,
     -- chktex does not work well when using \input{myfile.tex}
     -- null_ls.builtins.diagnostics.chktex,
-    -- null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.prettierd.with({
+        filetypes = { "json", "yaml", "markdown" },
+    }),
     -- null_ls.builtins.diagnostics.textidote,
   },
   on_attach = function(client, bufnr)

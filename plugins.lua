@@ -228,7 +228,7 @@ local plugins = {
         --"jsonlint",
         "marksman",
         "mdformat",
-        -- "prettierd",
+        "prettierd",
         -- "luasnip",
         "vim-language-server",
         "vint",
