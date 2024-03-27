@@ -48,7 +48,7 @@ local cspellconfig = {
 local opts = {
   sources = {
     -- Python
-    null_ls.builtins.formatting.black.with { extra_args = { "--line-length", 99 } },
+    -- null_ls.builtins.formatting.black.with { extra_args = { "--line-length", 99 } },
     -- require("none-ls.formatting.ruff"),--.with { extra_args = { "--line-length", 99 } }, -- for some reason this does not work
     -- null_ls.builtins.diagnostics.pylint,
     -- null_ls.builtins.diagnostics.flake8,

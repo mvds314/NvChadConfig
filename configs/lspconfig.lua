@@ -22,18 +22,45 @@ local lspconfig = require "lspconfig"
 --     },
 --   },
 -- }
-lspconfig.jedi_language_server.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "python" },
-}
+-- lspconfig.jedi_language_server.setup {
+--   on_attach = on_attach,
+--  capabilities = capabilities,
+--  filetypes = { "python" },
+--}
 
 -- https://github.com/astral-sh/ruff-lsp/issues/177
--- lspconfig.ruff_lsp.setup {
-  -- on_attach = on_attach,
-  -- capabilities = capabilities,
-  -- filetypes = { "python" },
--- }
+lspconfig.ruff_lsp.setup {
+  on_attach = function(client, bufnr)
+    -- run manually with :lua print(vim.lsp.buf.format())
+    if client.supports_method "textDocument/formatting" then
+      vim.api.nvim_clear_autocmds {
+        group = augroup,
+        buffer = bufnr,
+      }
+      -- https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format { async = false, timeout_ms = 10000 }
+        end,
+      })
+    end
+  end,
+  capabilities = capabilities,
+  filetypes = { "python" },
+  -- https://github.com/astral-sh/ruff-lsp/issues/177
+  init_options = {
+    settings = {
+      -- Any extra CLI arguments for `ruff` go here.
+      args = {},
+	  -- Any Linter args go here .
+      lint = { args = {  }},
+      -- ANY  Format args go here.
+      fromat = {args = { '--line-length', '99' }}
+    }
+  }
+ }
 
 -- https://jdhao.github.io/2023/07/22/neovim-pylsp-setup/
 -- lspconfig.pylsp.setup {
