@@ -54,13 +54,13 @@ lspconfig.ruff_lsp.setup {
     settings = {
       -- Any extra CLI arguments for `ruff` go here.
       args = {},
-	  -- Any Linter args go here .
-      lint = { args = {  }},
+      -- Any Linter args go here .
+      lint = { args = { "--line-length", "99" } },
       -- ANY  Format args go here.
-      fromat = {args = { '--line-length', '99' }}
-    }
-  }
- }
+      fromat = { args = { "--line-length", "99" } },
+    },
+  },
+}
 
 -- https://jdhao.github.io/2023/07/22/neovim-pylsp-setup/
 -- lspconfig.pylsp.setup {
