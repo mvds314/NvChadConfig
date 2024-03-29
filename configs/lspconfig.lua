@@ -22,11 +22,21 @@ local lspconfig = require "lspconfig"
 --     },
 --   },
 -- }
--- lspconfig.jedi_language_server.setup {
---   on_attach = on_attach,
---  capabilities = capabilities,
---  filetypes = { "python" },
---}
+lspconfig.jedi_language_server.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "python" },
+  init_options = {
+    jediSettings = {
+      autoImportModules = { "numpy", "pandas", "matplotlib" },
+      caseInsensitiveCompletion = false,
+    },
+    markupKindPreferred = "markdown",
+    completion = { disableSnippets = true, resolveEagerly = true },
+    diagnostics = { enable = false },
+    hover = { enable = false },
+  },
+}
 
 -- https://github.com/astral-sh/ruff-lsp/issues/177
 lspconfig.ruff_lsp.setup {
