@@ -56,7 +56,7 @@ local opts = {
     -- null_ls.builtins.diagnostics.ruff.with {
     -- extra_args = { "--ignore", "E501", "--ignore", "E741", "--ignore", "E731", "--ignore", "E402" },
     -- },
-    null_ls.codes_actions.refactoring,
+    null_ls.builtins.codes_actions.refactoring,
     -- Formatters: Lua, json, yaml, md
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.prettierd.with {

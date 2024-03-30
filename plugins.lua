@@ -183,7 +183,7 @@ local plugins = {
     -- "jose-elias-alvarez/null-ls.nvim",
     "nvimtools/none-ls.nvim",
     ft = { "python", "lua", "tex", "json", "yaml", "yml", "markdown", "vimscript" },
-    dependencies = { "nvimtools/none-ls-extras.nvim" },
+    dependencies = { "nvimtools/none-ls-extras.nvim", "ThePrimeagen/refactoring.nvim" },
     opts = function()
       return require "custom.configs.null-ls"
     end,
