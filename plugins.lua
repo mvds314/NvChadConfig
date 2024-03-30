@@ -212,6 +212,7 @@ local plugins = {
         "jedi-language-server",
         -- "black",
         "ruff",
+		"ruff-lsp",
         -- "flake8",
         "pylint",
         "debugpy",
