@@ -56,9 +56,12 @@ local opts = {
     -- null_ls.builtins.diagnostics.ruff.with {
     -- extra_args = { "--ignore", "E501", "--ignore", "E741", "--ignore", "E731", "--ignore", "E402" },
     -- },
+    null_ls.codes_actions.refactoring,
     -- Formatters: Lua, json, yaml, md
     null_ls.builtins.formatting.stylua,
-    -- null_ls.builtins.formatting.fixjson,
+    null_ls.builtins.formatting.prettierd.with {
+      filetypes = { "json", "yaml", "markdown" },
+    },
     -- null_ls.builtins.formatting.yamlfix,
     -- null_ls.builtins.formatting.mdformat,
     -- Vim script
@@ -73,9 +76,6 @@ local opts = {
     -- null_ls.builtins.code_actions.proselint,
     -- chktex does not work well when using \input{myfile.tex}
     -- null_ls.builtins.diagnostics.chktex,
-    null_ls.builtins.formatting.prettierd.with({
-        filetypes = { "json", "yaml", "markdown" },
-    }),
     -- null_ls.builtins.diagnostics.textidote,
   },
   on_attach = function(client, bufnr)
