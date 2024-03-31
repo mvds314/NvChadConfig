@@ -188,6 +188,17 @@ local plugins = {
       return require "custom.configs.null-ls"
     end,
   },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    ft = "python",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("refactoring").setup()
+    end,
+  },
   -- {
   --   "averms/black-nvim",
   --   ft = { "python" },
