@@ -246,8 +246,6 @@ local plugins = {
         "vint",
         "yaml-language-server",
         -- "yamlfix",
-        -- TODO: add some code actions
-        "refactoring",
       },
     },
   },
