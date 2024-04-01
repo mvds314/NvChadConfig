@@ -2,7 +2,7 @@ local plugins = {
   {
     "Vigemus/iron.nvim",
     ft = "python",
-    config = function(_, opts)
+    config = function(_, _)
       local iron = require "iron.core"
       iron.setup {
         config = {
@@ -40,7 +40,7 @@ local plugins = {
   {
     "stevearc/aerial.nvim",
     ft = "python",
-    config = function(_, opts)
+    config = function(_, _)
       local aerial = require "aerial"
       aerial.setup {
         on_attach = function(bufnr)
@@ -138,7 +138,7 @@ local plugins = {
   },
   {
     "mfussenegger/nvim-dap",
-    config = function(_, opts)
+    config = function(_, _)
       require("core.utils").load_mappings "dap"
     end,
   },
@@ -173,7 +173,7 @@ local plugins = {
       "mfussenegger/nvim-dap",
       "rcarriga/nvim-dap-ui",
     },
-    config = function(_, opts)
+    config = function(_, _)
       local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
       require("dap-python").setup(path)
       require("core.utils").load_mappings "dap_python"
@@ -262,7 +262,7 @@ local plugins = {
     opts = {
       ensure_installed = { "html", "css", "bash", "python", "latex", "json", "lua", "vim", "yaml" },
     },
-    config = function(_, opts)
+    config = function(_, _)
       -- https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
       dofile(vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup {
