@@ -171,6 +171,19 @@ lspconfig.marksman.setup {
   filetypes = { "markdown" },
 }
 
+--lspconfig.azure_pipelines_ls.setup {
+  --on_attach = on_attach,
+  --capabilities = capabilities,
+  --filetypes = { "yaml" },
+--}
+
+lspconfig.dockerls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  --note dockerfiles are detected as conf files if they don't have the extension
+  filetypes = { "dockerfile", "conf" },
+}
+
 lspconfig.vimls.setup {
   on_attach = on_attach,
   capabilities = capabilities,

@@ -246,6 +246,8 @@ local plugins = {
         "vint",
         "yaml-language-server",
         -- "yamlfix",
+		"dockerfile-language-server",
+		--"azure-pipelines-language-server"
       },
     },
   },
