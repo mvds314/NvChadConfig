@@ -95,7 +95,7 @@ M.nvim_tree = {
         -- If the current node is a directory get children status
         if gs == nil then
           gs = (node.git_status.dir.direct ~= nil and node.git_status.dir.direct[1])
-              or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
+            or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
         end
         -- If the file is untracked, unstaged or partially staged, we stage it
         if gs == "??" or gs == "MM" or gs == "AM" or gs == " M" then
@@ -114,11 +114,11 @@ M.nvim_tree = {
 M.neogit = {
   n = {
     ["<leader>gs"] = { "<cmd>Neogit<CR>", "󱈜 Neogit status" },
-    -- ["<leader>gc"] = { "<cmd>Neogit commit<CR>", "󱈜 Neogit commit" },
-    -- ["<leader>gp"] = { "<cmd>Neogit push<CR>", "󱈜 Neogit push" },
-    -- ["<leader>gl"] = { "<cmd>Neogit pull<CR>", "󱈜 Neogit pull" },
-    -- ["<leader>gb"] = { "<cmd>Neogit branch<CR>", "󱈜 Neogit branch" },
-    -- ["<leader>gd"] = { "<cmd>Neogit diff<CR>", "󱈜 Neogit diff" },
+    ["<leader>gc"] = { "<cmd>Neogit commit<CR>", "󱈜 Neogit commit" },
+    ["<leader>gp"] = { "<cmd>Neogit push<CR>", "󱈜 Neogit push" },
+    ["<leader>gl"] = { "<cmd>Neogit pull<CR>", "󱈜 Neogit pull" },
+    ["<leader>gb"] = { "<cmd>Neogit branch<CR>", "󱈜 Neogit branch" },
+    ["<leader>gd"] = { "<cmd>Neogit diff<CR>", "󱈜 Neogit diff" },
     -- ["<leader>gD"] = { "<cmd>Neogit diff<CR>", "󱈜 Neogit diff" },
     -- ["<leader>gC"] = { "<cmd>Neogit commit --amend<CR>", "󱈜 Neogit commit --amend" },
     -- ["<leader>gR"] = { "<cmd>Neogit reset<CR>", "󱈜 Neogit reset" },
