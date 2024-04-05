@@ -1,4 +1,5 @@
 local config = require "plugins.configs.lspconfig"
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local on_attach = config.on_attach
 local capabilities = config.capabilities
@@ -172,9 +173,9 @@ lspconfig.marksman.setup {
 }
 
 --lspconfig.azure_pipelines_ls.setup {
-  --on_attach = on_attach,
-  --capabilities = capabilities,
-  --filetypes = { "yaml" },
+--on_attach = on_attach,
+--capabilities = capabilities,
+--filetypes = { "yaml" },
 --}
 
 lspconfig.dockerls.setup {
