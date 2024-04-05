@@ -44,7 +44,7 @@ lspconfig.jedi_language_server.setup {
     --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     -- end, bufopts)
     -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
   end,
   capabilities = capabilities,
@@ -88,8 +88,8 @@ lspconfig.ruff_lsp.setup {
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set("n", "<space>f", function()
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set("n", "<leader>fm", function()
       vim.lsp.buf.format { async = true }
     end, bufopts)
   end,
