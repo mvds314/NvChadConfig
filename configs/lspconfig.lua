@@ -24,7 +24,7 @@ local lspconfig = require "lspconfig"
 --   },
 -- }
 lspconfig.jedi_language_server.setup {
-  on_attach = function(client, bufnr)
+  on_attach = function(_, bufnr)
     -- https://docs.astral.sh/ruff/integrations/#language-server-protocol-official
     -- https://docs.astral.sh/ruff/integrations/#vim-neovim
     -- Enable completion triggered by <c-x><c-o>
