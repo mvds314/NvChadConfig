@@ -1,4 +1,5 @@
 local config = require "plugins.configs.lspconfig"
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local on_attach = config.on_attach
 local capabilities = config.capabilities
@@ -23,7 +24,7 @@ local lspconfig = require "lspconfig"
 --   },
 -- }
 lspconfig.jedi_language_server.setup {
-  on_attach = function(client, bufnr)
+  on_attach = function(_, bufnr)
     -- https://docs.astral.sh/ruff/integrations/#language-server-protocol-official
     -- https://docs.astral.sh/ruff/integrations/#vim-neovim
     -- Enable completion triggered by <c-x><c-o>
@@ -43,7 +44,7 @@ lspconfig.jedi_language_server.setup {
     --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     -- end, bufopts)
     -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
   end,
   capabilities = capabilities,
@@ -87,8 +88,8 @@ lspconfig.ruff_lsp.setup {
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set("n", "<space>f", function()
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set("n", "<leader>fm", function()
       vim.lsp.buf.format { async = true }
     end, bufopts)
   end,
@@ -172,9 +173,9 @@ lspconfig.marksman.setup {
 }
 
 --lspconfig.azure_pipelines_ls.setup {
-  --on_attach = on_attach,
-  --capabilities = capabilities,
-  --filetypes = { "yaml" },
+--on_attach = on_attach,
+--capabilities = capabilities,
+--filetypes = { "yaml" },
 --}
 
 lspconfig.dockerls.setup {
