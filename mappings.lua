@@ -4,6 +4,17 @@ M.dap = {
   plugin = true,
   n = {
     ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>" },
+	['<F5>'] = { "<cmd> DapContinue <CR>" },
+	['<F10>'] = { "<cmd> DapStepOver <CR>" },
+	['<F11>'] = { "<cmd> DapStepInto <CR>" },
+	['<F12>'] = { "<cmd> DapStepOut <CR>" },
+	['<leader>dc'] = { "<cmd> DapContinue <CR>" },
+	['<leader>dn'] = { "<cmd> DapStepOver <CR>" },
+	['<leader>ds'] = { "<cmd> DapStepInto <CR>" },
+	['<leader>dr'] = { "<cmd> DapToggleReple <CR>" },
+	['<leader>dq'] = { "<cmd> DapTerminate <CR>" },
+	['<leader>dh'] = { function() require('dap.ui.widgets').hover() end },
+	['<leader>dh'] = { function() require('dap.ui.widgets').preview() end  },
   },
 }
 
