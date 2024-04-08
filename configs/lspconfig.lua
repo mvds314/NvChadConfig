@@ -103,7 +103,7 @@ lspconfig.ruff_lsp.setup {
       -- Any Linter args go here .
       lint = { args = { "--line-length", "99" } },
       -- ANY  Format args go here.
-      fromat = { args = { "--line-length", "99" } },
+      format = { args = { "--line-length", "99" } },
     },
   },
 }
