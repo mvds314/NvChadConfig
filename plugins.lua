@@ -104,9 +104,9 @@ local plugins = {
     "NeogitOrg/neogit",
     lazy = false,
     dependencies = {
-      "nvim-lua/plenary.nvim", -- required
+      "nvim-lua/plenary.nvim",         -- required
       "nvim-telescope/telescope.nvim", -- optional
-      "sindrets/diffview.nvim", -- optional
+      "sindrets/diffview.nvim",        -- optional
       -- "ibhagwan/fzf-lua",              -- optional
     },
     config = true,
@@ -182,7 +182,7 @@ local plugins = {
   {
     -- "jose-elias-alvarez/null-ls.nvim",
     "nvimtools/none-ls.nvim",
-    ft = { "python", "lua", "tex", "json", "yaml", "yml", "markdown", "vimscript", "dockerfile" },
+    ft = { "python", "lua", "tex", "json", "yaml", "yml", "markdown", "vimscript", "dockerfile" , "sh" },
     dependencies = { "nvimtools/none-ls-extras.nvim", "ThePrimeagen/refactoring.nvim" },
     opts = function()
       return require "custom.configs.null-ls"
@@ -246,9 +246,11 @@ local plugins = {
         "vint",
         "yaml-language-server",
         -- "yamlfix",
-		"dockerfile-language-server",
-		--"azure-pipelines-language-server",
-		"hadolint",
+        "dockerfile-language-server",
+        --"azure-pipelines-language-server",
+        "hadolint",
+        "bash-language-server",
+        "shfmt",
       },
     },
   },
@@ -270,7 +272,7 @@ local plugins = {
       dofile(vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup {
         highlight = {
-          enable = true, -- false will disable the whole extension
+          enable = true,                -- false will disable the whole extension
           disable = { "tex", "latex" }, -- list of language that will be disabled
           use_languagetree = true,
         },

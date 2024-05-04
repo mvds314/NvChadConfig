@@ -172,6 +172,18 @@ lspconfig.marksman.setup {
   filetypes = { "markdown" },
 }
 
+lspconfig.bashls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "sh" },
+}
+
+lspconfig.pkgbuild_language_server.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "PKGBUILD" },
+}
+
 --lspconfig.azure_pipelines_ls.setup {
 --on_attach = on_attach,
 --capabilities = capabilities,
