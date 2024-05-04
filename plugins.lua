@@ -106,13 +106,8 @@ local plugins = {
     dependencies = {
       "nvim-lua/plenary.nvim",         -- required
       "nvim-telescope/telescope.nvim", -- optional
-<<<<<<< HEAD
-      "sindrets/diffview.nvim",        -- optional
-      -- "ibhagwan/fzf-lua",              -- optional
-=======
       "sindrets/diffview.nvim", -- optional
       -- "ibhagwan/fzf-lua", -- optional
->>>>>>> main
     },
     config = true,
   },
