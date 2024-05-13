@@ -64,6 +64,10 @@ lspconfig.jedi_language_server.setup {
 -- https://github.com/astral-sh/ruff-lsp/issues/177
 lspconfig.ruff_lsp.setup {
   on_attach = function(client, bufnr)
+    
+	-- disable some capabilities https://github.com/astral-sh/ruff-lsp/issues/78
+	-- client.server_capabilities.documentFormattingProvider = false
+   
     -- run manually with :lua print(vim.lsp.buf.format())
     if client.supports_method "textDocument/formatting" then
       vim.api.nvim_clear_autocmds {
