@@ -70,9 +70,7 @@ M.copilot = {
 	},
 }
 
-map("n", "<C-e>", function()
-				vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
-			end, { desc = "Copilot Accept" } )
+map("i", "<C-e>", function() vim.fn.feedkeys(vim.fn["copilot#Accept"](), "") end, { desc = "Copilot Accept" } )
 
 -- Harpoon
 map("n", "<leader>ha", function() require("harpoon.mark").add_file() end, { desc = "Harpoon Add file" } )
