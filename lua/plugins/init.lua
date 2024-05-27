@@ -118,37 +118,37 @@ return {
     },
     config = true,
   },
-  {
-    "rcarriga/nvim-dap-ui",
-    dependencies = { "mfussenegger/nvim-dap", "LiadOz/nvim-dap-repl-highlights", "nvim-neotest/nvim-nio" },
-    config = function()
-      local dap = require "dap"
-      local dapui = require "dapui"
-      local dapuihl = require "nvim-dap-repl-highlights"
-      local nvimtscf = require "nvim-treesitter.configs"
-      dapui.setup()
-      dapuihl.setup()
-      nvimtscf.setup {
-        highlight = { enable = true },
-        ensure_installed = { "dap_repl" },
-      }
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
-      end
-    end,
-  },
-  {
-    "mfussenegger/nvim-dap",
-    config = function(_, _)
-      require("core.utils").load_mappings "dap"
-    end,
-  },
+  --{
+  --  "rcarriga/nvim-dap-ui",
+  --  dependencies = { "mfussenegger/nvim-dap", "LiadOz/nvim-dap-repl-highlights", "nvim-neotest/nvim-nio" },
+  --  config = function()
+  --   local dap = require "dap"
+  --    local dapui = require "dapui"
+  --    local dapuihl = require "nvim-dap-repl-highlights"
+  --    local nvimtscf = require "nvim-treesitter.configs"
+  --    dapui.setup()
+  --    dapuihl.setup()
+  --    nvimtscf.setup {
+  --      highlight = { enable = true },
+  --      ensure_installed = { "dap_repl" },
+  --    }
+  --    dap.listeners.after.event_initialized["dapui_config"] = function()
+  --      dapui.open()
+  --    end
+  --    dap.listeners.before.event_terminated["dapui_config"] = function()
+  --      dapui.close()
+  --    end
+  --    dap.listeners.before.event_exited["dapui_config"] = function()
+  --      dapui.close()
+  --    end
+  --  end,
+  --},
+  --{
+  --  "mfussenegger/nvim-dap",
+  --  config = function(_, _)
+  --    require("core.utils").load_mappings "dap"
+  --  end,
+  --},
   { "nvim-neotest/nvim-nio" },
   -- {
   --   "MunifTanjim/prettier.nvim",
@@ -173,26 +173,26 @@ return {
   --     }
   --   end,
   -- },
-  {
-    "mfussenegger/nvim-dap-python",
-    ft = "python",
-    dependencies = {
-      "mfussenegger/nvim-dap",
-      "rcarriga/nvim-dap-ui",
-    },
-    config = function(_, _)
-      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-      require("dap-python").setup(path)
-      require("core.utils").load_mappings "dap_python"
-    end,
-  },
+  --{
+  --  "mfussenegger/nvim-dap-python",
+  --  ft = "python",
+  --  dependencies = {
+  --    "mfussenegger/nvim-dap",
+  --    "rcarriga/nvim-dap-ui",
+  --  },
+  --  config = function(_, _)
+  --    local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+  --    require("dap-python").setup(path)
+  --    require("core.utils").load_mappings "dap_python"
+  --  end,
+  --},
   {
     -- "jose-elias-alvarez/null-ls.nvim",
     "nvimtools/none-ls.nvim",
     ft = { "python", "lua", "tex", "json", "yaml", "yml", "markdown", "vimscript", "dockerfile" , "sh" },
     dependencies = { "nvimtools/none-ls-extras.nvim", "ThePrimeagen/refactoring.nvim" },
     opts = function()
-      return require "custom.configs.null-ls"
+      return require "configs.null-ls"
     end,
   },
   {
@@ -264,8 +264,8 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
+      require "nvchad.configs.lspconfig"
+      require "configs.lspconfig"
       -- Toggle load mappings on loading plugin?
     end,
   },
