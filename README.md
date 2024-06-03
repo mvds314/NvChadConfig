@@ -14,6 +14,6 @@ The config is optimized for:
 - Scientific programming with Python
 - Writing documents in LaTeX
 - Edit Neovim lua config files
-- Edititing: json, yaml,...
+- Edititing: json, yaml, bash, markdown, lua, docker ...
 
 The config is largely based on [this one](https://www.youtube.com/watch?v=4BnVeOUeZxc), and has migrated to breaking changes as introduced in [NvChad 2.5](https://nvchad.com/news/v2.5_release/).
