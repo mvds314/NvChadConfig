@@ -113,7 +113,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",         -- required
       "nvim-telescope/telescope.nvim", -- optional
-      "sindrets/diffview.nvim", -- optional
+      "sindrets/diffview.nvim",        -- optional
       -- "ibhagwan/fzf-lua", -- optional
     },
     config = true,
@@ -189,7 +189,7 @@ return {
   {
     -- "jose-elias-alvarez/null-ls.nvim",
     "nvimtools/none-ls.nvim",
-    ft = { "python", "lua", "tex", "json", "yaml", "yml", "markdown", "vimscript", "dockerfile" , "sh" },
+    ft = { "python", "lua", "tex", "json", "yaml", "yml", "markdown", "vimscript", "dockerfile", "sh" },
     dependencies = { "nvimtools/none-ls-extras.nvim", "ThePrimeagen/refactoring.nvim" },
     opts = function()
       return require "configs.null-ls"
@@ -230,7 +230,7 @@ return {
         "jedi-language-server",
         -- "black",
         -- "ruff",
-        "ruff-lsp",
+        -- "ruff-lsp",
         -- "flake8",
         -- "pylint",
         "debugpy",
