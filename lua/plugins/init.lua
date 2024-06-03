@@ -230,7 +230,7 @@ return {
         "jedi-language-server",
         -- "black",
         -- "ruff",
-        -- "ruff-lsp",
+        "ruff-lsp",
         -- "flake8",
         -- "pylint",
         "debugpy",
