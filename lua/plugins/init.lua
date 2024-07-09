@@ -111,9 +111,9 @@ return {
     "NeogitOrg/neogit",
     lazy = false,
     dependencies = {
-      "nvim-lua/plenary.nvim", -- required
+      "nvim-lua/plenary.nvim",         -- required
       "nvim-telescope/telescope.nvim", -- optional
-      "sindrets/diffview.nvim", -- optional
+      "sindrets/diffview.nvim",        -- optional
       -- "ibhagwan/fzf-lua", -- optional
     },
     config = true,
@@ -236,7 +236,6 @@ return {
     "davidmh/cspell.nvim",
     ft = { "tex", "markdown" },
     dependencies = {
-      -- "jose-elias-alvarez/null-ls.nvim",
       "nvimtools/none-ls.nvim",
     },
   },
