@@ -233,13 +233,6 @@ return {
   --   end,
   -- },
   {
-    "davidmh/cspell.nvim",
-    ft = { "tex", "markdown" },
-    dependencies = {
-      "nvimtools/none-ls.nvim",
-    },
-  },
-  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
@@ -257,7 +250,7 @@ return {
         "texlab",
         -- "ltex-ls",
         -- "latexindent",
-        "cspell",
+        "codespell",
         -- "vale", -- vale.init not found
         -- "proselint",
         "json-lsp",
