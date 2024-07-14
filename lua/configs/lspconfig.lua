@@ -1,4 +1,5 @@
--- EXAMPLE 
+-- EXAMPLE
+
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
@@ -24,7 +25,6 @@ lspconfig.tsserver.setup {
 
 -------------------------------------- CUSTOM LSPs ------------------------------------------
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
 
 -- lspconfig.pyright.setup {
 --   on_attach = on_attach,
@@ -85,10 +85,9 @@ lspconfig.jedi_language_server.setup {
 -- https://github.com/astral-sh/ruff-lsp/issues/177
 lspconfig.ruff_lsp.setup {
   on_attach = function(client, bufnr)
-    
-	-- disable some capabilities https://github.com/astral-sh/ruff-lsp/issues/78
-	-- client.server_capabilities.documentFormattingProvider = false
-   
+    -- disable some capabilities https://github.com/astral-sh/ruff-lsp/issues/78
+    -- client.server_capabilities.documentFormattingProvider = false
+
     -- run manually with :lua print(vim.lsp.buf.format())
     if client.supports_method "textDocument/formatting" then
       vim.api.nvim_clear_autocmds {
@@ -203,11 +202,12 @@ lspconfig.bashls.setup {
   filetypes = { "sh" },
 }
 
-lspconfig.pkgbuild_language_server.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "PKGBUILD" },
-}
+-- deprecated
+-- lspconfig.pkgbuild_language_server.setup {
+-- on_attach = on_attach,
+-- capabilities = capabilities,
+-- filetypes = { "PKGBUILD" },
+-- }
 
 --lspconfig.azure_pipelines_ls.setup {
 --on_attach = on_attach,
@@ -241,3 +241,4 @@ lspconfig.texlab.setup {
 -- filetypes = { "tex" },
 -- settings = { texlab = { diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } } } },
 -- }
+

@@ -133,6 +133,25 @@ return {
     },
     config = true,
   },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
+    },
+  },
   --{
   --  "rcarriga/nvim-dap-ui",
   --  dependencies = { "mfussenegger/nvim-dap", "LiadOz/nvim-dap-repl-highlights", "nvim-neotest/nvim-nio" },
@@ -229,14 +248,6 @@ return {
   --   end,
   -- },
   {
-    "davidmh/cspell.nvim",
-    ft = { "tex", "markdown" },
-    dependencies = {
-      -- "jose-elias-alvarez/null-ls.nvim",
-      "nvimtools/none-ls.nvim",
-    },
-  },
-  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
@@ -254,7 +265,7 @@ return {
         "texlab",
         -- "ltex-ls",
         -- "latexindent",
-        "cspell",
+        "codespell",
         -- "vale", -- vale.init not found
         -- "proselint",
         "json-lsp",
