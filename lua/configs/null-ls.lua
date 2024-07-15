@@ -34,7 +34,8 @@ local opts = {
     -- null_ls.builtins.formatting.latexindent,
     -- other spell checkers I tried
     -- null_ls.builtins.diagnostics.vale,
-    -- null_ls.builtins.code_actions.proselint,
+    null_ls.builtins.diagnostics.proselint.with { filetypes = { "markdown", "tex" } },
+    null_ls.builtins.code_actions.proselint.with { filetypes = { "markdown", "tex" } },
     -- chktex does not work well when using \input{myfile.tex}
     -- null_ls.builtins.diagnostics.chktex,
     -- null_ls.builtins.diagnostics.textidote,

@@ -252,7 +252,7 @@ return {
         -- "latexindent",
         "codespell",
         -- "vale", -- vale.init not found
-        -- "proselint",
+        "proselint",
         "json-lsp",
         -- "fixjson",
         --"jsonlint",
