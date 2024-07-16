@@ -235,10 +235,14 @@ lspconfig.texlab.setup {
   settings = { texlab = { diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } } } },
 }
 
+-- try digestif?
+-- It can be installed with Mason
+-- https://github.com/astoff/digestif
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#digestif
+
 -- lspconfig.ltex.setup {
 -- on_attach = on_attach,
 -- capabilities = capabilities,
 -- filetypes = { "tex" },
 -- settings = { texlab = { diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } } } },
 -- }
-
