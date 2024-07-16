@@ -216,6 +216,7 @@ lspconfig.bashls.setup {
 -- https://github.com/elijah-potter/harper
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#harper_ls
 -- claims to improve on grammarly, particularly on privacy issues
+-- Can be installed with Mason
 
 -- deprecated
 -- lspconfig.pkgbuild_language_server.setup {
