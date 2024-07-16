@@ -195,15 +195,27 @@ lspconfig.marksman.setup {
   capabilities = capabilities,
   filetypes = { "markdown" },
 }
--- Add additional grammar checking for markdown with grammarly
--- https://github.com/znck/grammarly
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#grammarly
 
 lspconfig.bashls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "sh" },
 }
+
+-- add a toml lsp
+-- https://taplo.tamasfe.dev/
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#taplo
+-- can be installed with Mason
+
+-- Add additional grammar checking for markdown with grammarly
+-- https://github.com/znck/grammarly
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#grammarly
+
+-- add a grammar checker for developers
+-- harper-ls
+-- https://github.com/elijah-potter/harper
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#harper_ls
+-- claims to improve on grammarly, particularly on privacy issues
 
 -- deprecated
 -- lspconfig.pkgbuild_language_server.setup {
