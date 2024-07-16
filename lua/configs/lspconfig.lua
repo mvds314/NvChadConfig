@@ -195,6 +195,9 @@ lspconfig.marksman.setup {
   capabilities = capabilities,
   filetypes = { "markdown" },
 }
+-- Add additional grammar checking for markdown with grammarly
+-- https://github.com/znck/grammarly
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#grammarly
 
 lspconfig.bashls.setup {
   on_attach = on_attach,
