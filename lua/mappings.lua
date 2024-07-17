@@ -73,9 +73,9 @@ M.copilot = {
 map("i", "<C-e>", function() vim.fn.feedkeys(vim.fn["copilot#Accept"](), "") end, { desc = "Copilot Accept" } )
 
 -- Harpoon
-map("n", "<leader>ha", function() require("harpoon.mark").add_file() end, { desc = "Harpoon Add file" } )
+map("n", "<leader>qa", function() require("harpoon.mark").add_file() end, { desc = "Harpoon Add file to quick menu" } )
 map("n", "<leader>ta", "<CMD>Telescope harpoon marks<CR>", { desc = "Toggle quick menu" })
-map("n", "<leader>hb", function() require("harpoon.ui").toggle_quick_menu() end, { desc = "Harpoon Menu" } )
+map("n", "<leader>qm", function() require("harpoon.ui").toggle_quick_menu() end, { desc = "Harpoon Quick menu Menu" } )
 map("n", "<leader>1", function() require("harpoon.ui").nav_file(1) end, { desc = "Navigate to file 1" } )
 map("n", "<leader>2", function() require("harpoon.ui").nav_file(2) end, { desc = "Navigate to file 2" } )
 map("n", "<leader>3", function() require("harpoon.ui").nav_file(3) end, { desc = "Navigate to file 3" } )
