@@ -279,6 +279,7 @@ return {
         "vint",
         "yaml-language-server",
         -- "yamlfix",
+        "taplo", -- TOML LSP: https://taplo.tamasfe.dev/
         "dockerfile-language-server",
         --"azure-pipelines-language-server",
         "hadolint",

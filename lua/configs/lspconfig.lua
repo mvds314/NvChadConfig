@@ -202,10 +202,41 @@ lspconfig.bashls.setup {
   filetypes = { "sh" },
 }
 
--- add a toml lsp
+-- TOML lsp
 -- https://taplo.tamasfe.dev/
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#taplo
--- can be installed with Mason
+lspconfig.taplo.setup {
+  on_attach = function(client, bufnr)
+    -- run manually with :lua print(vim.lsp.buf.format())
+    if client.supports_method "textDocument/formatting" then
+      vim.api.nvim_clear_autocmds {
+        group = augroup,
+        buffer = bufnr,
+      }
+      -- https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format { async = false, timeout_ms = 10000 }
+        end,
+      })
+    end
+
+    -- Enable completion triggered by <c-x><c-o>
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+    -- Mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set("n", "<leader>fm", function()
+      vim.lsp.buf.format { async = true }
+    end, bufopts)
+  end,
+  capabilities = capabilities,
+  filetypes = { "toml" },
+}
 
 -- Add additional grammar checking for markdown with grammarly
 -- https://github.com/znck/grammarly
