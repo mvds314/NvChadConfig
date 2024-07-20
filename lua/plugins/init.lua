@@ -315,7 +315,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require "nvchad.configs.lspconfig"
+      require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
       -- Toggle load mappings on loading plugin?
     end,
