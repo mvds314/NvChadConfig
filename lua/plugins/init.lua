@@ -184,7 +184,8 @@ return {
   --  end,
   --},
   {
-    "nvim-neotest/nvim-nio",
+    "nvim-neotest/neotest",
+    ft = "python",
     dependencies = {
       "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
@@ -194,7 +195,17 @@ return {
     },
     config = function(_, _)
       require("neotest").setup {
-        adapter = require "neotest.python",
+        adapters = {
+          require "neotest-python" {
+            dap = {
+              justMyCode = false,
+              -- console = "integratedTerminal",
+            },
+            args = { "--log-level", "DEBUG" }, --, "--quiet" },
+            runner = "pytest",
+            -- python = "~/mypython/bin/python",
+          },
+        },
       }
     end,
   },
