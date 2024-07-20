@@ -153,6 +153,12 @@ return {
     },
   },
   --{
+  --  "mfussenegger/nvim-dap",
+  --  config = function(_, _)
+  --    require("core.utils").load_mappings "dap"
+  --  end,
+  --},
+  --{
   --  "rcarriga/nvim-dap-ui",
   --  dependencies = { "mfussenegger/nvim-dap", "LiadOz/nvim-dap-repl-highlights", "nvim-neotest/nvim-nio" },
   --  config = function()
@@ -178,9 +184,16 @@ return {
   --  end,
   --},
   --{
-  --  "mfussenegger/nvim-dap",
+  --  "mfussenegger/nvim-dap-python",
+  --  ft = "python",
+  --  dependencies = {
+  --    "mfussenegger/nvim-dap",
+  --    "rcarriga/nvim-dap-ui",
+  --  },
   --  config = function(_, _)
-  --    require("core.utils").load_mappings "dap"
+  --    local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+  --    require("dap-python").setup(path)
+  --    require("core.utils").load_mappings "dap_python"
   --  end,
   --},
   {
@@ -232,19 +245,6 @@ return {
   --     }
   --   end,
   -- },
-  --{
-  --  "mfussenegger/nvim-dap-python",
-  --  ft = "python",
-  --  dependencies = {
-  --    "mfussenegger/nvim-dap",
-  --    "rcarriga/nvim-dap-ui",
-  --  },
-  --  config = function(_, _)
-  --    local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-  --    require("dap-python").setup(path)
-  --    require("core.utils").load_mappings "dap_python"
-  --  end,
-  --},
   {
     -- "jose-elias-alvarez/null-ls.nvim",
     "nvimtools/none-ls.nvim",
