@@ -77,11 +77,20 @@ return {
   {
     "lervag/vimtex",
     ft = "tex",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
+    lazy = false,
     config = function()
-      -- vim.g.vimtex_view_general_viewer = "SumatraPDF"
-      -- vim.g.vimtex_view_general_view = "C:/Users/ROB6027/AppData/Local/SumatraPDF/SumatraPDF.exe"
-      vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"
+      local is_windows = vim.fn.has "win64" == 1 or vim.fn.has "win32" == 1 or vim.fn.has "win16" == 1
+      local is_linux = vim.fn.has "unix" == 1
+      if is_windows then
+        -- vim.g.vimtex_compiler_progname = "nvr"
+        -- vim.g.vimtex_view_method = "nvr"
+        vim.g.vimtex_view_general_viewer = "SumatraPDF"
+        -- vim.g.vimtex_view_general_view = "C:/Users/ROB6027/AppData/Local/SumatraPDF/SumatraPDF.exe"
+        vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"
+      elseif is_linux then
+        vim.g.vimtex_view_general_viewer = "zathura"
+      end
     end,
   },
   { "psliwka/vim-smoothie", lazy = false },
