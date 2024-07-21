@@ -14,42 +14,25 @@ map("i", "jk", "<ESC>")
 ------------------------------------------- DAP -------------------------------------------------
 local M = {}
 
-M.dap = {
-  plugin = true,
-  n = {
-    ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>" },
-    ["<F5>"] = { "<cmd> DapContinue <CR>" },
-    ["<F10>"] = { "<cmd> DapStepOver <CR>" },
-    ["<F11>"] = { "<cmd> DapStepInto <CR>" },
-    ["<F12>"] = { "<cmd> DapStepOut <CR>" },
-    ["<leader>dc"] = { "<cmd> DapContinue <CR>" },
-    ["<leader>dn"] = { "<cmd> DapStepOver <CR>" },
-    ["<leader>ds"] = { "<cmd> DapStepInto <CR>" },
-    ["<leader>dr"] = { "<cmd> DapToggleReple <CR>" },
-    ["<leader>dq"] = { "<cmd> DapTerminate <CR>" },
-    ["<leader>dh"] = {
-      function()
-        require("dap.ui.widgets").hover()
-      end,
-    },
-    ["<leader>dh"] = {
-      function()
-        require("dap.ui.widgets").preview()
-      end,
-    },
-  },
-}
+map("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Toggle breakpoint" })
+map("n", "<F5>", "<cmd> DapContinue <CR>", { desc = "Continue" })
+map("n", "<F10>", "<cmd> DapStepOver <CR>", { desc = "Step over" })
+map("n", "<F11>", "<cmd> DapStepInto <CR>", { desc = "Step into" })
+map("n", "<F12>", "<cmd> DapStepOut <CR>", { desc = "Step out" })
+map("n", "<leader>dc", "<cmd> DapContinue <CR>", { desc = "Continue" })
+map("n", "<leader>dn", "<cmd> DapStepOver <CR>", { desc = "Step over" })
+map("n", "<leader>ds", "<cmd> DapStepInto <CR>", { desc = "Step into" })
+map("n", "<leader>dr", "<cmd> DapToggleReple <CR>", { desc = "Toggle Repl" })
+map("n", "<leader>dq", "<cmd> DapTerminate <CR>", { desc = "Terminate" })
+map("n", "<leader>dh", function()
+  require("dap.ui.widgets").hover()
+end, { desc = "Hover" })
+map("n", "<leader>dh", function()
+  require("dap.ui.widgets").preview()
+end, { desc = "Preview" })
 
-M.dap_python = {
-  plugin = true,
-  n = {
-    ["<leader>dpr"] = {
-      function()
-        require("dap-python").test_method()
-      end,
-    },
-  },
-}
+-- Python specific mappings
+map("n", "<leader>dpr", "<cmd>lua require('dap-python').test_method()<CR>", { desc = "Test method" })
 
 ------------------------------------------- LSP diagnostics -------------------------------------------------
 map("n", "]g", "<cmd>lua vim.diagnostic.goto_next()<CR>", { desc = "Go to next diagnostics" })
