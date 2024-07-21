@@ -161,23 +161,23 @@ return {
     config = function()
       local dap = require "dap"
       local dapui = require "dapui"
-      -- local dapuihl = require "nvim-dap-repl-highlights"
-      -- local nvimtscf = require "nvim-treesitter.configs"
+      local dapuihl = require "nvim-dap-repl-highlights"
+      local nvimtscf = require "nvim-treesitter.configs"
       dapui.setup()
-      -- dapuihl.setup()
-      -- nvimtscf.setup {
-      --   highlight = { enable = true },
-      --   ensure_installed = { "dap_repl" },
-      -- }
-      -- dap.listeners.after.event_initialized["dapui_config"] = function()
-      --   dapui.open()
-      -- end
-      -- dap.listeners.before.event_terminated["dapui_config"] = function()
-      --   dapui.close()
-      -- end
-      -- dap.listeners.before.event_exited["dapui_config"] = function()
-      --   dapui.close()
-      -- end
+      dapuihl.setup()
+      nvimtscf.setup {
+        highlight = { enable = true },
+        ensure_installed = { "dap_repl" },
+      }
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
     end,
   },
   {
@@ -189,8 +189,8 @@ return {
     },
     config = function(_, _)
       -- local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-      -- require("dap-python").setup(path)
-      require("dap-python").setup "python"
+      local path = "python"
+      require("dap-python").setup(path)
     end,
   },
   {
