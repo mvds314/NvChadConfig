@@ -11,8 +11,7 @@ map("i", "jk", "<ESC>")
 
 ---------------------------- CUSTOM MAPPINGS -------------------------------------------
 
--- TODO: process dap mappings
-
+------------------------------------------- DAP -------------------------------------------------
 local M = {}
 
 M.dap = {
@@ -52,33 +51,25 @@ M.dap_python = {
   },
 }
 
+------------------------------------------- LSP diagnostics -------------------------------------------------
 map("n", "]g", "<cmd>lua vim.diagnostic.goto_next()<CR>", { desc = "Go to next diagnostics" })
 map("n", "[g", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "Go to previous diagnostics" })
 
+------------------------------------------- Neotest -------------------------------------------------
 map("n", "<leader>tn", "<cmd>lua require('neotest').run.run()<CR>", { desc = "Run nearest test" })
 map("n", "<leader>tf", "<cmd>lua require('neotest').run.run()<CR>", { desc = "Run all tests in file" })
 map("n", "<leader>to", "<cmd>lua require('neotest').output.open()<CR>", { desc = "Open test output" })
 map("n", "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<CR>", { desc = "View test summary" })
 
+------------------------------------------- Aerial -------------------------------------------------
 map("n", "<leader>a", "<cmd>AerialToggle!<CR>", { desc = "Aereal Toggle" })
 
-M.copilot = {
-  i = {
-    ["<C-e>"] = {
-      function()
-        vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
-      end,
-      "Copilot Accept",
-      { replace_keycodes = true, nowait = true, silent = true, expr = true, noremap = true },
-    },
-  },
-}
-
+------------------------------------------- Copilot -------------------------------------------------
 map("i", "<C-e>", function()
   vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
 end, { desc = "Copilot Accept" })
 
--- Harpoon
+------------------------------------------- Harpoon -------------------------------------------------
 map("n", "<leader>qa", function()
   require("harpoon.mark").add_file()
 end, { desc = "Harpoon Add file to quick menu" })
@@ -99,7 +90,7 @@ map("n", "<leader>4", function()
   require("harpoon.ui").nav_file(4)
 end, { desc = "Navigate to file 4" })
 
--- GIT related
+------------------------------------------- GIT related -------------------------------------------------
 map("n", "<leader>ga", function()
   local api = require "nvim-tree.api"
   local node = api.tree.get_node_under_cursor()
