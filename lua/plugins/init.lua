@@ -152,50 +152,47 @@ return {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
     },
   },
-  --{
-  --  "mfussenegger/nvim-dap",
-  --  config = function(_, _)
-  --    require("core.utils").load_mappings "dap"
-  --  end,
-  --},
-  --{
-  --  "rcarriga/nvim-dap-ui",
-  --  dependencies = { "mfussenegger/nvim-dap", "LiadOz/nvim-dap-repl-highlights", "nvim-neotest/nvim-nio" },
-  --  config = function()
-  --   local dap = require "dap"
-  --    local dapui = require "dapui"
-  --    local dapuihl = require "nvim-dap-repl-highlights"
-  --    local nvimtscf = require "nvim-treesitter.configs"
-  --    dapui.setup()
-  --    dapuihl.setup()
-  --    nvimtscf.setup {
-  --      highlight = { enable = true },
-  --      ensure_installed = { "dap_repl" },
-  --    }
-  --    dap.listeners.after.event_initialized["dapui_config"] = function()
-  --      dapui.open()
-  --    end
-  --    dap.listeners.before.event_terminated["dapui_config"] = function()
-  --      dapui.close()
-  --    end
-  --    dap.listeners.before.event_exited["dapui_config"] = function()
-  --      dapui.close()
-  --    end
-  --  end,
-  --},
-  --{
-  --  "mfussenegger/nvim-dap-python",
-  --  ft = "python",
-  --  dependencies = {
-  --    "mfussenegger/nvim-dap",
-  --    "rcarriga/nvim-dap-ui",
-  --  },
-  --  config = function(_, _)
-  --    local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-  --    require("dap-python").setup(path)
-  --    require("core.utils").load_mappings "dap_python"
-  --  end,
-  --},
+  {
+    "mfussenegger/nvim-dap",
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "LiadOz/nvim-dap-repl-highlights", "nvim-neotest/nvim-nio" },
+    config = function()
+      local dap = require "dap"
+      local dapui = require "dapui"
+      -- local dapuihl = require "nvim-dap-repl-highlights"
+      -- local nvimtscf = require "nvim-treesitter.configs"
+      dapui.setup()
+      -- dapuihl.setup()
+      -- nvimtscf.setup {
+      --   highlight = { enable = true },
+      --   ensure_installed = { "dap_repl" },
+      -- }
+      -- dap.listeners.after.event_initialized["dapui_config"] = function()
+      --   dapui.open()
+      -- end
+      -- dap.listeners.before.event_terminated["dapui_config"] = function()
+      --   dapui.close()
+      -- end
+      -- dap.listeners.before.event_exited["dapui_config"] = function()
+      --   dapui.close()
+      -- end
+    end,
+  },
+  {
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+    },
+    config = function(_, _)
+      -- local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+      -- require("dap-python").setup(path)
+      require("dap-python").setup "python"
+    end,
+  },
   {
     "nvim-neotest/neotest",
     ft = "python",
