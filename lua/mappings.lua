@@ -11,7 +11,7 @@ map("i", "jk", "<ESC>")
 
 ---------------------------- CUSTOM MAPPINGS -------------------------------------------
 
-------------------------------------------- DAP -------------------------------------------------
+---------------------------------- DAP -------------------------------------------------
 map("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Toggle breakpoint" })
 map("n", "<F5>", "<cmd> DapContinue <CR>", { desc = "Continue" })
 map("n", "<F10>", "<cmd> DapStepOver <CR>", { desc = "Step over" })
