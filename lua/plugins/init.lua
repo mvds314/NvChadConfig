@@ -295,7 +295,7 @@ return {
         "stylua",
         "texlab",
         -- "ltex-ls",
-        -- "latexindent",
+        "latexindent",
         "codespell",
         -- "vale", -- vale.init not found
         "proselint",
