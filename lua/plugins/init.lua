@@ -125,13 +125,15 @@ return {
   {
     "NeogitOrg/neogit",
     lazy = false,
+    -- cmd = "Neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
-      "nvim-telescope/telescope.nvim", -- optional
-      "sindrets/diffview.nvim",        -- optional
+      "nvim-lua/plenary.nvim",         -- Required
+      "nvim-telescope/telescope.nvim", -- Optional
+      "sindrets/diffview.nvim",        -- Optional
       -- "ibhagwan/fzf-lua", -- optional
     },
     config = true,
+    opts = {},
   },
   {
     "kdheepak/lazygit.nvim",
