@@ -77,11 +77,20 @@ return {
   {
     "lervag/vimtex",
     ft = "tex",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
+    lazy = false,
     config = function()
-      -- vim.g.vimtex_view_general_viewer = "SumatraPDF"
-      -- vim.g.vimtex_view_general_view = "C:/Users/ROB6027/AppData/Local/SumatraPDF/SumatraPDF.exe"
-      vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"
+      local is_windows = vim.fn.has "win64" == 1 or vim.fn.has "win32" == 1 or vim.fn.has "win16" == 1
+      local is_linux = vim.fn.has "unix" == 1
+      if is_windows then
+        -- vim.g.vimtex_compiler_progname = "nvr"
+        -- vim.g.vimtex_view_method = "nvr"
+        vim.g.vimtex_view_general_viewer = "SumatraPDF"
+        -- vim.g.vimtex_view_general_view = "C:/Users/ROB6027/AppData/Local/SumatraPDF/SumatraPDF.exe"
+        vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"
+      elseif is_linux then
+        vim.g.vimtex_view_general_viewer = "zathura"
+      end
     end,
   },
   { "psliwka/vim-smoothie", lazy = false },
@@ -154,38 +163,73 @@ return {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
     },
   },
-  --{
-  --  "rcarriga/nvim-dap-ui",
-  --  dependencies = { "mfussenegger/nvim-dap", "LiadOz/nvim-dap-repl-highlights", "nvim-neotest/nvim-nio" },
-  --  config = function()
-  --   local dap = require "dap"
-  --    local dapui = require "dapui"
-  --    local dapuihl = require "nvim-dap-repl-highlights"
-  --    local nvimtscf = require "nvim-treesitter.configs"
-  --    dapui.setup()
-  --    dapuihl.setup()
-  --    nvimtscf.setup {
-  --      highlight = { enable = true },
-  --      ensure_installed = { "dap_repl" },
-  --    }
-  --    dap.listeners.after.event_initialized["dapui_config"] = function()
-  --      dapui.open()
-  --    end
-  --    dap.listeners.before.event_terminated["dapui_config"] = function()
-  --      dapui.close()
-  --    end
-  --    dap.listeners.before.event_exited["dapui_config"] = function()
-  --      dapui.close()
-  --    end
-  --  end,
-  --},
-  --{
-  --  "mfussenegger/nvim-dap",
-  --  config = function(_, _)
-  --    require("core.utils").load_mappings "dap"
-  --  end,
-  --},
-  { "nvim-neotest/nvim-nio" },
+  {
+    "mfussenegger/nvim-dap",
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "LiadOz/nvim-dap-repl-highlights", "nvim-neotest/nvim-nio" },
+    config = function()
+      local dap = require "dap"
+      local dapui = require "dapui"
+      local dapuihl = require "nvim-dap-repl-highlights"
+      local nvimtscf = require "nvim-treesitter.configs"
+      dapui.setup()
+      dapuihl.setup()
+      nvimtscf.setup {
+        highlight = { enable = true },
+        ensure_installed = { "dap_repl" },
+      }
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end,
+  },
+  {
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+    },
+    config = function(_, _)
+      -- local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+      local path = "python"
+      require("dap-python").setup(path)
+    end,
+  },
+  {
+    "nvim-neotest/neotest",
+    ft = "python",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-neotest/neotest-python",
+    },
+    config = function(_, _)
+      require("neotest").setup {
+        adapters = {
+          require "neotest-python" {
+            dap = {
+              justMyCode = false,
+              -- console = "integratedTerminal",
+            },
+            args = { "--log-level", "DEBUG" }, --, "--quiet" },
+            runner = "pytest",
+            -- python = "~/mypython/bin/python",
+          },
+        },
+      }
+    end,
+  },
   -- {
   --   "MunifTanjim/prettier.nvim",
   --   ft = { "json", "yaml", "markdown" },
@@ -209,19 +253,6 @@ return {
   --     }
   --   end,
   -- },
-  --{
-  --  "mfussenegger/nvim-dap-python",
-  --  ft = "python",
-  --  dependencies = {
-  --    "mfussenegger/nvim-dap",
-  --    "rcarriga/nvim-dap-ui",
-  --  },
-  --  config = function(_, _)
-  --    local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-  --    require("dap-python").setup(path)
-  --    require("core.utils").load_mappings "dap_python"
-  --  end,
-  --},
   {
     -- "jose-elias-alvarez/null-ls.nvim",
     "nvimtools/none-ls.nvim",
@@ -266,7 +297,7 @@ return {
         "stylua",
         "texlab",
         -- "ltex-ls",
-        -- "latexindent",
+        "latexindent",
         "codespell",
         "harper-ls",
         -- "vale", -- vale.init not found
@@ -294,7 +325,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require "nvchad.configs.lspconfig"
+      require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
       -- Toggle load mappings on loading plugin?
     end,

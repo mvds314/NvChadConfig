@@ -308,6 +308,13 @@ lspconfig.texlab.setup {
 -- https://github.com/astoff/digestif
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#digestif
 
+-- try vale ls?
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#vale_ls
+-- Can be installed with Mason
+-- https://vale.sh/docs/topics/actions/
+
+-- Check this one out?
+-- https://valentjn.github.io/ltex/
 -- lspconfig.ltex.setup {
 -- on_attach = on_attach,
 -- capabilities = capabilities,
