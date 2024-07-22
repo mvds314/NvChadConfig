@@ -268,6 +268,7 @@ return {
         -- "ltex-ls",
         -- "latexindent",
         "codespell",
+        "harper-ls",
         -- "vale", -- vale.init not found
         "proselint",
         "json-lsp",

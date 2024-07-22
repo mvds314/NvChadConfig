@@ -244,6 +244,27 @@ lspconfig.taplo.setup {
 
 -- add a grammar checker for developers
 -- harper-ls
+lspconfig.harper_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {
+    "markdown",
+    "rust",
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "python",
+    "go",
+    "c",
+    "cpp",
+    "ruby",
+    "swift",
+    "csharp",
+    "toml",
+    "lua",
+  },
+}
+
 -- https://github.com/elijah-potter/harper
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#harper_ls
 -- claims to improve on grammarly, particularly on privacy issues

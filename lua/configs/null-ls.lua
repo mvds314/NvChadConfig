@@ -21,7 +21,7 @@ local opts = {
     -- null_ls.builtins.formatting.yamlfix,
     -- null_ls.builtins.formatting.mdformat,
     -- Spelling
-    null_ls.builtins.diagnostics.codespell,
+    -- null_ls.builtins.diagnostics.codespell,
     -- null_ls.builtins.formatting.codespell,
     -- Vim script
     null_ls.builtins.diagnostics.vint,
