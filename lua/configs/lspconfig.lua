@@ -25,6 +25,8 @@ lspconfig.tsserver.setup {
 -------------------------------------- CUSTOM LSPs ------------------------------------------
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+------------------------------------- Python LSPs -------------------------------------------
+
 -- lspconfig.pyright.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities,
@@ -43,6 +45,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 --     },
 --   },
 -- }
+
 lspconfig.jedi_language_server.setup {
   on_attach = function(_, bufnr)
     -- https://docs.astral.sh/ruff/integrations/#language-server-protocol-official
@@ -171,11 +174,15 @@ lspconfig.ruff_lsp.setup {
 --   },
 -- }
 
+-------------------------------------- Lua LSPs -------------------------------------------
+
 lspconfig.lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "lua" },
 }
+
+-------------------------------------- Other LSPs -------------------------------------------
 
 -- spconfig.jsonls.setup {
 --   on_attach = on_attach,
