@@ -21,7 +21,7 @@ return {
       -- https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
       -- dofile(vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup {
-        ensure_installed = { "html", "css", "bash", "python", "latex", "json", "lua", "vim", "yaml" },
+        ensure_installed = { "html", "css", "bash", "python", "json", "lua", "vim", "yaml" },
         autoinstall = true,
         highlight = {
           enable = true,                -- false will disable the whole extension
