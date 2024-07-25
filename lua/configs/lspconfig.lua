@@ -177,65 +177,65 @@ lspconfig.lua_ls.setup {
   filetypes = { "lua" },
 }
 
-lspconfig.jsonls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "json" },
-}
+-- spconfig.jsonls.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = { "json" },
+-- }
 
-lspconfig.yamlls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "yaml" },
-}
-
-lspconfig.marksman.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "markdown" },
-}
-
-lspconfig.bashls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "sh" },
-}
+-- lspconfig.yamlls.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = { "yaml" },
+-- }
+--
+-- lspconfig.marksman.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = { "markdown" },
+-- }
+--
+-- lspconfig.bashls.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = { "sh" },
+-- }
 
 -- TOML lsp
 -- https://taplo.tamasfe.dev/
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#taplo
-lspconfig.taplo.setup {
-  on_attach = function(client, bufnr)
-    -- run manually with :lua print(vim.lsp.buf.format())
-    if client.supports_method "textDocument/formatting" then
-      vim.api.nvim_clear_autocmds {
-        group = augroup,
-        buffer = bufnr,
-      }
-      -- https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format { async = false, timeout_ms = 10000 }
-        end,
-      })
-    end
-
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set("n", "<leader>fm", function()
-      vim.lsp.buf.format { async = true }
-    end, bufopts)
-  end,
-  capabilities = capabilities,
-  filetypes = { "toml" },
-}
+-- lspconfig.taplo.setup {
+--   on_attach = function(client, bufnr)
+--     -- run manually with :lua print(vim.lsp.buf.format())
+--     if client.supports_method "textDocument/formatting" then
+--       vim.api.nvim_clear_autocmds {
+--         group = augroup,
+--         buffer = bufnr,
+--       }
+--       -- https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save
+--       vim.api.nvim_create_autocmd("BufWritePre", {
+--         group = augroup,
+--         buffer = bufnr,
+--         callback = function()
+--           vim.lsp.buf.format { async = false, timeout_ms = 10000 }
+--         end,
+--       })
+--     end
+--
+--     -- Enable completion triggered by <c-x><c-o>
+--     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+--
+--     -- Mappings.
+--     -- See `:help vim.lsp.*` for documentation on any of the below functions
+--     local bufopts = { noremap = true, silent = true, buffer = bufnr }
+--     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+--     vim.keymap.set("n", "<leader>fm", function()
+--       vim.lsp.buf.format { async = true }
+--     end, bufopts)
+--   end,
+--   capabilities = capabilities,
+--   filetypes = { "toml" },
+-- }
 
 -- Add additional grammar checking for markdown with grammarly
 -- https://github.com/znck/grammarly
@@ -243,26 +243,26 @@ lspconfig.taplo.setup {
 
 -- add a grammar checker for developers
 -- harper-ls
-lspconfig.harper_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = {
-    "markdown",
-    "rust",
-    "typescript",
-    "typescriptreact",
-    "javascript",
-    "python",
-    "go",
-    "c",
-    "cpp",
-    "ruby",
-    "swift",
-    "csharp",
-    "toml",
-    "lua",
-  },
-}
+-- lspconfig.harper_ls.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = {
+--     "markdown",
+--     "rust",
+--     "typescript",
+--     "typescriptreact",
+--     "javascript",
+--     "python",
+--     "go",
+--     "c",
+--     "cpp",
+--     "ruby",
+--     "swift",
+--     "csharp",
+--     "toml",
+--     "lua",
+--   },
+-- }
 
 -- https://github.com/elijah-potter/harper
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#harper_ls
@@ -282,25 +282,25 @@ lspconfig.harper_ls.setup {
 --filetypes = { "yaml" },
 --}
 
-lspconfig.dockerls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  --note dockerfiles are detected as conf files if they don't have the extension
-  filetypes = { "dockerfile", "conf" },
-}
-
-lspconfig.vimls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "vim" },
-}
-
-lspconfig.texlab.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "tex" },
-  settings = { texlab = { diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } } } },
-}
+-- lspconfig.dockerls.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   --note dockerfiles are detected as conf files if they don't have the extension
+--   filetypes = { "dockerfile", "conf" },
+-- }
+--
+-- lspconfig.vimls.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = { "vim" },
+-- }
+--
+-- lspconfig.texlab.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = { "tex" },
+--   settings = { texlab = { diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } } } },
+-- }
 
 -- try digestif?
 -- It can be installed with Mason
