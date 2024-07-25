@@ -7,6 +7,34 @@ return {
     end,
   },
   {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("nvchad.configs.lspconfig").defaults()
+      require "configs.lspconfig"
+      -- Toggle load mappings on loading plugin?
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    -- opts = {    },
+    config = function(_, _)
+      -- https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
+      -- dofile(vim.g.base46_cache .. "syntax")
+      require("nvim-treesitter.configs").setup {
+        ensure_installed = { "html", "css", "bash", "python", "latex", "json", "lua", "vim", "yaml" },
+        autoinstall = true,
+        highlight = {
+          enable = true,                -- false will disable the whole extension
+          disable = { "tex", "latex" }, -- list of language that will be disabled
+          use_languagetree = true,
+        },
+        -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+        -- parser_install_dir = os.getenv "HOME" .. "/.config/nvim/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+        indent = { enable = true },
+      }
+    end,
+  },
+  {
     "Vigemus/iron.nvim",
     ft = "python",
     config = function(_, _)
@@ -322,35 +350,7 @@ return {
       },
     },
   },
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require("nvchad.configs.lspconfig").defaults()
-      require "configs.lspconfig"
-      -- Toggle load mappings on loading plugin?
-    end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = { "html", "css", "bash", "python", "latex", "json", "lua", "vim", "yaml" },
-    },
-    config = function(_, _)
-      -- https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
-      dofile(vim.g.base46_cache .. "syntax")
-      require("nvim-treesitter.configs").setup {
-        highlight = {
-          enable = true,                -- false will disable the whole extension
-          disable = { "tex", "latex" }, -- list of language that will be disabled
-          use_languagetree = true,
-        },
-        -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-        -- parser_install_dir = os.getenv "HOME" .. "/.config/nvim/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-        indent = { enable = true },
-      }
-    end,
-  },
-  {
+ {
     "rafamadriz/friendly-snippets",
     enabled = false,
   },
