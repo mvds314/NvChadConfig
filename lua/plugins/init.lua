@@ -191,73 +191,73 @@ return {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
     },
   },
-  -- {
-  --   "mfussenegger/nvim-dap",
-  -- },
-  -- {
-  --   "rcarriga/nvim-dap-ui",
-  --   dependencies = { "mfussenegger/nvim-dap", "LiadOz/nvim-dap-repl-highlights", "nvim-neotest/nvim-nio" },
-  --   config = function()
-  --     local dap = require "dap"
-  --     local dapui = require "dapui"
-  --     local dapuihl = require "nvim-dap-repl-highlights"
-  --     local nvimtscf = require "nvim-treesitter.configs"
-  --     dapui.setup()
-  --     dapuihl.setup()
-  --     nvimtscf.setup {
-  --       highlight = { enable = true },
-  --       ensure_installed = { "dap_repl" },
-  --     }
-  --     dap.listeners.after.event_initialized["dapui_config"] = function()
-  --       dapui.open()
-  --     end
-  --     dap.listeners.before.event_terminated["dapui_config"] = function()
-  --       dapui.close()
-  --     end
-  --     dap.listeners.before.event_exited["dapui_config"] = function()
-  --       dapui.close()
-  --     end
-  --   end,
-  -- },
-  -- {
-  --   "mfussenegger/nvim-dap-python",
-  --   ft = "python",
-  --   dependencies = {
-  --     "mfussenegger/nvim-dap",
-  --     "rcarriga/nvim-dap-ui",
-  --   },
-  --   config = function(_, _)
-  --     -- local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-  --     local path = "python"
-  --     require("dap-python").setup(path)
-  --   end,
-  -- },
-  -- {
-  --   "nvim-neotest/neotest",
-  --   ft = "python",
-  --   dependencies = {
-  --     "nvim-neotest/nvim-nio",
-  --     "nvim-lua/plenary.nvim",
-  --     "antoinemadec/FixCursorHold.nvim",
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "nvim-neotest/neotest-python",
-  --   },
-  --   config = function(_, _)
-  --     require("neotest").setup {
-  --       adapters = {
-  --         require "neotest-python" {
-  --           dap = {
-  --             justMyCode = false,
-  --             -- console = "integratedTerminal",
-  --           },
-  --           args = { "--log-level", "DEBUG" }, --, "--quiet" },
-  --           runner = "pytest",
-  --           -- python = "~/mypython/bin/python",
-  --         },
-  --       },
-  --     }
-  --   end,
-  -- },
+  {
+    "mfussenegger/nvim-dap",
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "LiadOz/nvim-dap-repl-highlights", "nvim-neotest/nvim-nio" },
+    config = function()
+      local dap = require "dap"
+      local dapui = require "dapui"
+      local dapuihl = require "nvim-dap-repl-highlights"
+      local nvimtscf = require "nvim-treesitter.configs"
+      dapui.setup()
+      dapuihl.setup()
+      nvimtscf.setup {
+        highlight = { enable = true },
+        ensure_installed = { "dap_repl" },
+      }
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end,
+  },
+  {
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+    },
+    config = function(_, _)
+      -- local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+      local path = "python"
+      require("dap-python").setup(path)
+    end,
+  },
+  {
+    "nvim-neotest/neotest",
+    ft = "python",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-neotest/neotest-python",
+    },
+    config = function(_, _)
+      require("neotest").setup {
+        adapters = {
+          require "neotest-python" {
+            dap = {
+              justMyCode = false,
+              -- console = "integratedTerminal",
+            },
+            args = { "--log-level", "DEBUG" }, --, "--quiet" },
+            runner = "pytest",
+            -- python = "~/mypython/bin/python",
+          },
+        },
+      }
+    end,
+  },
   -- {
   --   "MunifTanjim/prettier.nvim",
   --   ft = { "json", "yaml", "markdown" },
@@ -350,7 +350,7 @@ return {
       },
     },
   },
- {
+  {
     "rafamadriz/friendly-snippets",
     enabled = false,
   },
