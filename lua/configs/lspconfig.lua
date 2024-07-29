@@ -184,31 +184,32 @@ lspconfig.lua_ls.setup {
 
 -------------------------------------- Other LSPs -------------------------------------------
 
--- spconfig.jsonls.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   filetypes = { "json" },
--- }
+lspconfig.jsonls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "json" },
+}
 
--- lspconfig.yamlls.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   filetypes = { "yaml" },
--- }
---
--- lspconfig.marksman.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   filetypes = { "markdown" },
--- }
---
--- lspconfig.bashls.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   filetypes = { "sh" },
--- }
+lspconfig.yamlls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "yaml" },
+}
+
+lspconfig.marksman.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "markdown" },
+}
+
+lspconfig.bashls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "sh" },
+}
 
 -- TOML lsp
+-- Doesn't seem to work for the TOML files I have
 -- https://taplo.tamasfe.dev/
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#taplo
 -- lspconfig.taplo.setup {
@@ -250,26 +251,26 @@ lspconfig.lua_ls.setup {
 
 -- add a grammar checker for developers
 -- harper-ls
--- lspconfig.harper_ls.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   filetypes = {
---     "markdown",
---     "rust",
---     "typescript",
---     "typescriptreact",
---     "javascript",
---     "python",
---     "go",
---     "c",
---     "cpp",
---     "ruby",
---     "swift",
---     "csharp",
---     "toml",
---     "lua",
---   },
--- }
+lspconfig.harper_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {
+    "markdown",
+    "rust",
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "python",
+    "go",
+    "c",
+    "cpp",
+    "ruby",
+    "swift",
+    "csharp",
+    "toml",
+    "lua",
+  },
+}
 
 -- https://github.com/elijah-potter/harper
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#harper_ls
@@ -289,23 +290,23 @@ lspconfig.lua_ls.setup {
 --filetypes = { "yaml" },
 --}
 
--- lspconfig.dockerls.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   --note dockerfiles are detected as conf files if they don't have the extension
---   filetypes = { "dockerfile", "conf" },
--- }
---
--- lspconfig.vimls.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   filetypes = { "vim" },
--- }
---
--- lspconfig.texlab.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   filetypes = { "tex" },
+lspconfig.dockerls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  --note dockerfiles are detected as conf files if they don't have the extension
+  filetypes = { "dockerfile", "conf" },
+}
+
+lspconfig.vimls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "vim" },
+}
+
+lspconfig.texlab.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "tex" },
 --   settings = { texlab = { diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } } } },
 -- }
 
