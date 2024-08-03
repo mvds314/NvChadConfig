@@ -33,6 +33,16 @@ return {
     end,
   },
   {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-telescope/telescope-fzy-native.nvim" },
+    opts = {
+      extensions_list = { "themes", "terms", "fzy_native" },
+      extensions = {
+        fzy_native = { override_generic_sorter = false, override_file_sorter = true },
+      },
+    },
+  },
+  {
     "Vigemus/iron.nvim",
     ft = "python",
     config = function(_, _)
