@@ -34,11 +34,13 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-telescope/telescope-fzy-native.nvim" },
+    dependencies = {
+      "nvim-telescope/telescope-fzy-native.nvim",
+    },
     opts = {
       extensions_list = { "themes", "terms", "fzy_native" },
       extensions = {
-        fzy_native = { override_generic_sorter = false, override_file_sorter = true },
+        fzy_native = { override_generic_sorter = true, override_file_sorter = true },
       },
     },
   },
