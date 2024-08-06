@@ -45,6 +45,7 @@ return {
       },
     },
   },
+  -- TODO: Test this plugin
   {
     "prochri/telescope-all-recent.nvim",
     dependencies = {
