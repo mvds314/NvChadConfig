@@ -52,7 +52,7 @@ return {
       "nvim-telescope/telescope.nvim",
       "kkharji/sqlite.lua",
       -- Optional, if using telescope for vim.ui.select
-      "stevearc/dressing.nvim",
+      -- "stevearc/dressing.nvim",
     },
     opts = {
       -- Your config goes here
