@@ -50,7 +50,8 @@ return {
         conf.extensions = {
           fzy_native = { override_generic_sorter = true, override_file_sorter = true },
           whaler = {
-            directories = { "C:\\Users\\ROB6027\\Repos", "C:\\Users\\ROB6027\\AppData\\Local\\nvim" },
+            directories = { "C:\\Users\\ROB6027\\Repos" },
+            oneoff_directories = { "C:\\Users\\ROB6027\\AppData\\Local\\nvim" },
             file_explorer = "nvimtree",
             auto_file_explorer = false, -- Whether to automatically open file explorer. By default is `true`
             auto_cwd = true,            -- Whether to automatically change current working directory. By default is `true`
@@ -60,7 +61,8 @@ return {
         conf.extensions = {
           fzy_native = { override_generic_sorter = true, override_file_sorter = true },
           whaler = {
-            directories = { "~/Repos", "~/.config/nvim" },
+            directories = { "~/Repos" },
+            oneoff_directories = { "~/.config/nvim" },
             file_explorer = "nvimtree",
             auto_file_explorer = false, -- Whether to automatically open file explorer. By default is `true`
             auto_cwd = true,            -- Whether to automatically change current working directory. By default is `true`
