@@ -40,16 +40,36 @@ return {
       --TODO whaler gives an error upon use, why? -> test this one further
       "SalOrak/whaler",
     },
-    opts = {
-      extensions_list = { "themes", "terms", "fzy_native", "whaler" },
-      extensions = {
-        fzy_native = { override_generic_sorter = true, override_file_sorter = true },
-        whaler = {
-          -- TODO: make this one windows Linux compatible
-          directories = { "C:\\Users\\ROB6027\\Repos", "C:\\Users\\ROB6027\\AppData\\Local\\nvim" },
-        },
-      },
-    },
+    opts = function()
+      -- Retrieve NvChad default configuration
+      local conf = require "nvchad.configs.telescope"
+      local is_windows = vim.fn.has "win64" == 1 or vim.fn.has "win32" == 1 or vim.fn.has "win16" == 1
+      local is_linux = vim.fn.has "unix" == 1
+      -- And edit it as described here: https://nvchad.com/docs/config/plugins
+      conf.extensions_list = { "themes", "terms", "fzy_native", "whaler" }
+      if is_windows then
+        conf.extensions = {
+          fzy_native = { override_generic_sorter = true, override_file_sorter = true },
+          whaler = {
+            directories = { "C:\\Users\\ROB6027\\Repos", "C:\\Users\\ROB6027\\AppData\\Local\\nvim" },
+            file_explorer = "nvimtree",
+            auto_file_explorer = false, -- Whether to automatically open file explorer. By default is `true`
+            auto_cwd = true,            -- Whether to automatically change current working directory. By default is `true`
+          },
+        }
+      elseif is_linux then
+        conf.extensions = {
+          fzy_native = { override_generic_sorter = true, override_file_sorter = true },
+          whaler = {
+            directories = { "~/Repos", "~/.config/nvim" },
+            file_explorer = "nvimtree",
+            auto_file_explorer = false, -- Whether to automatically open file explorer. By default is `true`
+            auto_cwd = true,            -- Whether to automatically change current working directory. By default is `true`
+          },
+        }
+      end
+      return conf
+    end,
   },
   -- TODO: Test this plugin
   {
