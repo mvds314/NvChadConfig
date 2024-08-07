@@ -37,11 +37,17 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-telescope/telescope-fzy-native.nvim",
+      --TODO whaler gives an error upon use, why? -> test this one further
+      "SalOrak/whaler",
     },
     opts = {
-      extensions_list = { "themes", "terms", "fzy_native" },
+      extensions_list = { "themes", "terms", "fzy_native", "whaler" },
       extensions = {
         fzy_native = { override_generic_sorter = true, override_file_sorter = true },
+        whaler = {
+          -- TODO: make this one windows Linux compatible
+          directories = { "C:\\Users\\ROB6027\\Repos", "C:\\Users\\ROB6027\\AppData\\Local\\nvim" },
+        },
       },
     },
   },
