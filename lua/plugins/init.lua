@@ -37,7 +37,6 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-telescope/telescope-fzy-native.nvim",
-      --TODO whaler gives an error upon use, why? -> test this one further
       "SalOrak/whaler",
     },
     opts = function()
@@ -68,6 +67,7 @@ return {
           },
         }
       end
+      vim.keymap.set("n", "<leader>fd", require("telescope").extensions.whaler.whaler)
       return conf
     end,
   },
