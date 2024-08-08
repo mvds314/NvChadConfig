@@ -45,7 +45,7 @@ return {
       local is_windows = vim.fn.has "win64" == 1 or vim.fn.has "win32" == 1 or vim.fn.has "win16" == 1
       local is_linux = vim.fn.has "unix" == 1
       -- And edit it as described here: https://nvchad.com/docs/config/plugins
-      conf.extensions_list = { "themes", "terms", "fzy_native", "whaler", "telescope-tabs" }
+      conf.extensions_list = { "themes", "terms", "fzy_native", "whaler" }
       conf.extensions.fzy_native = { override_generic_sorter = true, override_file_sorter = true }
       if is_windows then
         conf.extensions.whaler = {
