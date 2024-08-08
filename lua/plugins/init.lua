@@ -38,6 +38,7 @@ return {
     dependencies = {
       "nvim-telescope/telescope-fzy-native.nvim",
       "SalOrak/whaler",
+      "nvim-telescope/telescope-frecency.nvim",
     },
     opts = function()
       -- Retrieve NvChad default configuration
@@ -45,7 +46,7 @@ return {
       local is_windows = vim.fn.has "win64" == 1 or vim.fn.has "win32" == 1 or vim.fn.has "win16" == 1
       local is_linux = vim.fn.has "unix" == 1
       -- And edit it as described here: https://nvchad.com/docs/config/plugins
-      conf.extensions_list = { "themes", "terms", "fzy_native", "whaler" }
+      conf.extensions_list = { "themes", "terms", "fzy_native", "whaler", "frecency" }
       conf.extensions.fzy_native = { override_generic_sorter = true, override_file_sorter = true }
       if is_windows then
         conf.extensions.whaler = {
@@ -65,6 +66,7 @@ return {
         }
       end
       vim.keymap.set("n", "<leader>fd", require("telescope").extensions.whaler.whaler)
+      vim.keymap.set("n", "<leader>fr", require("telescope").extensions.frecency.frecency)
       return conf
     end,
   },
