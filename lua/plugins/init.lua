@@ -406,11 +406,22 @@ return {
   },
   {
     "hrsh7th/nvim-cmp", -- https://github.com/NvChad/NvChad/discussions/2193
-    opts = {
-      completion = {
+    dependencies = { "rcarriga/cmp-dap" },
+    opts = function()
+      local conf = require "nvchad.configs.cmp"
+      conf.completion = {
         autocomplete = false,
-      },
-    },
+      }
+      conf.enabled = function()
+        return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+      end
+      require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+        sources = {
+          { name = "dap" },
+        },
+      })
+      return conf
+    end,
   },
   {
     "equalsraf/neovim-gui-shim", --https://github.com/equalsraf/neovim-qt#why-are-the-gui-commands-missing
