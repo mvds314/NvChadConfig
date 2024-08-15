@@ -32,7 +32,7 @@ return {
       }
     end,
   },
-  ----------------------------- Telescope -----------------------------
+  ----------------------------- Navigation -----------------------------
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -83,6 +83,45 @@ return {
       -- Your config goes here
     },
   },
+  { "psliwka/vim-smoothie", lazy = false },
+  {
+    "ThePrimeagen/harpoon",
+    cmd = "Harpoon",
+  },
+  {
+    "stevearc/aerial.nvim",
+    ft = "python",
+    config = function(_, _)
+      local aerial = require "aerial"
+      aerial.setup {
+        on_attach = function(bufnr)
+          -- Jump forwards/backwards with '{' and '}'
+          vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+          vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+        end,
+      }
+    end,
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "antosha417/nvim-lsp-file-operations" },
+    opts = {
+      git = {
+        enable = true,
+      },
+      renderer = {
+        highlight_git = true,
+        icons = {
+          show = {
+            git = true,
+          },
+        },
+      },
+      view = {
+        side = "left",
+      },
+    },
+  },
   -------------------------------- REPLS --------------------------------
   {
     "Vigemus/iron.nvim",
@@ -122,21 +161,7 @@ return {
       }
     end,
   },
-  {
-    "stevearc/aerial.nvim",
-    ft = "python",
-    config = function(_, _)
-      local aerial = require "aerial"
-      aerial.setup {
-        on_attach = function(bufnr)
-          -- Jump forwards/backwards with '{' and '}'
-          vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-          vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-        end,
-      }
-    end,
-  },
-  { "epheien/termdbg" },
+  ---------------------------------------- LateX ----------------------------------------
   {
     "lervag/vimtex",
     ft = "tex",
@@ -156,44 +181,7 @@ return {
       end
     end,
   },
-  { "psliwka/vim-smoothie", lazy = false },
-  {
-    "nvim-tree/nvim-tree.lua",
-    dependencies = { "antosha417/nvim-lsp-file-operations" },
-    opts = {
-      git = {
-        enable = true,
-      },
-      renderer = {
-        highlight_git = true,
-        icons = {
-          show = {
-            git = true,
-          },
-        },
-      },
-      view = {
-        side = "left",
-      },
-    },
-  },
-  {
-    "ThePrimeagen/harpoon",
-    cmd = "Harpoon",
-  },
-  {
-    "github/copilot.vim",
-    -- https://github.com/NvChad/NvChad/issues/2020
-    lazy = false,
-    config = function()
-      -- Mapping tab is already used by NvChad
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_assume_mapped = true
-      vim.g.copilot_tab_fallback = ""
-      -- The mapping is set to other key, see custom/lua/mappings
-      -- or run <leader>ch to see copilot mapping section
-    end,
-  },
+  ------------------------------ Source control ---------------------------------------
   {
     "NeogitOrg/neogit",
     lazy = false,
@@ -226,6 +214,8 @@ return {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
     },
   },
+  ---------------------------------- Debugging -------------------------------------------
+  { "epheien/termdbg" },
   {
     "mfussenegger/nvim-dap",
   },
@@ -280,6 +270,7 @@ return {
       require("nvim-dap-virtual-text").setup {}
     end,
   },
+  ----------------------------------- Programming stuff -----------------------------------
   {
     "nvim-neotest/neotest",
     ft = "python",
@@ -398,9 +389,23 @@ return {
       },
     },
   },
+  ---------------------------------------------- Completion ----------------------------------
   {
     "rafamadriz/friendly-snippets",
     enabled = false,
+  },
+  {
+    "github/copilot.vim",
+    -- https://github.com/NvChad/NvChad/issues/2020
+    lazy = false,
+    config = function()
+      -- Mapping tab is already used by NvChad
+      vim.g.copilot_no_tab_map = true
+      vim.g.copilot_assume_mapped = true
+      vim.g.copilot_tab_fallback = ""
+      -- The mapping is set to other key, see custom/lua/mappings
+      -- or run <leader>ch to see copilot mapping section
+    end,
   },
   {
     "hrsh7th/nvim-cmp", -- https://github.com/NvChad/NvChad/discussions/2193
