@@ -123,21 +123,6 @@ return {
     end,
   },
   {
-    "marromlam/kitty-repl.nvim",
-    ft = "python",
-    lazy = false,
-    config = function(_, _)
-      require("kitty-repl").setup()
-      -- nvim_set_keymap('n', '<leader>;r', ':KittyREPLRun<cr>', {})
-      -- nvim_set_keymap('x', '<leader>;s', ':KittyREPLSend<cr>', {})
-      -- nvim_set_keymap('n', '<leader>;s', ':KittyREPLSend<cr>', {})
-      -- nvim_set_keymap('n', '<leader>;c', ':KittyREPLClear<cr>', {})
-      -- nvim_set_keymap('n', '<leader>;k', ':KittyREPLKill<cr>', {})
-      -- nvim_set_keymap('n', '<leader>;l', ':KittyREPLRunAgain<cr>', {})
-      -- nvim_set_keymap('n', '<leader>;w', ':KittyREPLStart<cr>', {})
-    end,
-  },
-  {
     "stevearc/aerial.nvim",
     ft = "python",
     config = function(_, _)
