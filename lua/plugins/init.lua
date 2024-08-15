@@ -246,7 +246,12 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
-    dependencies = { "mfussenegger/nvim-dap", "LiadOz/nvim-dap-repl-highlights", "nvim-neotest/nvim-nio" },
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "LiadOz/nvim-dap-repl-highlights",
+      "theHamsta/nvim-dap-virtual-text",
+      "nvim-neotest/nvim-nio",
+    },
     config = function()
       local dap = require "dap"
       local dapui = require "dapui"
@@ -280,6 +285,14 @@ return {
       -- local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
       local path = "python"
       require("dap-python").setup(path)
+    end,
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter" },
+    -- ft = "python",
+    config = function(_, _)
+      require("nvim-dap-virtual-text").setup {}
     end,
   },
   {
