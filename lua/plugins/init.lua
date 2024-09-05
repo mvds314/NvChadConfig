@@ -380,7 +380,7 @@ return {
         "vint",
         "yaml-language-server",
         -- "yamlfix",
-        "taplo", -- TOML LSP: https://taplo.tamasfe.dev/
+        -- "taplo", -- TOML LSP: https://taplo.tamasfe.dev/
         -- "dprint", -- formatting for several languages including TOML
         "dockerfile-language-server",
         --"azure-pipelines-language-server",
