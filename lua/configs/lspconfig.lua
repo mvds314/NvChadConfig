@@ -209,6 +209,14 @@ lspconfig.bashls.setup {
   filetypes = { "sh" },
 }
 
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- formatter for several filetypes, consider moving to this one for json, markdown, yaml and others
+-- lspconfig.dprint.setup {
+-- on_attach = on_attach,
+-- capabilities = capabilities,
+-- filetypes = { "toml" },
+-- }
+
 -- TOML lsp
 -- Doesn't seem to work for the TOML files I have
 -- https://taplo.tamasfe.dev/
