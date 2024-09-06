@@ -22,7 +22,7 @@ return {
         ensure_installed = { "html", "css", "bash", "python", "json", "lua", "vim", "yaml" },
         autoinstall = true,
         highlight = {
-          enable = true, -- false will disable the whole extension
+          enable = true,                -- false will disable the whole extension
           disable = { "tex", "latex" }, -- list of language that will be disabled
           use_languagetree = true,
         },
@@ -54,7 +54,7 @@ return {
           oneoff_directories = { "C:\\Users\\ROB6027\\AppData\\Local\\nvim" },
           file_explorer = "nvimtree",
           auto_file_explorer = false, -- Whether to automatically open file explorer. By default is `true`
-          auto_cwd = true, -- Whether to automatically change current working directory. By default is `true`
+          auto_cwd = true,            -- Whether to automatically change current working directory. By default is `true`
         }
       elseif is_linux then
         conf.extensions.whaler = {
@@ -62,7 +62,7 @@ return {
           oneoff_directories = { "~/.config/nvim" },
           file_explorer = "nvimtree",
           auto_file_explorer = false, -- Whether to automatically open file explorer. By default is `true`
-          auto_cwd = true, -- Whether to automatically change current working directory. By default is `true`
+          auto_cwd = true,            -- Whether to automatically change current working directory. By default is `true`
         }
       end
       vim.keymap.set("n", "<leader>fd", require("telescope").extensions.whaler.whaler)
@@ -187,9 +187,9 @@ return {
     lazy = false,
     -- cmd = "Neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- Required
+      "nvim-lua/plenary.nvim",         -- Required
       "nvim-telescope/telescope.nvim", -- Optional
-      "sindrets/diffview.nvim", -- Optional
+      "sindrets/diffview.nvim",        -- Optional
       -- "ibhagwan/fzf-lua", -- optional
     },
     config = true,

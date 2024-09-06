@@ -258,7 +258,7 @@ lspconfig.bashls.setup {
 -- https://github.com/znck/grammarly
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#grammarly
 
--- add a grammar checker for developers
+-- Add a grammar checker for developers
 -- harper-ls
 lspconfig.harper_ls.setup {
   on_attach = on_attach,
