@@ -298,29 +298,6 @@ return {
       }
     end,
   },
-  -- {
-  --   "MunifTanjim/prettier.nvim",
-  --   ft = { "json", "yaml", "markdown" },
-  --   config = function(_, opts)
-  --     require("prettier").setup {
-  --       bin = "prettierd",
-  --       filetypes = {
-  --         "css",
-  --         "graphql",
-  --         "html",
-  --         "javascript",
-  --         "javascriptreact",
-  --         "json",
-  --         "less",
-  --         "markdown",
-  --         "scss",
-  --         "typescript",
-  --         "typescriptreact",
-  --         "yaml",
-  --       },
-  --     }
-  --   end,
-  -- },
   {
     -- "jose-elias-alvarez/null-ls.nvim",
     "nvimtools/none-ls.nvim",
