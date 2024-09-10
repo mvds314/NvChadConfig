@@ -299,7 +299,6 @@ return {
     end,
   },
   {
-    -- "jose-elias-alvarez/null-ls.nvim",
     "nvimtools/none-ls.nvim",
     ft = { "tex", "markdown", "dockerfile", "sh" },
     -- dependencies = { "nvimtools/none-ls-extras.nvim", "ThePrimeagen/refactoring.nvim" },
