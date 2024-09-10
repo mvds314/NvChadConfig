@@ -318,13 +318,6 @@ return {
   --     require("refactoring").setup()
   --   end,
   -- },
-  -- {
-  --   "averms/black-nvim",
-  --   ft = { "python" },
-  --   config = function()
-  --     vim.g.black_linelength = 99
-  --   end,
-  -- },
   ---------------------------------------------- Completion ----------------------------------
   {
     "rafamadriz/friendly-snippets",
