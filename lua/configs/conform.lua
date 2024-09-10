@@ -2,6 +2,10 @@ local options = {
   formatters_by_ft = {
     lua = { "stylua" },
     toml = { "taplo" },
+    json = { "prettierd" },
+    yaml = { "prettierd" },
+    markdown = { "prettierd" },
+    tex = { "latexindent" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
