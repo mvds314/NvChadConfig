@@ -330,6 +330,7 @@ return {
       return require "configs.null-ls"
     end,
   },
+  -- This one is a bit buggy, e.g., it reformats code in a weird way.
   -- {
   --   "ThePrimeagen/refactoring.nvim",
   --   ft = "python",
