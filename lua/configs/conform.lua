@@ -5,9 +5,14 @@ local options = {
     json = { "prettierd" },
     yaml = { "prettierd" },
     markdown = { "prettierd" },
-    tex = { "latexindent" },
-    -- css = { "prettier" },
-    -- html = { "prettier" },
+    tex = { "latexindent" }, -- Maybe try llf instead
+    bib = { "bibtex-tidy" },
+    -- Other stuff supported by the formatters above
+    javascript = { "prettierd" },
+    typescript = { "prettierd" },
+    graphql = { "prettierd" },
+    css = { "prettierd" },
+    html = { "prettierd" },
   },
 
   format_on_save = {
