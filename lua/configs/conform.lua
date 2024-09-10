@@ -1,6 +1,7 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
+    toml = { "taplo" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
