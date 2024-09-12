@@ -336,6 +336,36 @@ return {
       -- or run <leader>ch to see copilot mapping section
     end,
   },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("copilot").setup {}
+  --   end,
+  -- },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      -- { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "github/copilot.vim" },
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    -- opts = {
+    -- debug = true, -- Enable debugging
+    -- See Configuration section for rest
+    -- },
+    config = function()
+      require("CopilotChat").setup {
+        debug = true, -- Enable debugging
+        -- See Configuration section for rest
+      }
+    end,
+    lazy = false,
+    -- See Commands section for default commands if you want to lazy load on them
+  },
   {
     "hrsh7th/nvim-cmp", -- https://github.com/NvChad/NvChad/discussions/2193
     dependencies = { "rcarriga/cmp-dap" },
