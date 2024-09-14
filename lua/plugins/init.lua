@@ -399,8 +399,21 @@ return {
         -- See Configuration section for rest
       }
     end,
-    lazy = false,
-    -- See Commands section for default commands if you want to lazy load on them
+    cmd = {
+      "CopilotChat",
+      "CopilotChatLoad",
+      "CopilotChatToggle",
+      "CopilotChatOpen",
+      "CopilotChatExplain",
+      "CopilotChatReview",
+      "CopilotChatFix",
+      "CopilotChatOptimize",
+      "CopilotChatDocs",
+      "CopilotChatTests",
+      "CopilotChatFixDiagnostic",
+      "CopilotChatCommit",
+      "CopilotChatCommitStaged",
+    },
   },
   -- TODO: get more out of this plugin, maybe integrate copilot completions into it?
   {
