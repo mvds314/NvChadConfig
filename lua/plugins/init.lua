@@ -218,8 +218,8 @@ return {
   ------------------------------ Source control ---------------------------------------
   {
     "NeogitOrg/neogit",
-    lazy = false,
-    -- cmd = "Neogit",
+    -- lazy = false,
+    cmd = "Neogit",
     dependencies = {
       "nvim-lua/plenary.nvim", -- Required
       "nvim-telescope/telescope.nvim", -- Optional
