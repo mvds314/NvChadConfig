@@ -124,6 +124,7 @@ return {
       },
     },
   },
+  --TODO: test this plulgin
   {
     "stevearc/oil.nvim",
     ---@module 'oil'
@@ -134,6 +135,7 @@ return {
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   },
   -------------------------------- REPLS --------------------------------
+  --TODO: get more out of Iron.nvim
   {
     "Vigemus/iron.nvim",
     ft = "python",
@@ -226,6 +228,7 @@ return {
     },
   },
   ---------------------------------- Debugging -------------------------------------------
+  --TODO: do more with debugging
   { "epheien/termdbg" },
   {
     "mfussenegger/nvim-dap",
@@ -282,6 +285,7 @@ return {
     end,
   },
   ----------------------------------- Programming stuff -----------------------------------
+  -- TODO: make this one work under windows
   {
     "nvim-neotest/neotest",
     ft = "python",
@@ -354,6 +358,7 @@ return {
   --     require("copilot").setup {}
   --   end,
   -- },
+  -- TODO: configure this plugin
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",
@@ -376,6 +381,7 @@ return {
     lazy = false,
     -- See Commands section for default commands if you want to lazy load on them
   },
+  -- TODO: get more out of this plugin, maybe integrate copilot completions into it?
   {
     "hrsh7th/nvim-cmp", -- https://github.com/NvChad/NvChad/discussions/2193
     dependencies = { "rcarriga/cmp-dap" },
