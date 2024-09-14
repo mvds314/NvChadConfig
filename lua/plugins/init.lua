@@ -379,7 +379,7 @@ return {
   --     require("copilot").setup {}
   --   end,
   -- },
-  -- TODO: configure this plugin
+  -- TODO: configure this plugin for MS Windows
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",
