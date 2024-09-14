@@ -50,6 +50,24 @@ map("i", "<C-e>", function()
   vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
 end, { desc = "Copilot Accept" })
 
+-- Show Copilot Chat quick chat
+map("n", "<leader>ccq", function()
+  local input = vim.fn.input "Quick Chat: "
+  if input ~= "" then
+    require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+  end
+end, { desc = "CopilotChat - Quick chat" })
+-- Show help actions with telescope
+map("n", "<leader>cch", function()
+  local actions = require "CopilotChat.actions"
+  require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+end, { desc = "CopilotChat - Help actions" })
+-- Show prompts actions with telescope
+map("n", "<leader>ccp", function()
+  local actions = require "CopilotChat.actions"
+  require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+end, { desc = "CopilotChat - Prompt actions" })
+
 ------------------------------------------- Harpoon -------------------------------------------------
 map("n", "<leader>qa", function()
   require("harpoon.mark").add_file()
@@ -79,7 +97,7 @@ map("n", "<leader>ga", function()
   -- If the current node is a directory get children status
   if gs == nil then
     gs = (node.git_status.dir.direct ~= nil and node.git_status.dir.direct[1])
-        or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
+      or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
   end
   -- If the file is untracked, unstaged or partially staged, we stage it
   if gs == "??" or gs == "MM" or gs == "AM" or gs == " M" then
