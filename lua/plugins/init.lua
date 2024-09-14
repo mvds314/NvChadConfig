@@ -86,6 +86,7 @@ return {
     },
   },
   { "psliwka/vim-smoothie", lazy = false },
+  -- TODO: test this plugin
   {
     "gbprod/substitute.nvim",
     opts = {
