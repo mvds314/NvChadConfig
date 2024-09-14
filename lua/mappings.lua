@@ -57,7 +57,7 @@ map("n", "<leader>ccq", function()
     require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
   end
 end, { desc = "CopilotChat - Quick chat" })
--- Show help actions with telescope
+-- Show help actions with telescope, e.g., to solve diagnostics
 map("n", "<leader>cch", function()
   local actions = require "CopilotChat.actions"
   require("CopilotChat.integrations.telescope").pick(actions.help_actions())
