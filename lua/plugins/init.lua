@@ -129,6 +129,11 @@ return {
     "stevearc/oil.nvim",
     ---@module 'oil'
     ---@type oil.SetupOpts
+    config = function()
+      require("oil").setup {
+        -- Your configuration comes here
+      }
+    end,
     opts = {},
     -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
