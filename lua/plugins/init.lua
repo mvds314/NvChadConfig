@@ -72,6 +72,7 @@ return {
     end,
   },
   -- TODO: Test this plugin
+  -- TODO: what alternatives to fzf can we configure in telescope
   {
     "prochri/telescope-all-recent.nvim",
     dependencies = {
