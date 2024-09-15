@@ -211,8 +211,6 @@ return {
   -- TODO: make inverse search work?
   {
     "lervag/vimtex",
-    ft = "tex",
-    -- event = "VeryLazy",
     -- Lazy loading breaks inverse search: https://github.com/lervag/vimtex/issues/2763
     lazy = false,
     config = function()
