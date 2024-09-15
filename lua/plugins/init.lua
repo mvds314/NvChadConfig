@@ -100,7 +100,7 @@ return {
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
-  -- TODO: test this plugin
+  -- TODO: test this plugin, not this plugin might have conflicting mappings with substitute.nvim
   {
     "gbprod/substitute.nvim",
     opts = {
