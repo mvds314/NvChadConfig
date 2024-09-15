@@ -37,6 +37,7 @@ map("n", "]g", "<cmd>lua vim.diagnostic.goto_next()<CR>", { desc = "Go to next d
 map("n", "[g", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "Go to previous diagnostics" })
 
 ------------------------------------------- Neotest -------------------------------------------------
+--TODO: more the mappings to keys argument
 map("n", "<leader>tn", "<cmd>lua require('neotest').run.run()<CR>", { desc = "Run nearest test" })
 map("n", "<leader>tf", "<cmd>lua require('neotest').run.run()<CR>", { desc = "Run all tests in file" })
 map("n", "<leader>to", "<cmd>lua require('neotest').output.open()<CR>", { desc = "Open test output" })
@@ -46,6 +47,7 @@ map("n", "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<CR>", { des
 map("n", "<leader>a", "<cmd>AerialToggle!<CR>", { desc = "Aereal Toggle" })
 
 ------------------------------------------- Telescope -------------------------------------------------
+--TODO: more the mappings to keys argument
 map("n", "<leader>fd", "<cmd>Telescope whaler<CR>", { desc = "Whaler" })
 map("n", "<leader>fr", "<cmd>Telescope frecency<CR>", { desc = "Frecency" })
 
@@ -73,6 +75,7 @@ map("n", "<leader>ccp", function()
 end, { desc = "CopilotChat - Prompt actions" })
 
 ------------------------------------------- Harpoon -------------------------------------------------
+-- TODO: move mappings to keys argument of the plugin
 map("n", "<leader>qa", function()
   require("harpoon.mark").add_file()
 end, { desc = "Harpoon Add file to quick menu" })
