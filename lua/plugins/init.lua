@@ -87,6 +87,7 @@ return {
   },
   { "psliwka/vim-smoothie", lazy = false },
   -- TODO: test this plugin
+  -- NOTE: this plugin has conflicting key mappings with substitute.nvim
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -100,7 +101,8 @@ return {
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
-  -- TODO: test this plugin, not this plugin might have conflicting mappings with substitute.nvim
+  -- TODO: test this plugin, this plugin does not work, is it because it is lazy loading?
+  -- NOTE: this plugin has conflicting key mappings with flash.nvim
   {
     "gbprod/substitute.nvim",
     opts = {
