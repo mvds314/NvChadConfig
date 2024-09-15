@@ -84,7 +84,7 @@ return {
       -- Your config goes here
     },
   },
-  { "psliwka/vim-smoothie", lazy = "VeryLazy" },
+  { "psliwka/vim-smoothie", event = "BufEnter" },
   -- TODO: test this plugin
   -- NOTE: this plugin has conflicting key mappings with substitute.nvim
   {
