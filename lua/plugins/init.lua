@@ -196,6 +196,7 @@ return {
     end,
   },
   ---------------------------------------- LateX ----------------------------------------
+  -- TODO: make inverse search work?
   {
     "lervag/vimtex",
     ft = "tex",
