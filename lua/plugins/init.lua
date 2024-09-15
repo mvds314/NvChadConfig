@@ -89,7 +89,7 @@ return {
   -- NOTE: this plugin has conflicting key mappings with substitute.nvim
   {
     "folke/flash.nvim",
-    event = "VeryLazy",
+    event = "BufEnter",
     opts = {},
     -- stylua: ignore
     keys = {
