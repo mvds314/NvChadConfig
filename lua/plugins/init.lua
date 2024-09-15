@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre", -- uncomment for format on save
+    event = "BufWritePre",
     opts = require "configs.conform",
     ft = { "toml" },
   },
@@ -85,11 +85,9 @@ return {
     },
   },
   { "psliwka/vim-smoothie", event = "BufEnter" },
-  -- NOTE: this plugin has conflicting key mappings with substitute.nvim
   {
     -- See here for an instructional video: https://www.youtube.com/watch?v=eJ3XV-3uoug
     "folke/flash.nvim",
-    opts = {},
     config = function()
       vim.cmd [[
       highlight FlashLabel guifg=#e06c75 guibg=#282c34
@@ -99,29 +97,15 @@ return {
     end,
     -- stylua: ignore
     keys = {
-      { "<leader> fs", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "<leader> tS", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "<leader>fs", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "<leader>tS", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
       -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
       -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
-  -- TODO: test this plugin, this plugin does not work, is it because it is lazy loading?
-  -- NOTE: this plugin has conflicting key mappings with flash.nvim
   {
     "gbprod/substitute.nvim",
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
-    -- config = function()
-      -- require("substitute").setup {}
-      -- -- vim.keymap.set("n", "s", require("substitute").operator, { noremap = true })
-      -- vim.keymap.set("n", "ss", require("substitute").line, { noremap = true })
-      -- vim.keymap.set("n", "S", require("substitute").eol, { noremap = true })
-      -- vim.keymap.set("x", "s", require("substitute").visual, { noremap = true })
-    -- end,
     -- stylua: ignore
     keys = {
       { "s", mode = "n", function() require("substitute").operator() end, desc = "Substitute" },
