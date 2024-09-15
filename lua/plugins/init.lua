@@ -85,20 +85,26 @@ return {
     },
   },
   { "psliwka/vim-smoothie", event = "BufEnter" },
-  -- TODO: test this plugin
   -- NOTE: this plugin has conflicting key mappings with substitute.nvim
-  -- Maybe event better, load flash.nvim on first use!
   {
+    -- See here for an instructional video: https://www.youtube.com/watch?v=eJ3XV-3uoug
     "folke/flash.nvim",
     event = "BufEnter",
     opts = {},
+    config = function()
+      vim.cmd [[
+      highlight FlashLabel guifg=#e06c75 guibg=#282c34
+      highlight FlashMatch guifg=#98c379 guibg=#282c34
+      highlight FlashCurrent guifg=#61afef guibg=#282c34
+      ]]
+    end,
     -- stylua: ignore
     keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
       { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
       { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
       { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
   -- TODO: test this plugin, this plugin does not work, is it because it is lazy loading?
