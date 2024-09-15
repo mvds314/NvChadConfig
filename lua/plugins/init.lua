@@ -2,7 +2,7 @@ return {
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
-    opts = require "configs.conform",
+    opts = require "configs.conform", -- See this file for options set
     ft = {
       "toml",
       "lua",
