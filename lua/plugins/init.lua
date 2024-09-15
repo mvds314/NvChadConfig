@@ -440,7 +440,6 @@ return {
   --     require("copilot").setup {}
   --   end,
   -- },
-  -- TODO: configure this plugin for MS Windows
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",
@@ -450,16 +449,11 @@ return {
       { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
     },
     build = "make tiktoken", -- Only on MacOS or Linux
-    -- opts = {
-    -- debug = true, -- Enable debugging
-    -- See Configuration section for rest
-    -- },
-    config = function()
-      require("CopilotChat").setup {
-        debug = true, -- Enable debugging
-        -- See Configuration section for rest
-      }
-    end,
+    opts = {
+      -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/375
+      allow_insecure = true, -- Allow insecure connections fixes curl problems
+      -- debug = true, -- Enable debugging
+    },
     cmd = {
       "CopilotChat",
       "CopilotChatLoad",
@@ -474,6 +468,23 @@ return {
       "CopilotChatFixDiagnostic",
       "CopilotChatCommit",
       "CopilotChatCommitStaged",
+    },
+    -- stylua: ignore
+    keys = {
+      { "<leader>ccq", mode = "n", function()
+        local input = vim.fn.input "Quick Chat: "
+        if input ~= "" then
+          require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+        end
+      end, desc = "CopilotChat - Quick chat" },
+      { "<leader>cch", mode = "n", function()
+        local actions = require "CopilotChat.actions"
+        require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+      end, desc = "CopilotChat - Help actions" },
+      { "<leader>ccp", mode = "n", function()
+        local actions = require "CopilotChat.actions"
+        require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+      end, desc = "CopilotChat - Prompt actions" },
     },
   },
   -- TODO: get more out of this plugin, maybe integrate copilot completions into it?
