@@ -115,13 +115,20 @@ return {
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
-    config = function()
-      require("substitute").setup {}
-      vim.keymap.set("n", "s", require("substitute").operator, { noremap = true })
-      vim.keymap.set("n", "ss", require("substitute").line, { noremap = true })
-      vim.keymap.set("n", "S", require("substitute").eol, { noremap = true })
-      vim.keymap.set("x", "s", require("substitute").visual, { noremap = true })
-    end,
+    -- config = function()
+      -- require("substitute").setup {}
+      -- -- vim.keymap.set("n", "s", require("substitute").operator, { noremap = true })
+      -- vim.keymap.set("n", "ss", require("substitute").line, { noremap = true })
+      -- vim.keymap.set("n", "S", require("substitute").eol, { noremap = true })
+      -- vim.keymap.set("x", "s", require("substitute").visual, { noremap = true })
+    -- end,
+    -- stylua: ignore
+    keys = {
+      { "s", mode = "n", function() require("substitute").operator() end, desc = "Substitute" },
+      { "ss", mode = "n", function() require("substitute").line() end, desc = "Substitute Line" },
+      { "S", mode = "n", function() require("substitute").eol() end, desc = "Substitute EOL" },
+      { "s", mode = "x", function() require("substitute").visual() end, desc = "Substitute Visual" },
+    },
   },
   {
     "ThePrimeagen/harpoon",
