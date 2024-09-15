@@ -92,30 +92,3 @@ end, { desc = "Navigate to file 3" })
 map("n", "<leader>4", function()
   require("harpoon.ui").nav_file(4)
 end, { desc = "Navigate to file 4" })
-
-------------------------------------------- GIT related -------------------------------------------------
-map("n", "<leader>ga", function()
-  local api = require "nvim-tree.api"
-  local node = api.tree.get_node_under_cursor()
-  local gs = node.git_status.file
-  -- If the current node is a directory get children status
-  if gs == nil then
-    gs = (node.git_status.dir.direct ~= nil and node.git_status.dir.direct[1])
-      or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
-  end
-  -- If the file is untracked, unstaged or partially staged, we stage it
-  if gs == "??" or gs == "MM" or gs == "AM" or gs == " M" then
-    vim.cmd("silent !git add " .. node.absolute_path)
-    -- If the file is staged, we unstage
-  elseif gs == "M " or gs == "A " then
-    vim.cmd("silent !git restore --staged " .. node.absolute_path)
-  end
-  api.tree.reload()
-end, { desc = "Stage/unstage file" })
-
-map("n", "<leader>gs", "<cmd>Neogit<CR>", { desc = "Neogit status" })
-map("n", "<leader>gc", "<cmd>Neogit commit<CR>", { desc = "Neogit commit" })
-map("n", "<leader>gp", "<cmd>Neogit push<CR>", { desc = "Neogit push" })
-map("n", "<leader>gl", "<cmd>Neogit pull<CR>", { desc = "Neogit pull" })
-map("n", "<leader>gb", "<cmd>Neogit branch<CR>", { desc = "Neogit branch" })
-map("n", "<leader>gd", "<cmd>Neogit diff<CR>", { desc = "Neogit diff" })
