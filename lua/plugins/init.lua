@@ -84,7 +84,7 @@ return {
       -- Your config goes here
     },
   },
-  { "psliwka/vim-smoothie", lazy = false },
+  { "psliwka/vim-smoothie", lazy = "VeryLazy" },
   -- TODO: test this plugin
   -- NOTE: this plugin has conflicting key mappings with substitute.nvim
   {
@@ -377,8 +377,9 @@ return {
   },
   {
     "github/copilot.vim",
+    cmd = { "CopilotChat" },
+    event = "BufEnter",
     -- https://github.com/NvChad/NvChad/issues/2020
-    lazy = false,
     config = function()
       -- Mapping tab is already used by NvChad
       vim.g.copilot_no_tab_map = true
