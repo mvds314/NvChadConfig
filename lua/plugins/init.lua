@@ -41,6 +41,7 @@ return {
       "SalOrak/whaler",
       "nvim-telescope/telescope-frecency.nvim",
     },
+    cmd = { "Telescope", "Telescope whaler" },
     opts = function()
       -- Retrieve NvChad default configuration
       local conf = require "nvchad.configs.telescope"
@@ -66,8 +67,6 @@ return {
           auto_cwd = true, -- Whether to automatically change current working directory. By default is `true`
         }
       end
-      vim.keymap.set("n", "<leader>fd", require("telescope").extensions.whaler.whaler)
-      vim.keymap.set("n", "<leader>fr", require("telescope").extensions.frecency.frecency)
       return conf
     end,
   },

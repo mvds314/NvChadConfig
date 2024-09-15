@@ -45,6 +45,10 @@ map("n", "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<CR>", { des
 ------------------------------------------- Aerial -------------------------------------------------
 map("n", "<leader>a", "<cmd>AerialToggle!<CR>", { desc = "Aereal Toggle" })
 
+------------------------------------------- Telescope -------------------------------------------------
+map("n", "<leader>fd", "<cmd>Telescope whaler<CR>", { desc = "Whaler" })
+map("n", "<leader>fr", "<cmd>Telescope frecency<CR>", { desc = "Frecency" })
+
 ------------------------------------------- Copilot -------------------------------------------------
 map("i", "<C-e>", function()
   vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
