@@ -87,6 +87,7 @@ return {
   { "psliwka/vim-smoothie", event = "BufEnter" },
   -- TODO: test this plugin
   -- NOTE: this plugin has conflicting key mappings with substitute.nvim
+  -- Maybe event better, load flash.nvim on first use!
   {
     "folke/flash.nvim",
     event = "BufEnter",
