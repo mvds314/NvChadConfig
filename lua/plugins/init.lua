@@ -89,7 +89,6 @@ return {
   {
     -- See here for an instructional video: https://www.youtube.com/watch?v=eJ3XV-3uoug
     "folke/flash.nvim",
-    event = "BufEnter",
     opts = {},
     config = function()
       vim.cmd [[
