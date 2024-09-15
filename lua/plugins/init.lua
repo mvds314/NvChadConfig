@@ -200,6 +200,7 @@ return {
     "lervag/vimtex",
     ft = "tex",
     -- event = "VeryLazy",
+    -- Lazy loading breaks inverse search: https://github.com/lervag/vimtex/issues/2763
     lazy = false,
     config = function()
       local is_windows = vim.fn.has "win64" == 1 or vim.fn.has "win32" == 1 or vim.fn.has "win16" == 1
