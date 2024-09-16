@@ -54,7 +54,8 @@ return {
       "SalOrak/whaler",
       "nvim-telescope/telescope-frecency.nvim",
     },
-    cmd = { "Telescope", "Telescope whaler" },
+    -- cmd = { "Telescope", "Telescope whaler" },
+    lazy = "VeryLazy",
     opts = function()
       -- Retrieve NvChad default configuration
       local conf = require "nvchad.configs.telescope"
