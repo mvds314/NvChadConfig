@@ -203,7 +203,10 @@ return {
       }
     end,
     lazy = false, -- I don't know how to lazy load this plugin properly!
-    opts = {},
+    opts = { view_options = { show_hidden = true } },
+    keys = {
+      { "-", mode = "n", "<cmd>Oil<CR>", desc = "Open parent directory oil" },
+    },
     -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
