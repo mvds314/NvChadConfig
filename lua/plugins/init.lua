@@ -202,7 +202,8 @@ return {
         -- Your configuration comes here
       }
     end,
-    lazy = false, -- I don't know how to lazy load this plugin properly!
+    -- lazy = false, -- I don't know how to lazy load this plugin properly!
+    cmd = "Oil", -- With this, the plugin lazy loads, but this breaks `nvim .`
     opts = { view_options = { show_hidden = true } },
     keys = {
       { "-", mode = "n", "<cmd>Oil<CR>", desc = "Open parent directory oil" },
