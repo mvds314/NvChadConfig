@@ -192,6 +192,7 @@ return {
     },
   },
   --TODO: test this plugin
+  --TODO: Preview doesn't work because of bug https://github.com/stevearc/oil.nvim/issues/435
   {
     "stevearc/oil.nvim",
     ---@module 'oil'
