@@ -192,6 +192,7 @@ return {
     },
   },
   --TODO: test this plugin
+  --TODO: how to properly lazy load this plugin?
   {
     "stevearc/oil.nvim",
     ---@module 'oil'
@@ -201,6 +202,7 @@ return {
         -- Your configuration comes here
       }
     end,
+    lazy = false,
     opts = {},
     -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
