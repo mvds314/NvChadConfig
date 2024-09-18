@@ -70,6 +70,8 @@ return {
       if is_windows then
         conf.extensions.whaler = {
           directories = { "C:\\Users\\ROB6027\\Repos" },
+          -- TODO: try to do this with an environment variable
+          -- directories = { "$USERPROFILE\\Repos" },
           oneoff_directories = { "$LOCALAPPDATA\\nvim" },
           file_explorer = "nvimtree",
           auto_file_explorer = false, -- Whether to automatically open file explorer. By default is `true`
