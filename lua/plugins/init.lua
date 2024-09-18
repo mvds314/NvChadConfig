@@ -70,7 +70,7 @@ return {
       if is_windows then
         conf.extensions.whaler = {
           directories = { "C:\\Users\\ROB6027\\Repos" },
-          oneoff_directories = { "C:\\Users\\ROB6027\\AppData\\Local\\nvim" },
+          oneoff_directories = { "$LOCALAPPDATA\\nvim" },
           file_explorer = "nvimtree",
           auto_file_explorer = false, -- Whether to automatically open file explorer. By default is `true`
           auto_cwd = true, -- Whether to automatically change current working directory. By default is `true`
