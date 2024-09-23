@@ -86,7 +86,7 @@ lspconfig.jedi_language_server.setup {
 }
 
 -- https://github.com/astral-sh/ruff-lsp/issues/177
-lspconfig.ruff_lsp.setup {
+lspconfig.ruff.setup {
   on_attach = function(client, bufnr)
     -- disable some capabilities https://github.com/astral-sh/ruff-lsp/issues/78
     -- client.server_capabilities.documentFormattingProvider = false
@@ -122,15 +122,10 @@ lspconfig.ruff_lsp.setup {
   end,
   capabilities = capabilities,
   filetypes = { "python" },
-  -- https://github.com/astral-sh/ruff-lsp/issues/177
   init_options = {
     settings = {
-      -- Any extra CLI arguments for `ruff` go here.
-      args = {},
-      -- Any Linter args go here .
-      lint = { args = { "--line-length", "99" } },
-      -- ANY  Format args go here.
-      format = { args = { "--line-length", "99" } },
+      -- https://docs.astral.sh/ruff/editors/setup/#neovim
+      lineLength = 99,
     },
   },
 }
