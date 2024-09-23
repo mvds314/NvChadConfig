@@ -29,8 +29,8 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 ------------------------------------- Python LSPs -------------------------------------------
 
 -- lspconfig.pyright.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
+--   on_attach = nvlsp.on_attach,
+--   capabilities = nvlsp.capabilities,
 --   filetypes = { "python" },
 --   -- https://github.com/microsoft/pyright/blob/main/docs/settings.md
 --   settings = {
@@ -71,7 +71,7 @@ lspconfig.jedi_language_server.setup {
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
   end,
-  capabilities = capabilities,
+  capabilities = nvlsp.capabilities,
   filetypes = { "python" },
   init_options = {
     jediSettings = {
@@ -120,7 +120,7 @@ lspconfig.ruff.setup {
       vim.lsp.buf.format { async = true }
     end, bufopts)
   end,
-  capabilities = capabilities,
+  capabilities = nvlsp.capabilities,
   filetypes = { "python" },
   init_options = {
     settings = {
@@ -132,8 +132,8 @@ lspconfig.ruff.setup {
 
 -- https://jdhao.github.io/2023/07/22/neovim-pylsp-setup/
 -- lspconfig.pylsp.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
+--   on_attach = nvlsp.on_attach,
+--   capabilities = nvlsp.capabilities,
 --   filetypes = { "python" },
 --   settings = {
 --     pylsp = {
@@ -173,42 +173,42 @@ lspconfig.ruff.setup {
 -------------------------------------- Lua LSPs -------------------------------------------
 
 lspconfig.lua_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
   filetypes = { "lua" },
 }
 
 -------------------------------------- Other LSPs -------------------------------------------
 
 lspconfig.jsonls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
   filetypes = { "json" },
 }
 
 lspconfig.yamlls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
   filetypes = { "yaml" },
 }
 
 lspconfig.marksman.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
   filetypes = { "markdown" },
 }
 
 lspconfig.bashls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
   filetypes = { "sh" },
 }
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- formatter for several filetypes, consider moving to this one for json, markdown, yaml and others
 -- lspconfig.dprint.setup {
--- on_attach = on_attach,
--- capabilities = capabilities,
+-- on_attach = nvlsp.on_attach,
+-- capabilities = nvlsp.capabilities,
 -- filetypes = { "toml" },
 -- }
 
@@ -245,7 +245,7 @@ lspconfig.bashls.setup {
 --       vim.lsp.buf.format { async = true }
 --     end, bufopts)
 --   end,
---   capabilities = capabilities,
+--   capabilities = nvlsp.capabilities,
 --   filetypes = { "toml" },
 -- }
 
@@ -256,8 +256,8 @@ lspconfig.bashls.setup {
 -- Add a grammar checker for developers
 -- harper-ls
 lspconfig.harper_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
   filetypes = {
     "markdown",
     "rust",
@@ -283,33 +283,33 @@ lspconfig.harper_ls.setup {
 
 -- deprecated
 -- lspconfig.pkgbuild_language_server.setup {
--- on_attach = on_attach,
--- capabilities = capabilities,
+-- on_attach = nvlsp.on_attach,
+-- capabilities = nvlsp.capabilities,
 -- filetypes = { "PKGBUILD" },
 -- }
 
 --lspconfig.azure_pipelines_ls.setup {
---on_attach = on_attach,
---capabilities = capabilities,
+--on_attach = nvlsp.on_attach,
+--capabilities = nvlsp.capabilities,
 --filetypes = { "yaml" },
 --}
 
 lspconfig.dockerls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
   --note dockerfiles are detected as conf files if they don't have the extension
   filetypes = { "dockerfile", "conf" },
 }
 
 lspconfig.vimls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
   filetypes = { "vim" },
 }
 
 lspconfig.texlab.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
   filetypes = { "tex" },
   settings = { texlab = { diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } } } },
 }
@@ -327,8 +327,8 @@ lspconfig.texlab.setup {
 -- Check this one out?
 -- https://valentjn.github.io/ltex/
 -- lspconfig.ltex.setup {
--- on_attach = on_attach,
--- capabilities = capabilities,
+-- on_attach = nvlsp.on_attach,
+-- capabilities = nvlsp.capabilities,
 -- filetypes = { "tex" },
 -- settings = { texlab = { diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } } } },
 -- }
