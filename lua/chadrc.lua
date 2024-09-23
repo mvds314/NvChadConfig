@@ -1,11 +1,12 @@
 -- This file needs to have same structure as nvconfig.lua
 -- https://github.com/NvChad/ui/blob/v2.5/lua/nvconfig.lua
--- Please read that file to know all available options :( 
+-- Please read that file to know all available options :(
 
 ---@type ChadrcConfig
 local M = {}
 
 M.base46 = {
+  -- TODO: set this them as well in vim terminal
   theme = "onedark",
 }
 
@@ -23,7 +24,7 @@ M.mason.pkgs = {
   "texlab",
   -- "ltex-ls",
   "latexindent",
-  "codespell",
+  -- "codespell",
   "harper-ls",
   -- "vale", -- vale.init not found
   "proselint",
