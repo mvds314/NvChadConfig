@@ -89,18 +89,18 @@ return {
   },
   -- TODO: Test this plugin
   -- TODO: what alternatives to fzf can we configure in telescope
-  {
-    "prochri/telescope-all-recent.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "kkharji/sqlite.lua",
-      -- Optional, if using telescope for vim.ui.select
-      -- "stevearc/dressing.nvim",
-    },
-    opts = {
-      -- Your config goes here
-    },
-  },
+  -- {
+  --   "prochri/telescope-all-recent.nvim",
+  --   dependencies = {
+  --     "nvim-telescope/telescope.nvim",
+  --     "kkharji/sqlite.lua",
+  --     -- Optional, if using telescope for vim.ui.select
+  --     -- "stevearc/dressing.nvim",
+  --   },
+  --   opts = {
+  --     -- Your config goes here
+  --   },
+  -- },
   { "psliwka/vim-smoothie", event = "BufEnter" },
   {
     -- See here for an instructional video: https://www.youtube.com/watch?v=eJ3XV-3uoug
