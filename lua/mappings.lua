@@ -49,7 +49,6 @@ map("n", "<leader>a", "<cmd>AerialToggle!<CR>", { desc = "Aereal Toggle" })
 ------------------------------------------- Telescope -------------------------------------------------
 --TODO: more the mappings to keys argument
 map("n", "<leader>fd", "<cmd>Telescope whaler<CR>", { desc = "Whaler" })
-map("n", "<leader>fr", "<cmd>Telescope frecency<CR>", { desc = "Frecency" })
 
 ------------------------------------------- Copilot -------------------------------------------------
 map("i", "<C-e>", function()
