@@ -423,10 +423,10 @@ return {
   --   end,
   -- },
   ---------------------------------------------- Completion ----------------------------------
-  {
-    "rafamadriz/friendly-snippets",
-    enabled = false,
-  },
+  -- {
+  --   "rafamadriz/friendly-snippets",
+  --   enabled = false,
+  -- },
   {
     "github/copilot.vim",
     cmd = { "CopilotChat" },
