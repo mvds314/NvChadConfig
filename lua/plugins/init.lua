@@ -63,8 +63,9 @@ return {
       -- And edit it as described here: https://nvchad.com/docs/config/plugins
       conf.extensions_list = { "themes", "terms", "fzy_native", "whaler" }
       conf.extensions.fzy_native = { override_generic_sorter = true, override_file_sorter = true }
-      -- TODO: this doesn't seem to work properly as bot .git and .gitignore are ignored
+      -- TODO: this doesn't seem to work properly as bot .git and .gitignore are ignored -> test this in Linux
       -- conf.defaults.file_ignore_patterns = { "^.git/*" }
+      -- conf.defaults.file_ignore_patterns = { "^.git\\*" }
       -- conf.defaults.hidden = true
       if is_windows then
         conf.extensions.whaler = {
