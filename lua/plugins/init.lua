@@ -86,6 +86,9 @@ return {
       end
       return conf
     end,
+    keys = {
+      { "<leader>fd", mode = "n", "<cmd>Telescope whaler<CR>", desc = "Whaler" },
+    },
   },
   { "psliwka/vim-smoothie", event = "BufEnter" },
   {
