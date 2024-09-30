@@ -5,7 +5,9 @@ local options = {
     json = { "prettierd" },
     yaml = { "prettierd" },
     markdown = { "prettierd" },
-    tex = { "latexindent" }, -- Maybe try llf instead
+    -- Note latexindent does not seem to work
+    -- tex = { "latexindent" }, -- Maybe try llf instead
+    -- latex = { "latexindent" },
     bib = { "bibtex-tidy" },
     -- Other stuff supported by the formatters above
     javascript = { "prettierd" },
