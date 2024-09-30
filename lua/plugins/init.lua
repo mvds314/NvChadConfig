@@ -9,7 +9,7 @@ return {
       "json",
       "yaml",
       "markdown",
-      "tex",
+      -- "tex",
       "bib",
       "javascript",
       "typescript",
