@@ -9,7 +9,7 @@ return {
       "json",
       "yaml",
       "markdown",
-      "tex",
+      -- "tex",
       "bib",
       "javascript",
       "typescript",
@@ -395,6 +395,7 @@ return {
     "nvimtools/none-ls.nvim",
     ft = { "tex", "markdown", "dockerfile", "sh" },
     -- dependencies = { "nvimtools/none-ls-extras.nvim", "ThePrimeagen/refactoring.nvim" },
+    dependencies = { "nvimtools/none-ls-extras.nvim" },
     opts = function()
       return require "configs.null-ls"
     end,

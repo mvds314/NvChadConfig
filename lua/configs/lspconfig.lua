@@ -311,7 +311,12 @@ lspconfig.texlab.setup {
   on_attach = nvlsp.on_attach,
   capabilities = nvlsp.capabilities,
   filetypes = { "tex" },
-  settings = { texlab = { diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } } } },
+  settings = {
+    texlab = {
+      diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } },
+      build = { timeout = 1000 },
+    },
+  },
 }
 
 -- try digestif?

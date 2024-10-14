@@ -31,7 +31,7 @@ local opts = {
     -- Bash
     null_ls.builtins.formatting.shfmt.with { filetypes = { "sh" } },
     -- LaTeX
-    -- require "none-ls.formatting.latexindent",
+    require "none-ls.formatting.latexindent",
     -- other spell checkers I tried
     -- null_ls.builtins.diagnostics.vale,
     null_ls.builtins.diagnostics.proselint.with { filetypes = { "markdown", "tex" } },
