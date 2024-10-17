@@ -53,6 +53,12 @@ return {
       "nvim-telescope/telescope-fzy-native.nvim",
       "SalOrak/whaler",
     },
+    -- Test these plugins:
+    -- https://github.com/cagve/telescope-texsuite
+    -- https://github.com/jackMort/ChatGPT.nvim
+    -- https://github.com/paopaol/telescope-git-diffs.nvim
+    -- https://github.com/xiyaowong/telescope-emoji.nvim
+    -- neoclip
     -- cmd = { "Telescope", "Telescope whaler" },
     lazy = "VeryLazy",
     opts = function()
@@ -65,6 +71,7 @@ return {
       conf.extensions.fzy_native = { override_generic_sorter = true, override_file_sorter = true }
       -- TODO: this doesn't seem to work properly as bot .git and .gitignore are ignored -> test this in Linux
       -- conf.defaults.file_ignore_patterns = { "^.git/*" }
+      -- conf.defaults.file_ignore_patterns = { "%.git/" }
       -- conf.defaults.file_ignore_patterns = { "^.git\\*" }
       -- conf.defaults.hidden = true
       if is_windows then
@@ -88,6 +95,7 @@ return {
     end,
     keys = {
       { "<leader>fd", mode = "n", "<cmd>Telescope whaler<CR>", desc = "Whaler" },
+      { "<leader>fr", mode = "n", "<cmd>Telescope resume<CR>", desc = "Resume last search" },
     },
   },
   { "psliwka/vim-smoothie", event = "BufEnter" },
