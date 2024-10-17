@@ -52,7 +52,6 @@ map("i", "<C-e>", function()
 end, { desc = "Copilot Accept" })
 
 ------------------------------------------- Harpoon -------------------------------------------------
--- TODO: move mappings to keys argument of the plugin
 map("n", "<leader>qa", function()
   require("harpoon.mark").add_file()
 end, { desc = "Harpoon Add file to quick menu" })
