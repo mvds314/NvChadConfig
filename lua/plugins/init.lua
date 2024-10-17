@@ -53,7 +53,7 @@ return {
       "nvim-telescope/telescope-fzy-native.nvim",
       "SalOrak/whaler",
     },
-    -- Test these plugins:
+    -- TODO: Test these plugins:
     -- https://github.com/cagve/telescope-texsuite
     -- https://github.com/jackMort/ChatGPT.nvim
     -- https://github.com/paopaol/telescope-git-diffs.nvim
