@@ -253,7 +253,6 @@ return {
     end,
   },
   ---------------------------------------- LateX ----------------------------------------
-  -- TODO: make inverse search work?
   -- {
   --   "lervag/vimtex",
   --   -- Lazy loading breaks inverse search: https://github.com/lervag/vimtex/issues/2763

@@ -307,6 +307,7 @@ lspconfig.vimls.setup {
   filetypes = { "vim" },
 }
 
+-- TODO: make inverse search work?
 lspconfig.texlab.setup {
   on_attach = nvlsp.on_attach,
   capabilities = nvlsp.capabilities,
