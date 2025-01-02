@@ -313,8 +313,11 @@ lspconfig.texlab.setup {
   filetypes = { "tex" },
   settings = {
     texlab = {
+      chktex = { onOpenAndSave = true, onEdit = true },
+      bibtexFormatter = "texlab",
+      latexFormatter = "latexindent",
       diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } },
-      build = { timeout = 3000 },
+      build = { timeout = 3000, forwardSearchAfter = true, onSave = true },
       forwardSearch = {
         executable = "SumatraPDF.exe",
         args = { "-reuse-instance", "%p", "-forward-search", "%f", "%l" },
