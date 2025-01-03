@@ -317,7 +317,9 @@ lspconfig.texlab.setup {
       chktex = { onOpenAndSave = true, onEdit = true },
       bibtexFormatter = "texlab",
       latexFormatter = "latexindent",
-      diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } },
+      diagnostics = {
+        ignoredPatterns = { "Overfull \\[hv]box", "Unused label", "Use either `` or '' as an alternative to" },
+      },
       build = { timeout = 3000, forwardSearchAfter = false, onSave = true },
       forwardSearch = {
         executable = "SumatraPDF.exe",
