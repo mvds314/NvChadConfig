@@ -77,7 +77,11 @@ return {
       if is_windows then
         conf.extensions.whaler = {
           directories = { os.getenv "USERPROFILE" .. "\\Repos" },
-          oneoff_directories = { os.getenv "LOCALAPPDATA" .. "\\nvim" },
+          oneoff_directories = {
+            os.getenv "LOCALAPPDATA" .. "\\nvim",
+            os.getenv "LOCALAPPDATA",
+            os.getenv "USERPROFILE",
+          },
           file_explorer = "nvimtree",
           auto_file_explorer = false, -- Whether to automatically open file explorer. By default is `true`
           auto_cwd = true, -- Whether to automatically change current working directory. By default is `true`
