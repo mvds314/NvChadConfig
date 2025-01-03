@@ -7,7 +7,7 @@ set guifont=FiraCode\ Nerd\ Font\ Mono:h11
 " set guifont=FiraCode\ Nerd\ Font:h11 " This is not a fixed pitch font, whatever that means
 " set guifont=DejaVu\ Sans\ Mono:h14
 
-" 
+" Highligh on  yank
 augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=50})
