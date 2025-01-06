@@ -309,7 +309,15 @@ lspconfig.vimls.setup {
 
 -- TODO: make inverse search work?
 lspconfig.texlab.setup {
-  on_attach = nvlsp.on_attach,
+  on_attach = function(client, bufnr)
+    -- Call the default on_attach function
+    nvlsp.on_attach(client, bufnr)
+    -- Add custom keymaps
+    local bufopts = { noremap = true, silent = true }
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lb", "<cmd>TexlabBuild<CR>", bufopts)
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>TexlabForward<CR>", bufopts)
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fm", "<cmd>!latexindent % -l 99 -w<CR><cmd>edit!<CR>", bufopts)
+  end,
   capabilities = nvlsp.capabilities,
   filetypes = { "tex" },
   settings = {
@@ -317,6 +325,7 @@ lspconfig.texlab.setup {
       chktex = { onOpenAndSave = true, onEdit = true },
       bibtexFormatter = "texlab",
       latexFormatter = "latexindent",
+      formatterLineLength = 99,
       diagnostics = {
         ignoredPatterns = { "Overfull \\[hv]box", "Unused label", "Use either `` or '' as an alternative to" },
       },
