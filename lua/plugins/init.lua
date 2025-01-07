@@ -75,13 +75,14 @@ return {
       -- conf.defaults.file_ignore_patterns = { "^.git/*" }
       -- conf.defaults.file_ignore_patterns = { "%.git/" }
       -- conf.defaults.file_ignore_patterns = { "^.git\\*" }
+      conf.defaults.file_ignore_patterns = { "^.git\\*" }
+      conf.defaults.preview.filesize_limit = 10 -- 10 MB limit for previewing
       -- conf.defaults.hidden = true
       if is_windows then
         conf.extensions.whaler = {
           directories = { os.getenv "USERPROFILE" .. "\\Repos" },
           oneoff_directories = {
             os.getenv "LOCALAPPDATA" .. "\\nvim",
-            os.getenv "LOCALAPPDATA",
             os.getenv "USERPROFILE",
           },
           file_explorer = "nvimtree",
