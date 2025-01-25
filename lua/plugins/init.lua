@@ -75,8 +75,8 @@ return {
       -- conf.defaults.file_ignore_patterns = { "^.git/*" }
       -- conf.defaults.file_ignore_patterns = { "%.git/" }
       -- conf.defaults.file_ignore_patterns = { "^.git\\*" }
-      conf.defaults.file_ignore_patterns = { "^.git\\*" }
-      conf.defaults.preview.filesize_limit = 10 -- 10 MB limit for previewing
+      -- conf.defaults.file_ignore_patterns = { "^.git\\*" }
+      -- conf.defaults.preview.filesize_limit = 10 -- 10 MB limit for previewing
       -- conf.defaults.hidden = true
       if is_windows then
         conf.extensions.whaler = {
