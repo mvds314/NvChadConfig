@@ -106,7 +106,7 @@ return {
       { "<leader>fs", mode = "n", "<cmd>Telescope symbols<CR>", desc = "Find symbol" },
     },
   },
-  { "psliwka/vim-smoothie", event = "BufEnter" },
+  -- { "psliwka/vim-smoothie", event = "BufEnter" },
   {
     -- See here for an instructional video: https://www.youtube.com/watch?v=eJ3XV-3uoug
     "folke/flash.nvim",
