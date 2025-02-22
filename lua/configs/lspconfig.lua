@@ -28,7 +28,50 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 ------------------------------------- Python LSPs -------------------------------------------
 
-lspconfig.pyright.setup {
+-- lspconfig.pyright.setup {
+--   on_attach = function(_, bufnr)
+--     -- https://docs.astral.sh/ruff/integrations/#language-server-protocol-official
+--     -- https://docs.astral.sh/ruff/integrations/#vim-neovim
+--     -- Enable completion triggered by <c-x><c-o>
+--     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+--
+--     -- Mappings.
+--     -- See `:help vim.lsp.*` for documentation on any of the below functions
+--     local bufopts = { noremap = true, silent = true, buffer = bufnr }
+--     -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+--     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+--     vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+--     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+--     vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+--     -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+--     -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+--     -- vim.keymap.set('n', '<space>wl', function()
+--     --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+--     -- end, bufopts)
+--     -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+--     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+--     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+--   end,
+--   capabilities = nvlsp.capabilities,
+--   filetypes = { "python" },
+--   -- https://github.com/microsoft/pyright/blob/main/docs/settings.md
+--   settings = {
+--     python = {
+--       analysis = {
+--         diagnosticSeverityOverrides = {
+--           reportUnusedVariable = false,
+--           reportMissingImports = true,
+--           reportUndefinedVariable = "none",
+--         },
+--         typeCheckingMode = "off",
+--       },
+--     },
+--   },
+-- }
+--
+
+-- Configure Pylyzer
+lspconfig.pylyzer.setup {
   on_attach = function(_, bufnr)
     -- https://docs.astral.sh/ruff/integrations/#language-server-protocol-official
     -- https://docs.astral.sh/ruff/integrations/#vim-neovim
@@ -52,21 +95,9 @@ lspconfig.pyright.setup {
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
   end,
+  -- Add any specific configuration options for Pylyzer here
   capabilities = nvlsp.capabilities,
   filetypes = { "python" },
-  -- https://github.com/microsoft/pyright/blob/main/docs/settings.md
-  settings = {
-    python = {
-      analysis = {
-        diagnosticSeverityOverrides = {
-          reportUnusedVariable = false,
-          reportMissingImports = true,
-          reportUndefinedVariable = "none",
-        },
-        typeCheckingMode = "off",
-      },
-    },
-  },
 }
 
 -- lspconfig.jedi_language_server.setup {
