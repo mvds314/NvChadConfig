@@ -51,6 +51,32 @@ local function python_on_attach(_, bufnr)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 end
 
+-- lspconfig.basedpyright.setup {
+--   on_attach = python_on_attach,
+--   capabilities = nvlsp.capabilities,
+--   filetypes = { "python" },
+--   settings = {
+--     basedpyright = {
+--       analysis = {
+--         autoSearchPaths = true,
+--         diagnosticMode = "openFilesOnly",
+--         useLibraryCodeForTypes = true,
+--       },
+--     },
+--     python = {
+--       analysis = {
+--         diagnosticSeverityOverrides = {
+--           reportUnusedVariable = false,
+--           reportMissingImports = true,
+--           reportUndefinedVariable = "none",
+--         },
+--         typeCheckingMode = "off",
+--       },
+--     },
+--   },
+--   single_file_support = true,
+-- }
+
 -- lspconfig.pyright.setup {
 --   on_attach = python_on_attach,
 --   capabilities = nvlsp.capabilities,
@@ -92,21 +118,21 @@ end
 --   },
 -- }
 
--- lspconfig.jedi_language_server.setup {
---   on_attach = python_on_attach,
---   capabilities = nvlsp.capabilities,
---   filetypes = { "python" },
---   init_options = {
---     jediSettings = {
---       autoImportModules = { "numpy", "pandas", "matplotlib" },
---       caseInsensitiveCompletion = false,
---     },
---     markupKindPreferred = "markdown",
---     completion = { disableSnippets = true, resolveEagerly = true },
---     diagnostics = { enable = false },
---     hover = { enable = false },
---   },
--- }
+lspconfig.jedi_language_server.setup {
+  on_attach = python_on_attach,
+  capabilities = nvlsp.capabilities,
+  filetypes = { "python" },
+  init_options = {
+    jediSettings = {
+      autoImportModules = {},
+      caseInsensitiveCompletion = true,
+    },
+    markupKindPreferred = "markdown",
+    completion = { disableSnippets = true, resolveEagerly = false },
+    diagnostics = { enable = false },
+    hover = { enable = false },
+  },
+}
 
 -- https://github.com/astral-sh/ruff-lsp/issues/177
 lspconfig.ruff.setup {
