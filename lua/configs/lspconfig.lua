@@ -64,6 +64,10 @@ lspconfig.pyright.setup {
           reportUndefinedVariable = "none",
         },
         typeCheckingMode = "off",
+        -- Some attempt to improve performance
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = "openFilesOnly",
       },
     },
   },
