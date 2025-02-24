@@ -351,7 +351,13 @@ lspconfig.texlab.setup {
       diagnostics = {
         ignoredPatterns = { "Overfull \\[hv]box", "Unused label", "Use either `` or '' as an alternative to" },
       },
-      build = { timeout = 3000, forwardSearchAfter = false, onSave = true },
+      build = {
+        executable = "latexmk",
+        args = { "-pdf", "-pdflatex=pdflatex", "-bibtex", "-interaction=nonstopmode", "-synctex=1", "%f" },
+        timeout = 3000,
+        forwardSearchAfter = false,
+        onSave = true,
+      },
       forwardSearch = {
         executable = "SumatraPDF.exe",
         args = { "-reuse-instance", "%p", "-forward-search", "%f", "%l" },
