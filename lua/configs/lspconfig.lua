@@ -124,7 +124,7 @@ lspconfig.jedi_language_server.setup {
   filetypes = { "python" },
   init_options = {
     jediSettings = {
-      autoImportModules = {},
+      autoImportModules = { "numpy", "scipy", "pandas", "matplotlib", "seaborn", "statsmodels" },
       caseInsensitiveCompletion = true,
     },
     markupKindPreferred = "markdown",
