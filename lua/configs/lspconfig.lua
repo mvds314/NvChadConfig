@@ -130,7 +130,7 @@ lspconfig.jedi_language_server.setup {
     markupKindPreferred = "markdown",
     completion = { disableSnippets = true, resolveEagerly = false },
     diagnostics = { enable = false },
-    hover = { enable = false },
+    hover = { enable = true },
   },
 }
 
