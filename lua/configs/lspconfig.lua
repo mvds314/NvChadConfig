@@ -3,7 +3,6 @@ require("nvchad.configs.lspconfig").defaults()
 local servers = { "html", "cssls" }
 vim.lsp.enable(servers)
 
-
 -------------------------------------- CUSTOM LSPs ------------------------------------------
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
@@ -352,3 +351,4 @@ lspconfig.texlab.setup {
 -- filetypes = { "tex" },
 -- settings = { texlab = { diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } } } },
 -- }
+
