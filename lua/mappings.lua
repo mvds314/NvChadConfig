@@ -41,9 +41,9 @@ map("n", "<leader>a", "<cmd>AerialToggle!<CR>", { desc = "Aereal Toggle" })
 
 ------------------------------------------- Copilot -------------------------------------------------
 map("i", "<C-e>", function()
-  vim.fn["copilot#Accept"]()
-  -- local suggestion = vim.fn["copilot#Accept"]()
+  local suggestion = vim.fn["copilot#Accept"]()
   -- suggestion = vim.fn.feedkeys(suggestion:gsub("\n", "\r\n"), "")
+  vim.fn.feedkeys(suggestion, "")
 end, { desc = "Copilot Accept" })
 
 ------------------------------------------- Harpoon -------------------------------------------------
