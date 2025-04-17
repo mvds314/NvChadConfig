@@ -496,7 +496,8 @@ return {
       { "github/copilot.vim" },
       { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
     },
-    build = "make tiktoken", -- Only on MacOS or Linux
+    -- Only on MacOS or Linux
+    build = vim.fn.has "unix" == 1 and "make tiktoken" or nil,
     opts = {
       -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/375
       allow_insecure = true, -- Allow insecure connections fixes curl problems
