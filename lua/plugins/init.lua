@@ -231,7 +231,15 @@ return {
           --  should_map_plug = false,
           scratch_repl = true,
           repl_definition = {
-            python = require("iron.fts.python").ipython,
+            python = {
+              command = require("iron.fts.python").ipython,
+              format = function(lines)
+                -- Automatically enable autoreload
+                table.insert(lines, 1, "%load_ext autoreload")
+                table.insert(lines, 2, "%autoreload 2")
+                return lines
+              end,
+            },
             -- python = {command = { "ipython" }},
             -- sh = {command = { "zsh" }}
           },
