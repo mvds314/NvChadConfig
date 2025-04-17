@@ -36,7 +36,6 @@ vim.schedule(function()
   require "mappings"
 end)
 
-
 ----------------------------------------- CUSTOM -----------------------------------------------------
 
 -- Autoreload on buffer change
@@ -48,4 +47,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
 })
 
 --Relative line numbers
-vim.wo.relativenumber=true
+vim.wo.relativenumber = true
+
+--File format to unix
+vim.opt.fileformat = "unix"
+
