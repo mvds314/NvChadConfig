@@ -244,13 +244,13 @@ return {
           },
           close_winow_on_exit = true,
           -- Setup with repl in new buffline tab
-          scratch_repl = false,
-          buflisted = true,
-          repl_open_cmd = "tabnew",
+          -- scratch_repl = false,
+          -- buflisted = true,
+          -- repl_open_cmd = "tabnew",
           -- Setup with repl on the side
-          -- scratch_repl = true,
-          -- buflisted = false,
-          -- repl_open_cmd = "topleft vertical 120 split",
+          scratch_repl = true,
+          buflisted = false,
+          repl_open_cmd = "belowright vertical 120 split",
           -- Other configs
           -- repl_open_cmd = "belowright vertical 120 split",
           -- repl_open_cmd = "new",
