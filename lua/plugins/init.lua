@@ -295,6 +295,14 @@ return {
       }
     end,
   },
+  --TODO: try the following REPLs
+  --https://github.com/Olical/conjure
+  --https://github.com/hanschen/vim-ipython-cell
+  --nvim-terminal
+  --neoterm
+  --toggleterm nvim
+  --nvim ipy
+  --nvim python repl
   ---------------------------------------- LateX ----------------------------------------
   -- {
   --   "lervag/vimtex",
