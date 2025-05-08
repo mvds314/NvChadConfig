@@ -255,7 +255,7 @@ lspconfig.harper_ls.setup {
     "typescript",
     "typescriptreact",
     "javascript",
-    "python",
+    -- "python",
     "go",
     "c",
     "cpp",
