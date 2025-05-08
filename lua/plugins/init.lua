@@ -60,7 +60,6 @@ return {
     },
     -- TODO: Test these plugins:
     -- https://github.com/cagve/telescope-texsuite -> for LaTeX, test it further
-    -- https://github.com/paopaol/telescope-git-diffs.nvim
     -- https://github.com/xiyaowong/telescope-emoji.nvim
     -- neoclip
     -- cmd = { "Telescope", "Telescope whaler" },
