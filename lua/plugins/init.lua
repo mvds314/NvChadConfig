@@ -140,6 +140,7 @@ return {
   },
   {
     "gbprod/substitute.nvim",
+    opts = {},
     -- stylua: ignore
     keys = {
       { "s", mode = "n", function() require("substitute").operator() end, desc = "Substitute" },
