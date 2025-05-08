@@ -53,6 +53,7 @@ return {
       "nvim-telescope/telescope-fzy-native.nvim",
       "nvim-telescope/telescope-symbols.nvim",
       "paopaol/telescope-git-diffs.nvim", --TODO: test this plugin
+      "nvim-telescope/telescope-file-browser.nvim",
       "SalOrak/whaler",
       -- "kiyoon/telescope-insert-path.nvim", TODO: try this plugin
       "cagve/telescope-texsuite",
@@ -70,7 +71,8 @@ return {
       local is_windows = vim.fn.has "win64" == 1 or vim.fn.has "win32" == 1 or vim.fn.has "win16" == 1
       local is_linux = vim.fn.has "unix" == 1
       -- And edit it as described here: https://nvchad.com/docs/config/plugins
-      conf.extensions_list = { "themes", "terms", "fzy_native", "whaler", "symbols", "texsuite", "git_diffs" }
+      conf.extensions_list =
+        { "themes", "terms", "fzy_native", "whaler", "symbols", "texsuite", "git_diffs", "file_browser" }
       conf.extensions.fzy_native = { override_generic_sorter = true, override_file_sorter = true }
       -- TODO: this doesn't seem to work properly as bot .git and .gitignore are ignored -> test this in Linux
       -- conf.defaults.file_ignore_patterns = { "^.git/*" }
