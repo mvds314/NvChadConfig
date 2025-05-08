@@ -1,4 +1,5 @@
 return {
+  --------------------------------- LSP type stuff -----------------------------------------------------
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
