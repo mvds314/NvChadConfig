@@ -51,4 +51,9 @@ vim.wo.relativenumber = true
 
 --File format to unix
 vim.opt.fileformat = "unix"
-
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*",
+  callback = function()
+    vim.bo.fileformat = "unix"
+  end,
+})
