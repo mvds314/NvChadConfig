@@ -3,5 +3,9 @@ return {
   {
     dir = is_windows and (os.getenv "USERPROFILE" .. "/Repos/myplugin.nvim")
       or (os.getenv "HOME" .. "/Repos/myplugin.nvim"),
+    config = function()
+      print "Running config"
+    end,
+    lazy = false,
   },
 }
