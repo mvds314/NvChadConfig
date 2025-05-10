@@ -1,8 +1,11 @@
-local is_windows = vim.loop.os_uname().version:match "Windows"
 return {
   {
-    dir = is_windows and (os.getenv "USERPROFILE" .. "/Repos/myplugin.nvim")
-      or (os.getenv "HOME" .. "/Repos/myplugin.nvim"),
+    dir = function()
+      local is_windows = vim.loop.os_uname().version:match "Windows"
+      local retval = is_windows and (os.getenv "USERPROFILE" .. "/Repos/myplugin.nvim")
+        or (os.getenv "HOME" .. "/Repos/myplugin.nvim")
+      return retval
+    end,
     config = function()
       print "Running config"
     end,
