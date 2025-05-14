@@ -1,11 +1,23 @@
 require("nvchad.configs.lspconfig").defaults()
 
 local servers = { "html", "cssls" }
-vim.lsp.enable(servers)
-
--- read :h vim.lsp.config for changing options of lsp servers 
+-- read :h vim.lsp.config for changing options of lsp servers
 local lspconfig = require "lspconfig"
 local nvlsp = require "nvchad.configs.lspconfig"
+
+if vim.version().minor >= 11 then
+  vim.lsp.enable(servers)
+else
+  for _, lsp in ipairs(servers) do
+    if lspconfig[lsp] then
+      lspconfig[lsp].setup {
+        on_attach = nvlsp.on_attach,
+        capabilities = nvlsp.capabilities,
+      }
+    end
+  end
+end
+
 -------------------------------------- CUSTOM LSPs ------------------------------------------
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
