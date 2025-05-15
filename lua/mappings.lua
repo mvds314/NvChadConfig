@@ -14,6 +14,106 @@ map("t", "<C-[>", "<C-\\><C-n>")
 
 ---------------------------- CUSTOM MAPPINGS -------------------------------------------
 
+---------------------------- Lua language mappings -------------------------------------------
+-- Blink the current line
+local function blink_current_line(ms)
+  local ns = vim.api.nvim_create_namespace "blink_line_ns"
+  local line = vim.api.nvim_win_get_cursor(0)[1] - 1
+
+  -- Get the highlight color from Visual group
+  local hl_group = "Visual"
+  local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = hl_group })
+  if not ok or not hl.bg then
+    return
+  end
+
+  local color = string.format("#%06x", hl.bg)
+
+  -- Define temporary highlight group
+  vim.api.nvim_set_hl(0, "BlinkLine", { bg = color })
+
+  -- Place an extmark with the highlight
+  local mark_id = vim.api.nvim_buf_set_extmark(0, ns, line, 0, {
+    end_row = line + 1,
+    hl_group = "BlinkLine",
+    hl_eol = true,
+  })
+
+  -- Remove the highlight after a short delay
+  vim.defer_fn(function()
+    vim.api.nvim_buf_del_extmark(0, ns, mark_id)
+  end, ms)
+end
+
+local function blink_entire_file(ms)
+  local ns = vim.api.nvim_create_namespace "blink_file_ns"
+  local buf = 0
+  local lines = vim.api.nvim_buf_line_count(buf)
+
+  local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = "Visual" })
+  if not ok or not hl.bg then
+    return
+  end
+  local color = string.format("#%06x", hl.bg)
+
+  vim.api.nvim_set_hl(0, "BlinkFile", { bg = color })
+
+  local mark_id = vim.api.nvim_buf_set_extmark(buf, ns, 0, 0, {
+    end_row = lines,
+    hl_group = "BlinkFile",
+    hl_eol = true,
+  })
+
+  vim.defer_fn(function()
+    vim.api.nvim_buf_del_extmark(buf, ns, mark_id)
+  end, ms)
+end
+
+local function blink_selection(ms, start_line, end_line)
+  local ns = vim.api.nvim_create_namespace "blink_selection_ns"
+  local buf = 0
+
+  local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = "Visual" })
+  if not ok or not hl.bg then
+    return
+  end
+  local color = string.format("#%06x", hl.bg)
+
+  vim.api.nvim_set_hl(0, "BlinkSelection", { bg = color })
+
+  local mark_id = vim.api.nvim_buf_set_extmark(buf, ns, start_line, 0, {
+    end_row = end_line,
+    hl_group = "BlinkSelection",
+    hl_eol = true,
+  })
+
+  vim.defer_fn(function()
+    vim.api.nvim_buf_del_extmark(buf, ns, mark_id)
+  end, ms)
+end
+map("n", "<leader><leader>x", function()
+  blink_entire_file(80)
+  vim.cmd "source %"
+end, { desc = "Run lua file with Neovim's lua interpreter" })
+map("n", "<leader>x", function()
+  blink_current_line(80)
+  vim.cmd ".lua"
+end, { desc = "Run current line in lua file with Neovim's lua interpreter" })
+map("v", "<leader>x", function()
+  local start_pos = vim.fn.getpos "v"
+  local end_pos = vim.fn.getpos "."
+  -- Ensure start is before end
+  if start_pos[2] > end_pos[2] or (start_pos[2] == end_pos[2] and start_pos[3] > end_pos[3]) then
+    start_pos, end_pos = end_pos, start_pos
+  end
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+  blink_selection(80, start_pos[2] - 1, end_pos[2])
+  vim.cmd(string.format("%d,%dlua", start_pos[2], end_pos[2]))
+end, { desc = "Run selected lines in lua file with Neovim's lua interpreter" })
+
+-- Alternative way to run selected lines in lua without blinking
+-- map("v", "<leader>x", ":'<,'>.lua<CR>", { desc = "Run selected lines in lua file with Neovim's lua interpreter" })
+
 ---------------------------------- DAP -------------------------------------------------
 map("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Toggle breakpoint" })
 map("n", "<F5>", "<cmd> DapContinue <CR>", { desc = "Continue" })
