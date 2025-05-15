@@ -259,26 +259,26 @@ lspconfig.bashls.setup {
 
 -- Add a grammar checker for developers
 -- harper-ls
-lspconfig.harper_ls.setup {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
-  filetypes = {
-    "markdown",
-    "rust",
-    "typescript",
-    "typescriptreact",
-    "javascript",
-    -- "python",
-    "go",
-    "c",
-    "cpp",
-    "ruby",
-    "swift",
-    "csharp",
-    "toml",
-    "lua",
-  },
-}
+-- lspconfig.harper_ls.setup {
+--   on_attach = nvlsp.on_attach,
+--   capabilities = nvlsp.capabilities,
+--   filetypes = {
+--     "markdown",
+--     "rust",
+--     "typescript",
+--     "typescriptreact",
+--     "javascript",
+--     "python",
+--     "go",
+--     "c",
+--     "cpp",
+--     "ruby",
+--     "swift",
+--     "csharp",
+--     "toml",
+--     "lua",
+--   },
+-- }
 
 -- https://github.com/elijah-potter/harper
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#harper_ls
