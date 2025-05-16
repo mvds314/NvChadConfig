@@ -91,15 +91,15 @@ local function blink_selection(ms, start_line, end_line)
     vim.api.nvim_buf_del_extmark(buf, ns, mark_id)
   end, ms)
 end
-map("n", "<leader><leader>x", function()
+map("n", "<leader>rf", function()
   blink_entire_file(80)
   vim.cmd "source %"
 end, { desc = "Run lua file with Neovim's lua interpreter" })
-map("n", "<leader>x", function()
+map("n", "<leader>rl", function()
   blink_current_line(80)
   vim.cmd ".lua"
 end, { desc = "Run current line in lua file with Neovim's lua interpreter" })
-map("v", "<leader>x", function()
+map("v", "<leader>rl", function()
   local start_pos = vim.fn.getpos "v"
   local end_pos = vim.fn.getpos "."
   -- Ensure start is before end
