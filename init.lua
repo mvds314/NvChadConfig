@@ -57,3 +57,20 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     vim.bo.fileformat = "unix"
   end,
 })
+
+-- Set max size of log files
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    local log_path = vim.lsp.get_log_path()
+    local max_bytes = 100 * 1024 -- 100 KB
+    local stat = vim.loop.fs_stat(log_path)
+    if stat and stat.size > max_bytes then
+      local f = io.open(log_path, "w")
+      if f then
+        f:write "" -- Truncate the file
+        f:close()
+        vim.notify("LSP log truncated", vim.log.levels.INFO)
+      end
+    end
+  end,
+})
