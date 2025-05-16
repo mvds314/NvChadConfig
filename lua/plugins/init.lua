@@ -34,11 +34,18 @@ return {
       -- https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
       -- dofile(vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup {
-        ensure_installed = { "html", "css", "bash", "python", "json", "lua", "vim", "yaml", "latex" },
+        ensure_installed = { "c", "html", "css", "bash", "python", "json", "lua", "vim", "vimdoc", "yaml", "latex" },
         autoinstall = true,
         highlight = {
           enable = true, -- false will disable the whole extension
           -- disable = { "tex", "latex" }, -- list of language that will be disabled
+          disable = function(lang, buf) -- Disable for large files
+            local max_filesize = 1000 * 1024 -- 1000 KB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+              return true
+            end
+          end,
           use_languagetree = true,
         },
         -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
