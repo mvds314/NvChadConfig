@@ -15,7 +15,7 @@ if dir_exists(dir) then
       dir = dir,
       enable = false,
       config = function()
-        print "Running config"
+        -- print "Running config"
       end,
       lazy = false,
     },

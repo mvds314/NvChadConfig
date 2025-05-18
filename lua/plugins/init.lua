@@ -64,6 +64,7 @@ return {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },
+    enabled = false,
   },
   ----------------------------- Navigation -----------------------------
   {
