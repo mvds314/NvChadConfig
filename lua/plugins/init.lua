@@ -123,6 +123,7 @@ return {
       { "<leader>fd", mode = "n", "<cmd>Telescope whaler<CR>", desc = "Whaler" },
       { "<leader>fr", mode = "n", "<cmd>Telescope resume<CR>", desc = "Resume last search" },
       { "<leader>fs", mode = "n", "<cmd>Telescope symbols<CR>", desc = "Find symbol" },
+      { "<leader>fh", mode = "n", "<cmd>Telescope help_tags<CR>", desc = "Find help tags" },
     },
   },
   -- { "psliwka/vim-smoothie", event = "BufEnter" },
