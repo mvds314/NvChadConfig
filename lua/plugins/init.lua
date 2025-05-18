@@ -99,9 +99,12 @@ return {
       -- conf.defaults.hidden = true
       if is_windows then
         conf.extensions.whaler = {
-          directories = { os.getenv "USERPROFILE" .. "\\Repos" },
+          directories = {
+            os.getenv "USERPROFILE" .. "\\Repos",
+            vim.fs.joinpath(vim.fn.stdpath "data", "lazy"),
+          },
           oneoff_directories = {
-            os.getenv "LOCALAPPDATA" .. "\\nvim",
+            vim.fn.stdpath "config",
             os.getenv "USERPROFILE",
           },
           file_explorer = "nvimtree",
@@ -110,8 +113,10 @@ return {
         }
       elseif is_linux then
         conf.extensions.whaler = {
-          directories = { "~/Repos" },
-          oneoff_directories = { "~/.config/nvim" },
+          directories = { "~/Repos", vim.fs.joinpath(vim.fn.stdpath "data", "lazy") },
+          oneoff_directories = {
+            vim.fn.stdpath "config",
+          },
           file_explorer = "nvimtree",
           auto_file_explorer = false, -- Whether to automatically open file explorer. By default is `true`
           auto_cwd = true, -- Whether to automatically change current working directory. By default is `true`
