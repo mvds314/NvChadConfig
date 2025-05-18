@@ -58,7 +58,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      "nvim-telescope/telescope-fzy-native.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       "nvim-telescope/telescope-symbols.nvim",
       "paopaol/telescope-git-diffs.nvim", --TODO: test this plugin
       "nvim-telescope/telescope-file-browser.nvim",
