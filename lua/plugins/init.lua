@@ -34,11 +34,18 @@ return {
       -- https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
       -- dofile(vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup {
-        ensure_installed = { "html", "css", "bash", "python", "json", "lua", "vim", "yaml", "latex" },
+        ensure_installed = { "c", "html", "css", "bash", "python", "json", "lua", "vim", "vimdoc", "yaml", "latex" },
         autoinstall = true,
         highlight = {
           enable = true, -- false will disable the whole extension
           -- disable = { "tex", "latex" }, -- list of language that will be disabled
+          disable = function(lang, buf) -- Disable for large files
+            local max_filesize = 1000 * 1024 -- 1000 KB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+              return true
+            end
+          end,
           use_languagetree = true,
         },
         -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
@@ -51,7 +58,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      "nvim-telescope/telescope-fzy-native.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       "nvim-telescope/telescope-symbols.nvim",
       "paopaol/telescope-git-diffs.nvim", --TODO: test this plugin
       "nvim-telescope/telescope-file-browser.nvim",
@@ -92,9 +99,12 @@ return {
       -- conf.defaults.hidden = true
       if is_windows then
         conf.extensions.whaler = {
-          directories = { os.getenv "USERPROFILE" .. "\\Repos" },
+          directories = {
+            os.getenv "USERPROFILE" .. "\\Repos",
+            vim.fs.joinpath(vim.fn.stdpath "data", "lazy"),
+          },
           oneoff_directories = {
-            os.getenv "LOCALAPPDATA" .. "\\nvim",
+            vim.fn.stdpath "config",
             os.getenv "USERPROFILE",
           },
           file_explorer = "nvimtree",
@@ -103,8 +113,10 @@ return {
         }
       elseif is_linux then
         conf.extensions.whaler = {
-          directories = { "~/Repos" },
-          oneoff_directories = { "~/.config/nvim" },
+          directories = { "~/Repos", vim.fs.joinpath(vim.fn.stdpath "data", "lazy") },
+          oneoff_directories = {
+            vim.fn.stdpath "config",
+          },
           file_explorer = "nvimtree",
           auto_file_explorer = false, -- Whether to automatically open file explorer. By default is `true`
           auto_cwd = true, -- Whether to automatically change current working directory. By default is `true`
@@ -116,6 +128,7 @@ return {
       { "<leader>fd", mode = "n", "<cmd>Telescope whaler<CR>", desc = "Whaler" },
       { "<leader>fr", mode = "n", "<cmd>Telescope resume<CR>", desc = "Resume last search" },
       { "<leader>fs", mode = "n", "<cmd>Telescope symbols<CR>", desc = "Find symbol" },
+      { "<leader>fh", mode = "n", "<cmd>Telescope help_tags<CR>", desc = "Find help tags" },
     },
   },
   -- { "psliwka/vim-smoothie", event = "BufEnter" },

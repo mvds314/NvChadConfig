@@ -49,12 +49,17 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
 --Relative line numbers
 vim.wo.relativenumber = true
 
+--Use clipboard for copy/paste
+vim.opt.clipboard = "unnamedplus"
+
 --File format to unix
 vim.opt.fileformat = "unix"
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*",
   callback = function()
-    vim.bo.fileformat = "unix"
+    if vim.bo.modifiable then
+      vim.bo.fileformat = "unix"
+    end
   end,
 })
 
