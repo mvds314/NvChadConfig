@@ -58,7 +58,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
--- Set max size of log files
+-- Set max size of lsp log files
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     local log_path = vim.lsp.get_log_path()
