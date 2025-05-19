@@ -170,3 +170,8 @@ end, { desc = "Navigate to file 3" })
 map("n", "<leader>4", function()
   require("harpoon.ui").nav_file(4)
 end, { desc = "Navigate to file 4" })
+
+------------------------------------------- Quickfix -------------------------------------------------
+map("n", "<leader>qf", "<cmd>cwindow<CR>", { desc = "Open/close quickfix" })
+map("n", "<leader>]q", "<cmd>cnext<CR>", { desc = "Next quickfix" })
+map("n", "<leader>[q", "<cmd>cprev<CR>", { desc = "Previous quickfix" })
