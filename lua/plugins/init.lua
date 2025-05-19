@@ -58,7 +58,10 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+      },
       "nvim-telescope/telescope-symbols.nvim",
       "paopaol/telescope-git-diffs.nvim", --TODO: test this plugin
       "nvim-telescope/telescope-file-browser.nvim",
