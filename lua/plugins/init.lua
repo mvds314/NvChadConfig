@@ -231,8 +231,6 @@ return {
   --TODO: Preview doesn't work because of bug https://github.com/stevearc/oil.nvim/issues/435
   {
     "stevearc/oil.nvim",
-    ---@module 'oil'
-    ---@type oil.SetupOpts
     config = function()
       require("oil").setup {
         -- Your configuration comes here
