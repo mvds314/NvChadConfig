@@ -1,10 +1,10 @@
 local M = {}
 
-local Terminal = require("toggleterm.terminal").Terminal
 local ipy_term = nil
 
 local run_ipython_file = function()
   local file = vim.api.nvim_buf_get_name(0)
+  local Terminal = require("toggleterm.terminal").Terminal
   if file == "" then
     vim.notify("No file to run", vim.log.levels.ERROR)
     return
@@ -33,7 +33,7 @@ local run_ipython_file = function()
   ipy_term:send(string.format("%%run %s", file), false)
 end
 
-M[0] = {
+M[1] = {
   "akinsho/toggleterm.nvim",
   lazy = true,
   -- config = function(_, _)
