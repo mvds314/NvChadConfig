@@ -22,6 +22,7 @@ local run_ipython_file = function()
       direction = "float",
       close_on_exit = false,
       count = 99,
+      newline_chr = "\n",
     }
   end
 
