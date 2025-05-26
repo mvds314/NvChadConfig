@@ -29,7 +29,6 @@ local run_ipython_file = function()
   if not ipy_term:is_open() then
     ipy_term:toggle()
   end
-
   file = string.gsub(file, "[\r\n]+$", "")
   ipy_term:send(string.format("%%run %s", file), false)
 end
@@ -73,34 +72,6 @@ M[1] = {
       "<cmd>RunIpyFile<CR>",
       desc = "Run file in ipython",
     },
-    -- {
-    --   "<F5>",
-    --   mode = { "n", "i", "v" },
-    --   function()
-    --     local file = vim.api.nvim_buf_get_name(0)
-    --     if file == "" then
-    --       vim.notify("No file to run", vim.log.levels.ERROR)
-    --       return
-    --     end
-    --     local ft = vim.bo.filetype
-    --     if ft ~= "python" then
-    --       vim.notify("This command only works for Python files", vim.log.levels.WARN)
-    --       return
-    --     end
-    --     local dir = vim.fn.fnamemodify(file, ":h")
-    --     local cmd = string.format("ipython -i -c \"import os; os.chdir(r'%s')\"", dir)
-    --     local term = require("toggleterm.terminal").Terminal
-    --     local ipy = term:new { cmd = cmd, count = 1, direction = "float", hidden = true }
-    --     ipy:toggle()
-    --     ipy:send(string.format("%%run %s\n", file))
-    --     -- require("toggleterm").exec(cmd, 1, 80, "horizontal")
-    --     -- cmd = string.format("%%run %s", file)
-    --     -- ; exec(open(r'%s').read())"]], dir, fname)
-    --     -- require("toggleterm").exec(cmd, 1, 80, "horizontal")
-    --     -- term:send(string.format("%%run %s\n", file))
-    --   end,
-    --   desc = "Run file in ipython -i (cwd = file location)",
-    -- },
     -- Add some keys to send lines to the terminal, use the ToggleTermSendCurrentLine and such for those
     { "<F9>", mode = "n", "<cmd>ToggleTermSendCurrentLine<CR>", desc = "Send current line to terminal" },
     {
