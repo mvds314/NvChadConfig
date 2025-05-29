@@ -1,6 +1,6 @@
 local ipy_term = nil
 
-local run_ipython_file = function()
+local run_python_file_in_ipython_terminal = function()
   local file = vim.api.nvim_buf_get_name(0)
   -- local tt = require "toggleterm"
   local Terminal = require("toggleterm.terminal").Terminal
@@ -15,7 +15,8 @@ local run_ipython_file = function()
   local dir = vim.fn.fnamemodify(file, ":h")
   -- Ignore IPython warnings about running inside a virtual environment
   local cmd = string.format(
-    'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython -i -c "import os; os.chdir(r\'%s\'); import numpy as np; import matplotlib.pyplot as plt; import pandas as pd; plt.ion();"',
+    -- 'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython -i -c "import os; os.chdir(r\'%s\'); import numpy as np; import matplotlib.pyplot as plt; import pandas as pd; plt.ion();"',
+    'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython -i -c "import os; os.chdir(r\'%s\');"',
     dir
   )
   if not ipy_term then
@@ -66,7 +67,7 @@ return {
       persist_size = true,
       direction = "float", -- | vertical | tab | float
     }
-    vim.api.nvim_create_user_command("RunIpyFile", run_ipython_file, {})
+    vim.api.nvim_create_user_command("RunIpyFile", run_python_file_in_ipython_terminal, {})
   end,
   keys = {
     { "<C-\\>", mode = { "n", "i", "t" }, "<cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
