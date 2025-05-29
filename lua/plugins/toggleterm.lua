@@ -2,6 +2,8 @@ local ipy_term = nil
 
 local run_python_file_in_ipython_terminal = function()
   local file = vim.api.nvim_buf_get_name(0)
+  -- Save the file before running it
+  vim.cmd "write"
   -- local tt = require "toggleterm"
   local Terminal = require("toggleterm.terminal").Terminal
   if file == "" then
