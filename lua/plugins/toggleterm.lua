@@ -1,10 +1,17 @@
 local ipy_term = nil
 
+-- TODO:
+-- Create a mapping for just opening an ipython terminal that does not run a file
+-- Create a mapping for debugging Python files with ipython
+-- Create mappings for debug keys: next step, continue, etc.
+-- Test running the current selection in the terminal with <F9>
+-- Make logic for switching environments, e.g. virtualenv, conda, etc.
+-- Make logic for multiple ipython terminals
+
 local run_python_file_in_ipython_terminal = function()
   local file = vim.api.nvim_buf_get_name(0)
   -- Save the file before running it
   vim.cmd "wall"
-  -- local tt = require "toggleterm"
   local Terminal = require("toggleterm.terminal").Terminal
   if file == "" then
     vim.notify("No file to run", vim.log.levels.ERROR)
