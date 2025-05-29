@@ -80,12 +80,24 @@ return {
       desc = "Run file in ipython",
     },
     -- Add some keys to send lines to the terminal, use the ToggleTermSendCurrentLine and such for those
-    { "<F9>", mode = "n", "<cmd>ToggleTermSendCurrentLine<CR>", desc = "Send current line to terminal" },
+    -- This will allow you to use, for example, 2<F9> in normal or visual mode to send to terminal 2. If no count is given, it defaults to terminal 1.
+    {
+      "<F9>",
+      mode = "n",
+      function()
+        vim.cmd("ToggleTermSendCurrentLine " .. vim.v.count1)
+      end,
+      desc = "Send current line to terminal <count>",
+      expr = false,
+    },
     {
       "<F9>",
       mode = "v",
-      "<cmd>ToggleTermSendVisualSelection<CR>",
-      desc = "Send visual selection to terminal",
+      function()
+        vim.cmd("ToggleTermSendVisualSelection " .. vim.v.count1)
+      end,
+      desc = "Send visual selection to terminal <count>",
+      expr = false,
     },
   },
 }
