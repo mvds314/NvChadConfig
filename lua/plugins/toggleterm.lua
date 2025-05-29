@@ -27,7 +27,7 @@ local run_python_file_in_ipython_terminal = function()
       hidden = false, -- Register the terminal so it can be toggled
       direction = "float",
       close_on_exit = false,
-      count = 99,
+      count = 1,
       newline_chr = "\n", -- The character to use for newlines, set manually to avoid issues with adding extra newlines
       display_name = "IPython terminal",
     }
