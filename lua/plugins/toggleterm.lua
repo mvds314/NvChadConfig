@@ -3,7 +3,7 @@ local ipy_term = nil
 -- Stores the preferred Python environment
 local current_python_env = nil
 -- TODO:
--- Create a mapping for picking a Python environment
+-- Add blinking when sending lines to the terminal
 -- Consider to add switching environment logic to Telescope
 -- Test logic for switching environments under Windows
 -- Make logic for multiple ipython terminals

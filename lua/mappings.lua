@@ -114,6 +114,9 @@ end, { desc = "Run selected lines in lua file with Neovim's lua interpreter" })
 -- Alternative way to run selected lines in lua without blinking
 -- map("v", "<leader>x", ":'<,'>.lua<CR>", { desc = "Run selected lines in lua file with Neovim's lua interpreter" })
 
+------------------------------------ Python language mappings ----------------------------------
+map("n", "<leader>fe", "<cmd> PickPythonEnv<CR>", { desc = "Find Python environment" })
+
 ---------------------------------- DAP -------------------------------------------------
 map("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Toggle breakpoint" })
 -- map("n", "<F5>", "<cmd> DapContinue <CR>", { desc = "Continue" })
