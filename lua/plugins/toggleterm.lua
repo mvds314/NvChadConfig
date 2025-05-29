@@ -44,10 +44,7 @@ local run_python_file_in_ipython_terminal = function()
   end
   local dir = vim.fn.fnamemodify(file, ":h")
   -- Ignore IPython warnings about running inside a virtual environment
-  local cmd = string.format(
-    'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython -i -c "import os; os.chdir(r\'%s\');"',
-    dir
-  )
+  local cmd = 'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython'
   ipy_term = create_or_get_ipython_terminal(cmd)
   file = string.gsub(file, "[\r\n]+$", "")
   ipy_term:send(string.format("%%run %s", file), false)
