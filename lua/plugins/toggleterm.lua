@@ -1,7 +1,11 @@
+-- Stores the ipython terminal instance
 local ipy_term = nil
-
+-- Stores the preferred Python environment
+local current_python_env = nil
 -- TODO:
--- Make logic for switching environments, e.g. virtualenv, conda, etc.
+-- Create a mapping for picking a Python environment
+-- Consider to add switching environment logic to Telescope
+-- Test logic for switching environments under Windows
 -- Make logic for multiple ipython terminals
 -- Create a mapping for debugging Python files with ipython
 -- Create mappings for debug keys: next step, continue, etc.
@@ -9,8 +13,9 @@ local ipy_term = nil
 local create_or_get_ipython_terminal = function(cmd)
   local Terminal = require("toggleterm.terminal").Terminal
   if not cmd then
+    local python_env = current_python_env or "python"
     -- Ignore IPython warnings about running inside a virtual environment
-    cmd = 'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython'
+    cmd = string.format('"%s" -W "ignore:.*interactiveshell.py:UserWarning" -m IPython', python_env)
   end
   if not ipy_term then
     ipy_term = Terminal:new {
@@ -41,11 +46,60 @@ local run_python_file_in_ipython_terminal = function()
     return
   end
   -- Ignore IPython warnings about running inside a virtual environment
-  local cmd = 'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython'
+  local python_env = current_python_env or "python"
+  local cmd = string.format('"%s" -W "ignore:.*interactiveshell.py:UserWarning" -m IPython', python_env)
   ipy_term = create_or_get_ipython_terminal(cmd)
   file = string.gsub(file, "[\r\n]+$", "")
   ipy_term:send(string.format("%%run %s", file), false)
 end
+
+local function pick_python_env()
+  local pickers = require "telescope.pickers"
+  local finders = require "telescope.finders"
+  local actions = require "telescope.actions"
+  local action_state = require "telescope.actions.state"
+  local conf = require("telescope.config").values
+
+  -- Find python executables in common locations
+  local envs = {}
+  ---@diagnostic disable-next-line: undefined-field
+  local is_windows = vim.loop.os_uname().version:match "Windows"
+  local find_cmd
+  if is_windows then
+    -- Typical locations for Python on Windows
+    find_cmd = [[where python]]
+  else
+    -- Linux/MacOS
+    find_cmd =
+      [[find -L /usr/bin /usr/local/bin ~/.pyenv/versions ~/.conda/envs ~/anaconda3/envs -type f -name python 2>/dev/null; which python]]
+  end
+  local handle = io.popen(find_cmd)
+  if handle then
+    for line in handle:lines() do
+      table.insert(envs, line)
+    end
+    handle:close()
+  end
+
+  pickers
+    .new({}, {
+      prompt_title = "Select Python Environment",
+      finder = finders.new_table { results = envs },
+      sorter = conf.generic_sorter {},
+      attach_mappings = function(prompt_bufnr, _)
+        actions.select_default:replace(function()
+          actions.close(prompt_bufnr)
+          local selection = action_state.get_selected_entry()
+          current_python_env = selection[1]
+          vim.notify("Selected Python: " .. current_python_env)
+        end)
+        return true
+      end,
+    })
+    :find()
+end
+
+vim.api.nvim_create_user_command("PickPythonEnv", pick_python_env, {})
 
 return {
   "akinsho/toggleterm.nvim",
