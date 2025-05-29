@@ -66,7 +66,6 @@ return {
       "<cmd>RunIpyFile<CR>",
       desc = "Run file in ipython",
     },
-    -- Add some keys to send lines to the terminal, use the ToggleTermSendCurrentLine and such for those
     -- This will allow you to use, for example, 2<F9> in normal or visual mode to send to terminal 2. If no count is given, it defaults to terminal 1.
     {
       "<F9>",
