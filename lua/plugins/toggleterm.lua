@@ -1,12 +1,33 @@
 local ipy_term = nil
 
 -- TODO:
--- Create a mapping for just opening an ipython terminal that does not run a file
 -- Create a mapping for debugging Python files with ipython
 -- Create mappings for debug keys: next step, continue, etc.
 -- Test running the current selection in the terminal with <F9>
 -- Make logic for switching environments, e.g. virtualenv, conda, etc.
 -- Make logic for multiple ipython terminals
+
+local create_or_get_ipython_terminal = function(cmd)
+  local Terminal = require("toggleterm.terminal").Terminal
+  if not cmd then
+    -- Ignore IPython warnings about running inside a virtual environment
+    cmd = 'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython'
+  end
+  if not ipy_term then
+    ipy_term = Terminal:new {
+      cmd = cmd,
+      hidden = false, -- Register the terminal so it can be toggled
+      direction = "float",
+      close_on_exit = false,
+      newline_chr = "\n", -- The character to use for newlines, set manually to avoid issues with adding extra newlines
+      display_name = "IPython terminal",
+    }
+  end
+  if not ipy_term:is_open() then
+    ipy_term:toggle()
+  end
+  return ipy_term
+end
 
 local run_python_file_in_ipython_terminal = function()
   local file = vim.api.nvim_buf_get_name(0)
@@ -27,20 +48,7 @@ local run_python_file_in_ipython_terminal = function()
     'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython -i -c "import os; os.chdir(r\'%s\');"',
     dir
   )
-  if not ipy_term then
-    ipy_term = Terminal:new {
-      cmd = cmd,
-      hidden = false, -- Register the terminal so it can be toggled
-      direction = "float",
-      close_on_exit = false,
-      newline_chr = "\n", -- The character to use for newlines, set manually to avoid issues with adding extra newlines
-      display_name = "IPython terminal",
-    }
-  end
-
-  if not ipy_term:is_open() then
-    ipy_term:toggle()
-  end
+  ipy_term = create_or_get_ipython_terminal(cmd)
   file = string.gsub(file, "[\r\n]+$", "")
   ipy_term:send(string.format("%%run %s", file), false)
 end
@@ -62,6 +70,9 @@ return {
       direction = "float", -- | vertical | tab | float
     }
     vim.api.nvim_create_user_command("RunIpyFile", run_python_file_in_ipython_terminal, {})
+    vim.api.nvim_create_user_command("ToggleIPythonTerm", function()
+      create_or_get_ipython_terminal(nil)
+    end, {})
   end,
   keys = {
     { "<C-\\>", mode = { "i", "t", "n" }, "<cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
@@ -98,5 +109,10 @@ return {
       desc = "Send visual selection to terminal <count>",
       expr = false,
     },
+  },
+  cmd = {
+    "ToggleTerm",
+    "ToggleIPythonTerm",
+    "RunIpyFile",
   },
 }
