@@ -13,7 +13,10 @@ local run_ipython_file = function()
     return
   end
   local dir = vim.fn.fnamemodify(file, ":h")
-  local cmd = string.format("ipython -i -c \"import os; os.chdir(r'%s')\"", dir)
+  local cmd = string.format(
+    'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython -i -c "import os; os.chdir(r\'%s\')"',
+    dir
+  )
   if not ipy_term then
     ipy_term = Terminal:new {
       cmd = cmd,
