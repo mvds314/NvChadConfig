@@ -1,11 +1,11 @@
 local ipy_term = nil
 
 -- TODO:
--- Create a mapping for debugging Python files with ipython
--- Create mappings for debug keys: next step, continue, etc.
 -- Test running the current selection in the terminal with <F9>
 -- Make logic for switching environments, e.g. virtualenv, conda, etc.
 -- Make logic for multiple ipython terminals
+-- Create a mapping for debugging Python files with ipython
+-- Create mappings for debug keys: next step, continue, etc.
 
 local create_or_get_ipython_terminal = function(cmd)
   local Terminal = require("toggleterm.terminal").Terminal
@@ -33,7 +33,6 @@ local run_python_file_in_ipython_terminal = function()
   local file = vim.api.nvim_buf_get_name(0)
   -- Save the file before running it
   vim.cmd "wall"
-  local Terminal = require("toggleterm.terminal").Terminal
   if file == "" then
     vim.notify("No file to run", vim.log.levels.ERROR)
     return
@@ -42,7 +41,6 @@ local run_python_file_in_ipython_terminal = function()
     vim.notify("This only works for Python files", vim.log.levels.WARN)
     return
   end
-  local dir = vim.fn.fnamemodify(file, ":h")
   -- Ignore IPython warnings about running inside a virtual environment
   local cmd = 'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython'
   ipy_term = create_or_get_ipython_terminal(cmd)
