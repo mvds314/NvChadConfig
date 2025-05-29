@@ -60,7 +60,9 @@ return {
     dependencies = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
-        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+        build = function()
+          os.execute "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
+        end,
       },
       "nvim-telescope/telescope-symbols.nvim",
       "paopaol/telescope-git-diffs.nvim", --TODO: test this plugin
