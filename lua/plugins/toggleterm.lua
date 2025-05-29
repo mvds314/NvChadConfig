@@ -1,7 +1,6 @@
 local ipy_term = nil
 
 -- TODO:
--- Test running the current selection in the terminal with <F9>
 -- Make logic for switching environments, e.g. virtualenv, conda, etc.
 -- Make logic for multiple ipython terminals
 -- Create a mapping for debugging Python files with ipython
