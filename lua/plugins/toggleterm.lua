@@ -26,7 +26,6 @@ local run_python_file_in_ipython_terminal = function()
       hidden = false, -- Register the terminal so it can be toggled
       direction = "float",
       close_on_exit = false,
-      count = 1,
       newline_chr = "\n", -- The character to use for newlines, set manually to avoid issues with adding extra newlines
       display_name = "IPython terminal",
     }
@@ -58,21 +57,29 @@ return {
     vim.api.nvim_create_user_command("RunIpyFile", run_python_file_in_ipython_terminal, {})
   end,
   keys = {
-    { "<C-\\>", mode = { "n", "i", "t" }, "<cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
+    { "<C-\\>", mode = { "i", "t", "n" }, "<cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
+    {
+      "<C-\\>",
+      mode = "n",
+      function()
+        vim.cmd("ToggleTerm " .. vim.v.count1)
+      end,
+      desc = "Toggle terminal <count> with <count><C-\\>",
+      expr = false,
+    },
     {
       "<F5>",
       mode = { "n", "i", "v" },
       "<cmd>RunIpyFile<CR>",
       desc = "Run file in ipython",
     },
-    -- This will allow you to use, for example, 2<F9> in normal or visual mode to send to terminal 2. If no count is given, it defaults to terminal 1.
     {
       "<F9>",
       mode = "n",
       function()
         vim.cmd("ToggleTermSendCurrentLine " .. vim.v.count1)
       end,
-      desc = "Send current line to terminal <count>",
+      desc = "Send current line to terminal <count> with <count><F9>",
       expr = false,
     },
     {
