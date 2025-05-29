@@ -17,7 +17,6 @@ local run_python_file_in_ipython_terminal = function()
   local dir = vim.fn.fnamemodify(file, ":h")
   -- Ignore IPython warnings about running inside a virtual environment
   local cmd = string.format(
-    -- 'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython -i -c "import os; os.chdir(r\'%s\'); import numpy as np; import matplotlib.pyplot as plt; import pandas as pd; plt.ion();"',
     'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython -i -c "import os; os.chdir(r\'%s\');"',
     dir
   )
