@@ -43,19 +43,6 @@ end
 return {
   "akinsho/toggleterm.nvim",
   lazy = true,
-  -- config = function(_, _)
-  --   require("toggleterm").setup {
-  --     size = 80,
-  --     open_mapping = [[<c-\>]],
-  --     hide_numbers = true, -- hide the number column in toggleterm buffers
-  --     shade_terminals = true,
-  --     shading_factor = 2, -- The degree by which to darken to terminal color
-  --     start_in_insert = true,
-  --     insert_mappings = true, -- whether or not the open mapping applies in insert mode
-  --     persist_size = true,
-  --     direction = "float", -- | vertical | tab | float
-  --   }
-  -- end,
   config = function(_, _)
     local toggleterm = require "toggleterm"
     toggleterm.setup {
