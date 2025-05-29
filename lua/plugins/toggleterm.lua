@@ -13,6 +13,7 @@ local run_ipython_file = function()
     return
   end
   local dir = vim.fn.fnamemodify(file, ":h")
+  -- Ignore IPython warnings about running inside a virtual environment
   local cmd = string.format(
     'python -W "ignore:.*interactiveshell.py:UserWarning" -m IPython -i -c "import os; os.chdir(r\'%s\')"',
     dir
@@ -20,11 +21,11 @@ local run_ipython_file = function()
   if not ipy_term then
     ipy_term = Terminal:new {
       cmd = cmd,
-      hidden = false,
+      hidden = false, -- Register the terminal so it can be toggled
       direction = "float",
       close_on_exit = false,
       count = 99,
-      newline_chr = "\n",
+      newline_chr = "\n", -- The character to use for newlines, set manually to avoid issues with adding extra newlines
       display_name = "IPython terminal",
     }
   end
