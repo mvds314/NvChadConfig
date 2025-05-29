@@ -1,9 +1,8 @@
-local M = {}
-
 local ipy_term = nil
 
 local run_ipython_file = function()
   local file = vim.api.nvim_buf_get_name(0)
+  -- local tt = require "toggleterm"
   local Terminal = require("toggleterm.terminal").Terminal
   if file == "" then
     vim.notify("No file to run", vim.log.levels.ERROR)
@@ -18,11 +17,12 @@ local run_ipython_file = function()
   if not ipy_term then
     ipy_term = Terminal:new {
       cmd = cmd,
-      hidden = true,
+      hidden = false,
       direction = "float",
       close_on_exit = false,
       count = 99,
       newline_chr = "\n",
+      display_name = "IPython terminal",
     }
   end
 
@@ -33,7 +33,7 @@ local run_ipython_file = function()
   ipy_term:send(string.format("%%run %s", file), false)
 end
 
-M[1] = {
+return {
   "akinsho/toggleterm.nvim",
   lazy = true,
   -- config = function(_, _)
@@ -82,4 +82,3 @@ M[1] = {
     },
   },
 }
-return M
