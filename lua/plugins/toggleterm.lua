@@ -3,7 +3,7 @@ local ipy_term = nil
 -- Stores the preferred Python environment
 local current_python_env = nil
 -- Stores list with all Python environments
-local python_envs = {}
+local python_envs = nil
 -- TODO:
 -- Add blinking when sending lines to the terminal
 -- Consider to add switching environment logic to Telescope
@@ -148,11 +148,13 @@ local function pick_python_env()
   local action_state = require "telescope.actions.state"
   local conf = require("telescope.config").values
   -- Find python executables in common locations
-  local envs = find_python_envs()
+  if not python_envs then
+    python_envs = find_python_envs()
+  end
   pickers
     .new({}, {
       prompt_title = "Select Python Environment",
-      finder = finders.new_table { results = envs },
+      finder = finders.new_table { results = python_envs },
       sorter = conf.generic_sorter {},
       attach_mappings = function(prompt_bufnr, _)
         actions.select_default:replace(function()
@@ -168,6 +170,9 @@ local function pick_python_env()
 end
 
 vim.api.nvim_create_user_command("PickPythonEnv", pick_python_env, {})
+vim.api.nvim_create_user_command("ClearPytonEnvs", function()
+  python_envs = nil
+end, {})
 
 return {
   "akinsho/toggleterm.nvim",
