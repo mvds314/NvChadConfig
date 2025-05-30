@@ -7,7 +7,7 @@ local python_envs = nil
 -- TODO:
 -- Add blinking when sending lines to the terminal
 -- Consider to add switching environment logic to Telescope
--- Test logic for switching environments under Windows
+-- Put finding environments in a subprocess to avoid blocking Neovim
 -- Make logic for multiple ipython terminals
 -- Create a mapping for debugging Python files with ipython
 -- Create mappings for debug keys: next step, continue, etc.
