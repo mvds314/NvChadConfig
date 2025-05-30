@@ -2,6 +2,8 @@
 local ipy_term = nil
 -- Stores the preferred Python environment
 local current_python_env = nil
+-- Stores list with all Python environments
+local python_envs = {}
 -- TODO:
 -- Add blinking when sending lines to the terminal
 -- Consider to add switching environment logic to Telescope
@@ -53,89 +55,100 @@ local run_python_file_in_ipython_terminal = function()
   ipy_term:send(string.format("%%run %s", file), false)
 end
 
+local function find_python_envs_on_linux()
+  local envs = {}
+  -- Linux/MacOS
+  local find_cmd =
+    [[find -L /usr/bin /usr/local/bin ~/.pyenv/versions ~/.conda/envs ~/anaconda3/envs -type f -name python 2>/dev/null; which python]]
+  local linux_handle = io.popen(find_cmd)
+  if linux_handle then
+    for line in linux_handle:lines() do
+      table.insert(envs, line)
+    end
+    linux_handle:close()
+  end
+  return envs
+end
+
+local function find_python_envs_on_windows()
+  local envs = {}
+  -- Only check common install locations, avoid recursive search for speed
+  -- Add all miniconda3 folders
+  local candidates = {
+    os.getenv "USERPROFILE" .. "\\AppData\\Local\\miniconda3",
+  }
+  -- Add all miniconda3 envs folders
+  local miniconda_envs = os.getenv "USERPROFILE" .. "\\AppData\\Local\\miniconda3\\envs"
+  local envs_handle = io.popen('dir /b /ad "' .. miniconda_envs .. '" 2>nul')
+  if envs_handle then
+    for folder in envs_handle:lines() do
+      table.insert(candidates, miniconda_envs .. "\\" .. folder)
+    end
+    envs_handle:close()
+  end
+  -- Add all C:\Software\WPy64* folders
+  local wpy_handle = io.popen 'dir /b /ad "C:\\Software\\WPy64*" 2>nul'
+  if wpy_handle then
+    for folder in wpy_handle:lines() do
+      local wpy_python_handle = io.popen('dir /b /ad "C:\\Software\\' .. folder .. '\\python*" 2>nul')
+      if wpy_python_handle then
+        for subfolder in wpy_python_handle:lines() do
+          table.insert(candidates, "C:\\Software\\" .. folder .. "\\" .. subfolder)
+        end
+        wpy_python_handle:close()
+      end
+      local envs_dir = "C:\\Software\\" .. folder .. "\\envs"
+      -- Add all subfolders of the environments folder
+      envs_handle = io.popen('dir /b /ad "' .. envs_dir .. '" 2>nul')
+      if envs_handle then
+        for subenv in envs_handle:lines() do
+          table.insert(candidates, envs_dir .. "\\" .. subenv .. "\\Scripts")
+        end
+        envs_handle:close()
+      end
+    end
+    wpy_handle:close()
+  end
+  -- Process candidate folders
+  for _, dir in ipairs(candidates) do
+    local handle = io.popen('dir /b "' .. dir .. '\\python.exe" 2>nul')
+    if handle then
+      for line in handle:lines() do
+        table.insert(envs, dir .. "\\" .. line)
+      end
+      handle:close()
+    end
+  end
+  -- Also add python from PATH
+  local handle = io.popen "where python 2>nul"
+  if handle then
+    for line in handle:lines() do
+      table.insert(envs, line)
+    end
+    handle:close()
+  end
+  return envs
+end
+
+local function find_python_envs()
+  local envs = {}
+  ---@diagnostic disable-next-line: undefined-field
+  local is_windows = vim.loop.os_uname().version:match "Windows"
+  if is_windows then
+    return find_python_envs_on_windows()
+  else
+    return find_python_envs_on_linux()
+  end
+end
+
 local function pick_python_env()
   local pickers = require "telescope.pickers"
   local finders = require "telescope.finders"
   local actions = require "telescope.actions"
   local action_state = require "telescope.actions.state"
   local conf = require("telescope.config").values
-
   -- Find python executables in common locations
-  local envs = {}
-  ---@diagnostic disable-next-line: undefined-field
-  local is_windows = vim.loop.os_uname().version:match "Windows"
-  if is_windows then
-    -- Typical locations for Python on Windows
-    -- find_cmd = [[where /R C:\Software python.exe && where /R %USERPROFILE%\AppData\Local\miniconda3 python.exe]]
-    -- Typical locations for Python on Windows
-    -- Only check common install locations, avoid recursive search for speed
-    -- Add all miniconda3 folders
-    local candidates = {
-      os.getenv "USERPROFILE" .. "\\AppData\\Local\\miniconda3",
-    }
-    -- Add all miniconda3 envs folders
-    local miniconda_envs = os.getenv "USERPROFILE" .. "\\AppData\\Local\\miniconda3\\envs"
-    local envs_handle = io.popen('dir /b /ad "' .. miniconda_envs .. '" 2>nul')
-    if envs_handle then
-      for folder in envs_handle:lines() do
-        table.insert(candidates, miniconda_envs .. "\\" .. folder)
-      end
-      envs_handle:close()
-    end
-    -- Add all C:\Software\WPy64* folders
-    local wpy_handle = io.popen 'dir /b /ad "C:\\Software\\WPy64*" 2>nul'
-    if wpy_handle then
-      for folder in wpy_handle:lines() do
-        local wpy_python_handle = io.popen('dir /b /ad "C:\\Software\\' .. folder .. '\\python*" 2>nul')
-        if wpy_python_handle then
-          for subfolder in wpy_python_handle:lines() do
-            table.insert(candidates, "C:\\Software\\" .. folder .. "\\" .. subfolder)
-          end
-          wpy_python_handle:close()
-        end
-        local envs_dir = "C:\\Software\\" .. folder .. "\\envs"
-        -- Add all subfolders of the environments folder
-        envs_handle = io.popen('dir /b /ad "' .. envs_dir .. '" 2>nul')
-        if envs_handle then
-          for subenv in envs_handle:lines() do
-            table.insert(candidates, envs_dir .. "\\" .. subenv .. "\\Scripts")
-          end
-          envs_handle:close()
-        end
-      end
-      wpy_handle:close()
-    end
-    -- Process candidate folders
-    for _, dir in ipairs(candidates) do
-      local handle = io.popen('dir /b "' .. dir .. '\\python.exe" 2>nul')
-      if handle then
-        for line in handle:lines() do
-          table.insert(envs, dir .. "\\" .. line)
-        end
-        handle:close()
-      end
-    end
-    -- Also add python from PATH
-    local handle = io.popen "where python 2>nul"
-    if handle then
-      for line in handle:lines() do
-        table.insert(envs, line)
-      end
-      handle:close()
-    end
-  else
-    -- Linux/MacOS
-    local find_cmd =
-      [[find -L /usr/bin /usr/local/bin ~/.pyenv/versions ~/.conda/envs ~/anaconda3/envs -type f -name python 2>/dev/null; which python]]
-    local linux_handle = io.popen(find_cmd)
-    if linux_handle then
-      for line in linux_handle:lines() do
-        table.insert(envs, line)
-      end
-      linux_handle:close()
-    end
-  end
-
+  local envs = find_python_envs()
   pickers
     .new({}, {
       prompt_title = "Select Python Environment",
