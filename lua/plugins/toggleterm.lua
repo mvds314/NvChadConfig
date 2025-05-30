@@ -198,7 +198,8 @@ return {
       direction = "float", -- | vertical | tab | float
     }
     vim.api.nvim_create_user_command("RunIpyFile", function()
-      blink.entire_file(80)
+      -- TODO fix this one
+      -- blink.entire_file(80)
       run_python_file_in_ipython_terminal()
     end, { nargs = 0, desc = "Run current Python file in IPython terminal" })
     vim.api.nvim_create_user_command("ToggleIPythonTerm", function()
@@ -236,7 +237,8 @@ return {
       "<F9>",
       mode = "v",
       function()
-        blink.selection(80)
+        -- TODO fix this one
+        -- blink.selection(80)
         vim.cmd("ToggleTermSendVisualSelection " .. vim.v.count1)
       end,
       desc = "Send visual selection to terminal <count>",
