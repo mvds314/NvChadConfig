@@ -144,6 +144,44 @@ local function find_python_envs()
   end
 end
 
+-- TODO test this one
+local function pick_python_env_async()
+  local pickers = require "telescope.pickers"
+  local finders = require "telescope.finders"
+  local actions = require "telescope.actions"
+  local action_state = require "telescope.actions.state"
+  local conf = require("telescope.config").values
+
+  local search_cmd =
+    [[which -a python python3 2>/dev/null; find -L ~/.pyenv/versions ~/.conda/envs ~/anaconda3/envs -type f -name python 2>/dev/null]]
+  vim.system({ "bash", "-c", search_cmd }, { text = true }, function(obj)
+    if obj.code == 0 and obj.stdout then
+      local envs = {}
+      for line in obj.stdout:gmatch "[^\r\n]+" do
+        table.insert(envs, line)
+      end
+      pickers
+        .new({}, {
+          prompt_title = "Select Python Environment",
+          finder = finders.new_table { results = envs },
+          sorter = conf.generic_sorter {},
+          attach_mappings = function(prompt_bufnr, _)
+            actions.select_default:replace(function()
+              actions.close(prompt_bufnr)
+              local selection = action_state.get_selected_entry()
+              current_python_env = selection[1]
+              vim.notify("Selected Python: " .. current_python_env)
+            end)
+            return true
+          end,
+        })
+        :find()
+    else
+      vim.notify("Failed to find Python environments", vim.log.levels.ERROR)
+    end
+  end)
+end
+
 local function pick_python_env()
   local pickers = require "telescope.pickers"
   local finders = require "telescope.finders"
