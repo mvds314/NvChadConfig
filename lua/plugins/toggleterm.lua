@@ -4,6 +4,9 @@ local ipy_term = nil
 local current_python_env = nil
 -- Stores list with all Python environments
 local python_envs = nil
+-- Helpers for blinking text to be sent to the terminal
+local blink = require "util.blink"
+
 -- TODO:
 -- Add blinking when sending lines to the terminal
 -- Consider to add switching environment logic to Telescope
@@ -169,11 +172,15 @@ local function pick_python_env()
     :find()
 end
 
+-------------------------------- Set up commands --------------------------------
+
 vim.api.nvim_create_user_command("PickPythonEnv", pick_python_env, {})
 vim.api.nvim_create_user_command("ClearPytonEnvs", function()
   python_envs = nil
 end, {})
+vim.api.nvim_create_user_command("PickPythonEnvAsync", pick_python_env_async, {})
 
+------------------------------ Load the toggleterm plugin ------------------------------
 return {
   "akinsho/toggleterm.nvim",
   lazy = true,
@@ -190,10 +197,13 @@ return {
       persist_size = true,
       direction = "float", -- | vertical | tab | float
     }
-    vim.api.nvim_create_user_command("RunIpyFile", run_python_file_in_ipython_terminal, {})
+    vim.api.nvim_create_user_command("RunIpyFile", function()
+      blink.entire_file(80)
+      run_python_file_in_ipython_terminal()
+    end, { nargs = 0, desc = "Run current Python file in IPython terminal" })
     vim.api.nvim_create_user_command("ToggleIPythonTerm", function()
       create_or_get_ipython_terminal(nil)
-    end, {})
+    end, { nargs = 0, desc = "Toggle IPython terminal" })
   end,
   keys = {
     { "<C-\\>", mode = { "i", "t", "n" }, "<cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
@@ -216,6 +226,7 @@ return {
       "<F9>",
       mode = "n",
       function()
+        blink.current_line(80)
         vim.cmd("ToggleTermSendCurrentLine " .. vim.v.count1)
       end,
       desc = "Send current line to terminal <count> with <count><F9>",
@@ -225,6 +236,7 @@ return {
       "<F9>",
       mode = "v",
       function()
+        blink.selection(80)
         vim.cmd("ToggleTermSendVisualSelection " .. vim.v.count1)
       end,
       desc = "Send visual selection to terminal <count>",
