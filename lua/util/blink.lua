@@ -50,7 +50,10 @@ function M.entire_file(ms)
   })
 
   vim.defer_fn(function()
-    vim.api.nvim_buf_del_extmark(buf, ns, mark_id)
+    if vim.api.nvim_buf_is_valid(0) then
+      pcall(vim.api.nvim_buf_del_extmark, 0, ns, mark_id)
+      vim.cmd "redraw"
+    end
   end, ms)
 end
 
