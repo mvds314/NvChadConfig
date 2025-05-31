@@ -265,7 +265,7 @@ return {
       "<F9>",
       mode = "n",
       function()
-        blink.current_line(80)
+        blink.current_line(200)
         vim.cmd("ToggleTermSendCurrentLine " .. vim.v.count1)
       end,
       desc = "Send current line to terminal <count> with <count><F9>",
