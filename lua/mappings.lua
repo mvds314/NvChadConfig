@@ -16,25 +16,31 @@ map("t", "<C-[>", "<C-\\><C-n>")
 ---------------------------- CUSTOM MAPPINGS -------------------------------------------
 
 ---------------------------- Lua language mappings -------------------------------------------
-map("n", "<leader>rf", function()
-  blink.entire_file(80)
-  vim.cmd "source %"
-end, { desc = "Run lua file with Neovim's lua interpreter" })
-map("n", "<leader>rl", function()
-  blink.current_line(80)
-  vim.cmd ".lua"
-end, { desc = "Run current line in lua file with Neovim's lua interpreter" })
-map("v", "<leader>rl", function()
-  local start_pos = vim.fn.getpos "v"
-  local end_pos = vim.fn.getpos "."
-  -- Ensure start is before end
-  if start_pos[2] > end_pos[2] or (start_pos[2] == end_pos[2] and start_pos[3] > end_pos[3]) then
-    start_pos, end_pos = end_pos, start_pos
-  end
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
-  blink.selection(80, start_pos[2] - 1, end_pos[2], nil, nil)
-  vim.cmd(string.format("%d,%dlua", start_pos[2], end_pos[2]))
-end, { desc = "Run selected lines in lua file with Neovim's lua interpreter" })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lua",
+  callback = function()
+    map("n", "<F5>", function()
+      blink.entire_file(80)
+      vim.cmd "source %"
+    end, { desc = "Run lua file with Neovim's lua interpreter" })
+    map("n", "<F9>rl", function()
+      blink.current_line(80)
+      vim.cmd ".lua"
+    end, { desc = "Run current line in lua file with Neovim's lua interpreter" })
+    map("v", "<F9>", function()
+      local start_pos = vim.fn.getpos "v"
+      local end_pos = vim.fn.getpos "."
+      -- Ensure start is before end
+      if start_pos[2] > end_pos[2] or (start_pos[2] == end_pos[2] and start_pos[3] > end_pos[3]) then
+        start_pos, end_pos = end_pos, start_pos
+      end
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+      blink.selection(80, start_pos[2] - 1, end_pos[2], nil, nil)
+      vim.cmd(string.format("%d,%dlua", start_pos[2], end_pos[2]))
+    end, { desc = "Run selected lines in lua file with Neovim's lua interpreter" })
+  end,
+})
 
 -- Alternative way to run selected lines in lua without blinking
 -- map("v", "<leader>x", ":'<,'>.lua<CR>", { desc = "Run selected lines in lua file with Neovim's lua interpreter" })

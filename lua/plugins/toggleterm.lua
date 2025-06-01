@@ -135,7 +135,6 @@ local function find_python_envs_on_windows()
 end
 
 local function find_python_envs()
-  local envs = {}
   ---@diagnostic disable-next-line: undefined-field
   local is_windows = vim.loop.os_uname().version:match "Windows"
   if is_windows then
@@ -212,12 +211,52 @@ local function pick_python_env()
 end
 
 -------------------------------- Set up commands --------------------------------
-
-vim.api.nvim_create_user_command("PickPythonEnv", pick_python_env, {})
-vim.api.nvim_create_user_command("ClearPytonEnvs", function()
-  python_envs = nil
-end, {})
-vim.api.nvim_create_user_command("PickPythonEnvAsync", pick_python_env_async, {})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  callback = function(args)
+    local buf = args.buf
+    local opts = { buffer = buf, noremap = true, silent = true }
+    -- Create a command to pick Python environment
+    vim.api.nvim_buf_create_user_command(buf, "PickPythonEnv", function()
+      pick_python_env()
+    end, { desc = "Pick Python environment" })
+    -- Create a command to clear Python environments
+    vim.api.nvim_buf_create_user_command(buf, "ClearPythonEnvs", function()
+      python_envs = nil
+      vim.notify "Cleared Python environments"
+    end, { desc = "Clear Python environments" })
+    -- Run the current Python file in IPython terminal
+    vim.api.nvim_buf_create_user_command(buf, "RunIpyFile", function()
+      run_python_file_in_ipython_terminal()
+    end, { desc = "Run current Python file in IPython terminal" })
+    -- Create a command to toggle the IPython terminal
+    vim.api.nvim_buf_create_user_command(buf, "ToggleIPythonTerm", function()
+      create_or_get_ipython_terminal(nil)
+    end, { desc = "Toggle IPython terminal" })
+    vim.keymap.set({ "n", "i", "v" }, "<F5>", "<cmd>RunIpyFile<CR>", opts)
+    vim.keymap.set("n", "<F9>", function()
+      blink.current_line(50)
+      vim.cmd("ToggleTermSendCurrentLine " .. vim.v.count1)
+      vim.schedule(function()
+        vim.cmd "stopinsert"
+      end)
+      helpers.move_to_next_non_empty_line()
+    end, opts)
+    vim.keymap.set("v", "<F9>", function()
+      local start_pos = vim.fn.getpos "v"
+      local end_pos = vim.fn.getpos "."
+      if start_pos[2] > end_pos[2] or (start_pos[2] == end_pos[2] and start_pos[3] > end_pos[3]) then
+        start_pos, end_pos = end_pos, start_pos
+      end
+      local start_line = start_pos[2] - 1
+      local start_col = start_pos[3] - 1
+      local end_line = end_pos[2] - 1
+      local end_col = end_pos[3]
+      blink.selection(50, start_line, end_line, start_col, end_col)
+      vim.cmd("ToggleTermSendVisualSelection " .. vim.v.count1)
+    end, opts)
+  end,
+})
 
 ------------------------------ Load the toggleterm plugin ------------------------------
 return {
@@ -228,23 +267,14 @@ return {
     toggleterm.setup {
       size = 80,
       open_mapping = [[<c-\>]],
-      hide_numbers = true, -- hide the number column in toggleterm buffers
+      hide_numbers = true,
       shade_terminals = true,
-      shading_factor = 2, -- The degree by which to darken to terminal color
-      start_in_insert = false, -- Otherwis F9 might bring you to insert mode if the the first thing you do is send line to an empty terminal
-      insert_mappings = true, -- whether or not the open mapping applies in insert mode
+      shading_factor = 2,
+      start_in_insert = false,
+      insert_mappings = true,
       persist_size = true,
-      direction = "float", -- | vertical | tab | float
+      direction = "float",
     }
-    vim.api.nvim_create_user_command("RunIpyFile", function()
-      run_python_file_in_ipython_terminal()
-      -- Or use the logic with blink entire file
-      -- blink.entire_file(50)
-      -- vim.defer_fn(run_python_file_in_ipython_terminal, 60)
-    end, { nargs = 0, desc = "Run current Python file in IPython terminal" })
-    vim.api.nvim_create_user_command("ToggleIPythonTerm", function()
-      create_or_get_ipython_terminal(nil)
-    end, { nargs = 0, desc = "Toggle IPython terminal" })
   end,
   keys = {
     { "<C-\\>", mode = { "i", "t", "n" }, "<cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
@@ -255,54 +285,6 @@ return {
         vim.cmd("ToggleTerm " .. vim.v.count1)
       end,
       desc = "Toggle terminal <count> with <count><C-\\>",
-      expr = false,
-    },
-    {
-      "<F5>",
-      mode = { "n", "i", "v" },
-      "<cmd>RunIpyFile<CR>",
-      desc = "Run file in ipython",
-    },
-    {
-      "<F9>",
-      mode = "n",
-      function()
-        blink.current_line(50)
-        vim.cmd("ToggleTermSendCurrentLine " .. vim.v.count1)
-        -- Ensure you stay in normal mode
-        vim.schedule(function()
-          vim.cmd "stopinsert"
-        end)
-        helpers.move_to_next_non_empty_line()
-        -- Or use a short easy version
-        -- vim.cmd "normal! j"
-        -- while vim.fn.getline("."):match "^%s*$" do
-        --   vim.cmd "normal! j"
-        -- end
-      end,
-      desc = "Send current line to terminal <count> with <count><F9> and move to next non-empty line",
-      expr = false,
-    },
-    {
-      "<F9>",
-      mode = "v",
-      function()
-        -- TODO adjust this one so that only the selection blinks
-        local start_pos = vim.fn.getpos "v"
-        local end_pos = vim.fn.getpos "."
-        -- Ensure start is before end
-        if start_pos[2] > end_pos[2] or (start_pos[2] == end_pos[2] and start_pos[3] > end_pos[3]) then
-          start_pos, end_pos = end_pos, start_pos
-        end
-        local start_line = start_pos[2] - 1
-        local start_col = start_pos[3] - 1
-        local end_line = end_pos[2] - 1
-        local end_col = end_pos[3]
-        blink.selection(50, start_line, end_line, start_col, end_col)
-        -- blink.selection(50, start_pos[2] - 1, end_pos[2])
-        vim.cmd("ToggleTermSendVisualSelection " .. vim.v.count1)
-      end,
-      desc = "Send visual selection to terminal <count> and go back to normal mode",
       expr = false,
     },
   },
