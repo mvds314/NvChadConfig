@@ -237,9 +237,10 @@ return {
       direction = "float", -- | vertical | tab | float
     }
     vim.api.nvim_create_user_command("RunIpyFile", function()
-      -- TODO fix this one
-      -- blink.entire_file(50)
       run_python_file_in_ipython_terminal()
+      -- Or use the logic with blink entire file
+      -- blink.entire_file(50)
+      -- vim.defer_fn(run_python_file_in_ipython_terminal, 60)
     end, { nargs = 0, desc = "Run current Python file in IPython terminal" })
     vim.api.nvim_create_user_command("ToggleIPythonTerm", function()
       create_or_get_ipython_terminal(nil)
