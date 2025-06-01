@@ -6,7 +6,7 @@ function M.current_line(ms)
   local line = vim.api.nvim_win_get_cursor(0)[1] - 1
 
   -- Get the highlight color from Visual group
-  local hl_group = "Visual"
+  local hl_group = "IncSearch"
   local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = hl_group })
   if not ok or not hl.bg then
     return
@@ -35,7 +35,7 @@ function M.entire_file(ms)
   local buf = 0
   local lines = vim.api.nvim_buf_line_count(buf)
 
-  local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = "Visual" })
+  local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = "IncSearch" })
   if not ok or not hl.bg then
     return
   end
@@ -61,7 +61,7 @@ function M.selection(ms, start_line, end_line)
   local ns = vim.api.nvim_create_namespace "blink_selection_ns"
   local buf = 0
 
-  local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = "Visual" })
+  local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = "IncSearch" })
   if not ok or not hl.bg then
     return
   end
