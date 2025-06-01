@@ -262,20 +262,17 @@ vim.api.nvim_create_autocmd("FileType", {
 return {
   "akinsho/toggleterm.nvim",
   lazy = true,
-  config = function(_, _)
-    local toggleterm = require "toggleterm"
-    toggleterm.setup {
-      size = 80,
-      open_mapping = [[<c-\>]],
-      hide_numbers = true,
-      shade_terminals = true,
-      shading_factor = 2,
-      start_in_insert = false,
-      insert_mappings = true,
-      persist_size = true,
-      direction = "float",
-    }
-  end,
+  opts = {
+    size = 80,
+    open_mapping = [[<c-\>]],
+    hide_numbers = true,
+    shade_terminals = true,
+    shading_factor = 2,
+    start_in_insert = false,
+    insert_mappings = true,
+    persist_size = true,
+    direction = "float",
+  },
   keys = {
     { "<C-\\>", mode = { "i", "t", "n" }, "<cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
     {
