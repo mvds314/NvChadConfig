@@ -279,7 +279,7 @@ return {
         --   vim.cmd "normal! j"
         -- end
       end,
-      desc = "Send current line to terminal <count> with <count><F9>",
+      desc = "Send current line to terminal <count> with <count><F9> and move to next non-empty line",
       expr = false,
     },
     {
