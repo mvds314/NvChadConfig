@@ -238,7 +238,7 @@ return {
     }
     vim.api.nvim_create_user_command("RunIpyFile", function()
       -- TODO fix this one
-      -- blink.entire_file(80)
+      -- blink.entire_file(50)
       run_python_file_in_ipython_terminal()
     end, { nargs = 0, desc = "Run current Python file in IPython terminal" })
     vim.api.nvim_create_user_command("ToggleIPythonTerm", function()
@@ -266,7 +266,7 @@ return {
       "<F9>",
       mode = "n",
       function()
-        blink.current_line(200)
+        blink.current_line(50)
         vim.cmd("ToggleTermSendCurrentLine " .. vim.v.count1)
         -- Ensure you stay in normal mode
         vim.schedule(function()
@@ -286,11 +286,17 @@ return {
       "<F9>",
       mode = "v",
       function()
-        -- TODO fix this one
-        -- blink.selection(80)
+        -- TODO adjust this one so that only the selection blinks
+        local start_pos = vim.fn.getpos "v"
+        local end_pos = vim.fn.getpos "."
+        -- Ensure start is before end
+        if start_pos[2] > end_pos[2] or (start_pos[2] == end_pos[2] and start_pos[3] > end_pos[3]) then
+          start_pos, end_pos = end_pos, start_pos
+        end
+        blink.selection(50, start_pos[2] - 1, end_pos[2])
         vim.cmd("ToggleTermSendVisualSelection " .. vim.v.count1)
       end,
-      desc = "Send visual selection to terminal <count>",
+      desc = "Send visual selection to terminal <count> and go back to normal mode",
       expr = false,
     },
   },
