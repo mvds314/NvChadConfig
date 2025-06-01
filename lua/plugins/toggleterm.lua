@@ -6,6 +6,7 @@ local current_python_env = nil
 local python_envs = nil
 -- Helpers for blinking text to be sent to the terminal
 local blink = require "util.blink"
+local helpers = require "util.helpers"
 
 -- TODO:
 -- Add blinking when sending lines to the terminal
@@ -267,7 +268,16 @@ return {
       function()
         blink.current_line(200)
         vim.cmd("ToggleTermSendCurrentLine " .. vim.v.count1)
+        -- Ensure you stay in normal mode
+        vim.schedule(function()
+          vim.cmd "stopinsert"
+        end)
+        helpers.move_to_next_non_empty_line()
+        -- Or use a short easy version
         -- vim.cmd "normal! j"
+        -- while vim.fn.getline("."):match "^%s*$" do
+        --   vim.cmd "normal! j"
+        -- end
       end,
       desc = "Send current line to terminal <count> with <count><F9>",
       expr = false,
