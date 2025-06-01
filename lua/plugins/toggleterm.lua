@@ -210,7 +210,7 @@ local function pick_python_env()
     :find()
 end
 
--------------------------------- Set up commands --------------------------------
+-------------------------------- Set up commands and mappings --------------------------------
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "python",
   callback = function(args)
