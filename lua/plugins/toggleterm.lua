@@ -294,7 +294,12 @@ return {
         if start_pos[2] > end_pos[2] or (start_pos[2] == end_pos[2] and start_pos[3] > end_pos[3]) then
           start_pos, end_pos = end_pos, start_pos
         end
-        blink.selection(50, start_pos[2] - 1, end_pos[2])
+        local start_line = start_pos[2] - 1
+        local start_col = start_pos[3] - 1
+        local end_line = end_pos[2] - 1
+        local end_col = end_pos[3]
+        blink.selection(50, start_line, end_line, start_col, end_col)
+        -- blink.selection(50, start_pos[2] - 1, end_pos[2])
         vim.cmd("ToggleTermSendVisualSelection " .. vim.v.count1)
       end,
       desc = "Send visual selection to terminal <count> and go back to normal mode",

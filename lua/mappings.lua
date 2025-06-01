@@ -32,7 +32,7 @@ map("v", "<leader>rl", function()
     start_pos, end_pos = end_pos, start_pos
   end
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
-  blink.selection(80, start_pos[2] - 1, end_pos[2])
+  blink.selection(80, start_pos[2] - 1, end_pos[2], nil, nil)
   vim.cmd(string.format("%d,%dlua", start_pos[2], end_pos[2]))
 end, { desc = "Run selected lines in lua file with Neovim's lua interpreter" })
 

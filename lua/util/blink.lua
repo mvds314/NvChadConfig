@@ -57,9 +57,18 @@ function M.entire_file(ms)
   end, ms)
 end
 
-function M.selection(ms, start_line, end_line)
+function M.selection(ms, start_line, end_line, start_col, end_col)
   local ns = vim.api.nvim_create_namespace "blink_selection_ns"
   local buf = 0
+  local line_count = vim.api.nvim_buf_line_count(buf)
+
+  -- Validate end positions not out of range
+  if start_line >= line_count then
+    start_line = line_count - 1
+  end
+  if end_line >= line_count then
+    end_line = line_count - 1
+  end
 
   local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = "IncSearch" })
   if not ok or not hl.bg then
@@ -68,12 +77,20 @@ function M.selection(ms, start_line, end_line)
   local color = string.format("#%06x", hl.bg)
 
   vim.api.nvim_set_hl(0, "BlinkSelection", { bg = color })
-
-  local mark_id = vim.api.nvim_buf_set_extmark(buf, ns, start_line, 0, {
-    end_row = end_line,
-    hl_group = "BlinkSelection",
-    hl_eol = true,
-  })
+  local mark_id = nil
+  if start_col == nil or end_col == nil then
+    mark_id = vim.api.nvim_buf_set_extmark(buf, ns, start_line, 0, {
+      end_row = end_line,
+      hl_group = "BlinkSelection",
+      hl_eol = true,
+    })
+  else
+    mark_id = vim.api.nvim_buf_set_extmark(buf, ns, start_line, start_col, {
+      end_row = end_line,
+      end_col = end_col,
+      hl_group = "BlinkSelection",
+    })
+  end
 
   vim.defer_fn(function()
     vim.api.nvim_buf_del_extmark(buf, ns, mark_id)
