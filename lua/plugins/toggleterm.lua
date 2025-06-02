@@ -282,8 +282,7 @@ vim.api.nvim_create_autocmd("FileType", {
       elseif not in_debug_mode() then
         vim.notify("Not in debug mode", vim.log.levels.WARN)
       else
-        ipy_term:send("next<CR>", true)
-        -- ipy_term:send("\x15" .. string.format("%%run %s", file), false)
+        ipy_term:send("next\r", false)
       end
     end, { desc = "Step to next line in debugger" })
   end,
