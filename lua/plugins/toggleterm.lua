@@ -9,12 +9,11 @@ local blink = require "util.blink"
 local helpers = require "util.helpers"
 
 -- TODO:
--- Add blinking when sending lines to the terminal
--- Consider to add switching environment logic to Telescope
--- Put finding environments in a subprocess to avoid blocking Neovim
--- Make logic for multiple ipython terminals
 -- Create a mapping for debugging Python files with ipython
 -- Create mappings for debug keys: next step, continue, etc.
+-- Consider to add switching environment logic to Telescope as a plugin
+-- Put finding environments in a subprocess to avoid blocking Neovim
+-- Make logic for multiple ipython terminals
 
 local create_or_get_ipython_terminal = function(cmd)
   local Terminal = require("toggleterm.terminal").Terminal
@@ -40,6 +39,7 @@ local create_or_get_ipython_terminal = function(cmd)
 end
 
 local run_python_file_in_ipython_terminal = function()
+  -- Initialize
   local file = vim.api.nvim_buf_get_name(0)
   -- Save the file before running it
   vim.cmd "wall"
