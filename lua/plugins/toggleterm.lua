@@ -9,6 +9,7 @@ local blink = require "util.blink"
 local helpers = require "util.helpers"
 
 -- TODO:
+-- Fix bug, when term exits ipy_term is not cleared
 -- Create a mapping for debugging Python files with ipython
 -- Create mappings for debug keys: next step, continue, etc.
 -- Consider to add switching environment logic to Telescope as a plugin
@@ -56,7 +57,8 @@ local run_python_file_in_ipython_terminal = function()
   local cmd = string.format('"%s" -W "ignore:.*interactiveshell.py:UserWarning" -m IPython', python_env)
   ipy_term = create_or_get_ipython_terminal(cmd)
   file = string.gsub(file, "[\r\n]+$", "")
-  ipy_term:send(string.format("%%run %s", file), false)
+  -- clear line and send to terminal by sending Ctrl+U
+  ipy_term:send("\x15" .. string.format("%%run %s", file), false)
 end
 
 local function find_python_envs_on_linux()
