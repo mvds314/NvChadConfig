@@ -212,6 +212,24 @@ local function pick_python_env()
     :find()
 end
 
+local function in_debug_mode()
+  if not ipy_term or not ipy_term.bufnr then
+    print "IPython terminal is not open"
+    return false
+  end
+  local lines = vim.api.nvim_buf_get_lines(ipy_term.bufnr, 0, -1, false)
+  -- for i = math.max(1, #lines - 10), #lines do
+  for i = 1, #lines do
+    local line = lines[i]
+    if line and line:match "%(Pdb%)" then
+      print("Debug mode detected in line: " .. line)
+      return true
+    end
+    print("No match in line: " .. (line or "nil"))
+  end
+  return false
+end
+
 -------------------------------- Set up commands and mappings --------------------------------
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "python",
@@ -257,6 +275,20 @@ vim.api.nvim_create_autocmd("FileType", {
       blink.selection(50, start_line, end_line, start_col, end_col)
       vim.cmd("ToggleTermSendVisualSelection " .. vim.v.count1)
     end, opts)
+    vim.keymap.set("n", "<F10>", function()
+      if ipy_term == nil then
+        vim.notify("IPython terminal is not open", vim.log.levels.WARN)
+        return
+      elseif not in_debug_mode() then
+        vim.notify("Not in debug mode", vim.log.levels.WARN)
+      else
+        local cmd = "next"
+        cmd = string.gsub(cmd, "[\r\n]+$", "")
+        ipy_term:send(cmd, false)
+        ipy_term:send("\n", false)
+        -- ipy_term:send("\x15" .. string.format("%%run %s", file), false)
+      end
+    end, { desc = "Step to next line in debugger" })
   end,
 })
 
