@@ -45,7 +45,7 @@ return {
       -- local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
       local path = "python"
       require("dap-python").setup(path)
-      require "custom.configs.dap-ipdb"
+      require "configs.ipdab"
     end,
   },
   {
