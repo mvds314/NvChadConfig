@@ -8,9 +8,13 @@ dap.adapters.ipdb = {
 }
 
 -- Attach config — does not launch, just connects
+dap.configurations.python = dap.configurations.python or {}
 table.insert(dap.configurations.python, {
   name = "Attach to ipdb (manual %run)",
   type = "ipdb",
-  request = "attach",
+  request = "launch", -- <-- important to say launch here!
+  program = "${file}",
+  -- request = "attach",
   justMyCode = false,
+  cwd = vim.fn.getcwd(),
 })
