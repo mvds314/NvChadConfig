@@ -25,7 +25,11 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*",
   callback = function()
     if vim.bo.modifiable then
-      vim.bo.fileformat = "unix"
+      local old_format = vim.bo.fileformat
+      if old_format ~= "unix" then
+        vim.bo.fileformat = "unix"
+        vim.notify("File format converted from " .. old_format .. " to unix", vim.log.levels.INFO)
+      end
     end
   end,
 })
