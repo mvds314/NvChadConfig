@@ -31,6 +31,9 @@ local create_or_get_ipython_terminal = function(cmd)
       close_on_exit = false,
       newline_chr = "\n", -- The character to use for newlines, set manually to avoid issues with adding extra newlines
       display_name = "IPython terminal",
+      on_exit = function()
+        ipy_term = nil
+      end,
     }
   end
   if not ipy_term:is_open() then
