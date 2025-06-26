@@ -227,6 +227,15 @@ local function in_debug_mode()
     if line and line:match "%(Pdb%)" then
       print("Debug mode detected in line: " .. line)
       return true
+    elseif line and line:match "%(IPdb%)" then
+      print("IPython Debug mode detected in line: " .. line)
+      return true
+    elseif line and line:match "%(ipdb%)" then
+      print("ipdb Debug mode detected in line: " .. line)
+      return true
+    elseif line and line:match "^ipdb>" then
+      print("ipdb prompt detected in line: " .. line)
+      return true
     end
     print("No match in line: " .. (line or "nil"))
   end
