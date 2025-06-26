@@ -217,7 +217,7 @@ end
 
 local function in_debug_mode()
   if not ipy_term or not ipy_term.bufnr then
-    print "IPython terminal is not open"
+    vim.notify("IPython terminal is not open", vim.log.levels.WARN)
     return false
   end
   local lines = vim.api.nvim_buf_get_lines(ipy_term.bufnr, 0, -1, false)
@@ -225,20 +225,16 @@ local function in_debug_mode()
   for i = 1, #lines do
     local line = lines[i]
     if line and line:match "%(Pdb%)" then
-      print("Debug mode detected in line: " .. line)
       return true
     elseif line and line:match "%(IPdb%)" then
-      print("IPython Debug mode detected in line: " .. line)
       return true
     elseif line and line:match "%(ipdb%)" then
-      print("ipdb Debug mode detected in line: " .. line)
       return true
     elseif line and line:match "^ipdb>" then
-      print("ipdb prompt detected in line: " .. line)
       return true
     end
-    print("No match in line: " .. (line or "nil"))
   end
+  vim.notify("Not in debug mode", vim.log.levels.WARN)
   return false
 end
 
