@@ -60,8 +60,13 @@ local run_python_file_in_ipython_terminal = function()
   local cmd = string.format('"%s" -W "ignore:.*interactiveshell.py:UserWarning" -m IPython', python_env)
   ipy_term = create_or_get_ipython_terminal(cmd)
   file = string.gsub(file, "[\r\n]+$", "")
+  -- Change to the file's directory before running
+  local file_dir = vim.fn.fnamemodify(file, ":h")
+  ipy_term:send(string.format('cd "%s"', file_dir), false)
   -- clear line and send to terminal by sending Ctrl+U
-  ipy_term:send("\x15" .. string.format("%%run %s", file), false)
+  local file_basename = vim.fn.fnamemodify(file, ":t")
+  ipy_term:send("\x15" .. string.format("%%run %s", file_basename), false)
+  -- ipy_term:send("\x15" .. string.format("%%run %s", file), false)
 end
 
 local function find_python_envs_on_linux()
