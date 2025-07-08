@@ -50,9 +50,13 @@ return {
     conf.defaults.mappings = conf.defaults.mappings or {}
     conf.defaults.mappings.i = conf.defaults.mappings.i or {}
     conf.defaults.mappings.n = conf.defaults.mappings.n or {}
+    -- Send to quickfix list mappings
     local actions = require "telescope.actions"
     conf.defaults.mappings.i["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist
     conf.defaults.mappings.n["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist
+    -- Move through results with Alt-j/k
+    conf.defaults.mappings.i["<A-j>"] = actions.move_selection_next
+    conf.defaults.mappings.i["<A-k>"] = actions.move_selection_previous
     -- Configure whaler extension
     if is_windows then
       conf.extensions.whaler = {
