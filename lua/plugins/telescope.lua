@@ -45,6 +45,15 @@ return {
     -- conf.defaults.file_ignore_patterns = { "^.git\\*" }
     -- conf.defaults.preview.filesize_limit = 10 -- 10 MB limit for previewing
     -- conf.defaults.hidden = true
+    -- Add custom mappings to ensure <C-q> only sends selected items to quickfix
+    conf.defaults = conf.defaults or {}
+    conf.defaults.mappings = conf.defaults.mappings or {}
+    conf.defaults.mappings.i = conf.defaults.mappings.i or {}
+    conf.defaults.mappings.n = conf.defaults.mappings.n or {}
+    local actions = require "telescope.actions"
+    conf.defaults.mappings.i["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist
+    conf.defaults.mappings.n["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist
+    -- Configure whaler extension
     if is_windows then
       conf.extensions.whaler = {
         directories = {
