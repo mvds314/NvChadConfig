@@ -238,24 +238,26 @@ return {
   --nvim ipy
   --nvim python repl
   ---------------------------------------- LateX ----------------------------------------
-  -- {
-  --   "lervag/vimtex",
-  --   -- Lazy loading breaks inverse search: https://github.com/lervag/vimtex/issues/2763
-  --   lazy = false,
-  --   config = function()
-  --     local is_windows = vim.fn.has "win64" == 1 or vim.fn.has "win32" == 1 or vim.fn.has "win16" == 1
-  --     local is_linux = vim.fn.has "unix" == 1
-  --     if is_windows then
-  --       -- vim.g.vimtex_compiler_progname = "nvr"
-  --       -- vim.g.vimtex_view_method = "nvr"
-  --       vim.g.vimtex_view_general_viewer = "SumatraPDF"
-  --       -- vim.g.vimtex_view_general_view = os.getenv "USERPROFILE" .. "\\AppData\\Local\\SumatraPDF\\SumatraPDF.exe"
-  --       vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"
-  --     elseif is_linux then
-  --       vim.g.vimtex_view_general_viewer = "zathura"
-  --     end
-  --   end,
-  -- },
+  {
+    "lervag/vimtex",
+    -- Lazy loading breaks inverse search: https://github.com/lervag/vimtex/issues/2763
+    lazy = false,
+    config = function()
+      -- Leave syntax highlighting to treesitter
+      vim.g.vimtex_syntax_enabled = 0
+      local is_windows = vim.fn.has "win64" == 1 or vim.fn.has "win32" == 1 or vim.fn.has "win16" == 1
+      local is_linux = vim.fn.has "unix" == 1
+      if is_windows then
+        -- vim.g.vimtex_compiler_progname = "nvr"
+        -- vim.g.vimtex_view_method = "nvr"
+        vim.g.vimtex_view_general_viewer = "SumatraPDF"
+        -- vim.g.vimtex_view_general_view = os.getenv "USERPROFILE" .. "\\AppData\\Local\\SumatraPDF\\SumatraPDF.exe"
+        vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"
+      elseif is_linux then
+        vim.g.vimtex_view_general_viewer = "zathura"
+      end
+    end,
+  },
   -- {
   --   "f3fora/nvim-texlabconfig",
   --   config = function()
