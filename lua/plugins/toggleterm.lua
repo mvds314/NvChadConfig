@@ -7,6 +7,8 @@ local python_envs = nil
 -- Helpers for blinking text to be sent to the terminal
 local blink = require "util.blink"
 local helpers = require "util.helpers"
+-- Local variable to store preferred terminal direction
+local terminal_direction = "float"
 
 -- TODO:
 -- Fix bug, when term exits ipy_term is not cleared
@@ -27,7 +29,7 @@ local create_or_get_ipython_terminal = function(cmd)
     ipy_term = Terminal:new {
       cmd = cmd,
       hidden = false, -- Register the terminal so it can be toggled
-      direction = "float",
+      direction = terminal_direction,
       close_on_exit = false,
       newline_chr = "\n", -- The character to use for newlines, set manually to avoid issues with adding extra newlines
       display_name = "IPython terminal",
@@ -266,6 +268,16 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.api.nvim_buf_create_user_command(buf, "ToggleIPythonTerm", function()
       create_or_get_ipython_terminal(nil)
     end, { desc = "Toggle IPython terminal" })
+    -- Command to switch terminal direction
+    vim.api.nvim_buf_create_user_command(buf, "SwitchIPythonTerminalDirection", function()
+      if terminal_direction == "float" then
+        terminal_direction = "vertical"
+      else
+        terminal_direction = "float"
+      end
+      vim.notify("Terminal direction set to: " .. terminal_direction)
+    end, { desc = "Switch terminal split direction" })
+    -- Key mappings for the IPython terminal
     vim.keymap.set({ "n", "i", "v" }, "<F5>", "<cmd>RunIpyFile<CR>", opts)
     vim.keymap.set("n", "<F9>", function()
       blink.current_line(50)
@@ -314,7 +326,7 @@ return {
     start_in_insert = false,
     insert_mappings = true,
     persist_size = true,
-    direction = "float",
+    direction = "float", -- Default direction for terminals
   },
   keys = {
     { "<C-\\>", mode = { "i", "t", "n" }, "<cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
