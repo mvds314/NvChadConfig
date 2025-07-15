@@ -295,8 +295,6 @@ return {
     opts = {},
     -- stylua: ignore
     keys={
-      { "<leader>fs", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "<leader>tS", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
       { "<leader>gs", mode = 'n', "<cmd>Neogit<CR>", desc = "Neogit status" },
       { "<leader>gc", mode = 'n', "<cmd>Neogit commit<CR>", desc = "Neogit commit" },
       { "<leader>gp", mode = 'n', "<cmd>Neogit push<CR>", desc = "Neogit push" },
