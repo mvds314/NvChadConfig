@@ -341,6 +341,9 @@ lspconfig.texlab.setup {
   filetypes = { "tex" },
   settings = {
     texlab = {
+      -- Enable detailed logging:
+      logFile = "C:\\Users\\ROB6027\\AppData\\Local\\Temp\\texlab.log",
+      logLevel = "trace",
       chktex = { onOpenAndSave = true, onEdit = true },
       bibtexFormatter = "texlab",
       latexFormatter = "latexindent",
