@@ -278,6 +278,10 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.notify("Terminal direction set to: " .. terminal_direction)
     end, { desc = "Switch terminal split direction" })
     -- Key mappings for the IPython terminal
+    vim.keymap.set("t", "<C-w>h", "<C-\\><C-n><C-w>h", { noremap = true })
+    vim.keymap.set("t", "<C-w>j", "<C-\\><C-n><C-w>j", { noremap = true })
+    vim.keymap.set("t", "<C-w>k", "<C-\\><C-n><C-w>k", { noremap = true })
+    vim.keymap.set("t", "<C-w>l", "<C-\\><C-n><C-w>l", { noremap = true })
     vim.keymap.set({ "n", "i", "v" }, "<F5>", "<cmd>RunIpyFile<CR>", opts)
     vim.keymap.set("n", "<F9>", function()
       blink.current_line(50)
