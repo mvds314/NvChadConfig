@@ -354,7 +354,7 @@ lspconfig.texlab.setup {
       build = {
         executable = "latexmk",
         args = { "-pdf", "-pdflatex=pdflatex", "-bibtex", "-interaction=nonstopmode", "-synctex=1", "%f" },
-        timeout = 3000,
+        timeout = 10000,
         forwardSearchAfter = false,
         onSave = true,
       },
