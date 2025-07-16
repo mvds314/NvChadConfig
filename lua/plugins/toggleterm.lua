@@ -8,7 +8,7 @@ local python_envs = nil
 local blink = require "util.blink"
 local helpers = require "util.helpers"
 -- Local variable to store preferred terminal direction
-local terminal_direction = "float"
+local terminal_direction = "vertical"
 
 -- TODO:
 -- Fix bug, when term exits ipy_term is not cleared
