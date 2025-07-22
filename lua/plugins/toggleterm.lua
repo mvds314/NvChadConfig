@@ -322,7 +322,7 @@ return {
   "akinsho/toggleterm.nvim",
   lazy = true,
   opts = {
-    size = 80,
+    size = 99,
     open_mapping = [[<c-\>]],
     hide_numbers = true,
     shade_terminals = true,
