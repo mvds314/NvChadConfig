@@ -25,12 +25,19 @@ return {
       }
       dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()
+        vim.notify("DAP UI opened", vim.log.levels.INFO, { title = "DAP" })
       end
       dap.listeners.before.event_terminated["dapui_config"] = function()
         dapui.close()
+        vim.notify("DAP UI closed before termination", vim.log.levels.INFO, { title = "DAP" })
       end
       dap.listeners.before.event_exited["dapui_config"] = function()
         dapui.close()
+        vim.notify("DAP UI closed before exiting", vim.log.levels.INFO, { title = "DAP" })
+      end
+      dap.listeners.after.disconnect["dapui_config"] = function()
+        dapui.close()
+        vim.notify("DAP UI closed after disconnecting", vim.log.levels.INFO, { title = "DAP" })
       end
     end,
   },
