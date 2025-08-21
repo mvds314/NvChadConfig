@@ -7,6 +7,7 @@ return {
         os.execute "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
       end,
     },
+    -- "nvim-telescope/telescope-fzy-native.nvim",
     "nvim-telescope/telescope-symbols.nvim",
     "paopaol/telescope-git-diffs.nvim", --TODO: test this plugin
     "nvim-telescope/telescope-file-browser.nvim",
@@ -29,7 +30,8 @@ return {
     conf.extensions_list = {
       "themes",
       "terms",
-      "fzy_native",
+      -- "fzy_native",
+      "fzf",
       "whaler",
       "symbols",
       "texsuite",
@@ -37,7 +39,9 @@ return {
       "file_browser",
       -- "telescope_insert_path",
     }
-    conf.extensions.fzy_native = { override_generic_sorter = true, override_file_sorter = true }
+    -- conf.extensions.fzy_native = { override_generic_sorter = true, override_file_sorter = true }
+    conf.extensions.fzf =
+      { override_generic_sorter = true, override_file_sorter = true, fuzzy = true, case_mode = "smart_case" }
     -- TODO: this doesn't seem to work properly as bot .git and .gitignore are ignored -> test this in Linux
     -- conf.defaults.file_ignore_patterns = { "^.git/*" }
     -- conf.defaults.file_ignore_patterns = { "%.git/" }
