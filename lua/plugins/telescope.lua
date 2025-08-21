@@ -94,5 +94,15 @@ return {
     { "<leader>fr", mode = "n", "<cmd>Telescope resume<CR>", desc = "Resume last search" },
     { "<leader>fs", mode = "n", "<cmd>Telescope symbols<CR>", desc = "Find symbol" },
     { "<leader>fh", mode = "n", "<cmd>Telescope help_tags<CR>", desc = "Find help tags" },
+    {
+      "<leader>ff",
+      mode = "n",
+      function() -- <-- add this one
+        require("telescope.builtin").find_files {
+          find_command = { "fd", "--type", "f", "--hidden", "--exclude", ".git" },
+        }
+      end,
+      desc = "Find Files (fd, fast)",
+    },
   },
 }
