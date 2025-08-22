@@ -390,6 +390,7 @@ return {
   -- },
   {
     "github/copilot.vim",
+    lazy = "VeryLazy",
     cmd = { "CopilotChat" },
     event = "BufEnter",
     -- https://github.com/NvChad/NvChad/issues/2020
