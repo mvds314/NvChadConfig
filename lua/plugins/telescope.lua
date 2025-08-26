@@ -71,6 +71,7 @@ return {
         oneoff_directories = {
           vim.fn.stdpath "config",
           os.getenv "USERPROFILE",
+          os.getenv "USERPROFILE" .. "\\AppData\\Local\\clink",
         },
         file_explorer = "nvimtree",
         auto_file_explorer = false, -- Whether to automatically open file explorer. By default is `true`
