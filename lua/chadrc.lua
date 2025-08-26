@@ -78,6 +78,6 @@ M.mason.pkgs = {
 --       tabufline = {
 --          lazyload = false
 --      }
---}
+-- }
 
 return M
