@@ -32,6 +32,7 @@ local opts = {
     null_ls.builtins.formatting.shfmt.with { filetypes = { "sh" } },
     -- LaTeX
     -- require "none-ls.formatting.latexindent", -- Is now handled by texlab
+    require("none-ls.formatting.tex_fmt").with { filetypes = { "tex" }, extra_args = { "--nowrap" } },
     -- other spell checkers I tried
     -- null_ls.builtins.diagnostics.vale,
     null_ls.builtins.diagnostics.proselint.with { filetypes = { "markdown", "tex" } },

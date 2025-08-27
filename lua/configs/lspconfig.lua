@@ -346,7 +346,8 @@ lspconfig.texlab.setup {
       logLevel = "trace",
       chktex = { onOpenAndSave = true, onEdit = true },
       bibtexFormatter = "texlab",
-      latexFormatter = "latexindent",
+      -- latexFormatter = "latexindent",
+      latexFormatter = "none",
       formatterLineLength = 99,
       diagnostics = {
         ignoredPatterns = { "Overfull \\[hv]box", "Unused label", "Use either `` or '' as an alternative to" },
