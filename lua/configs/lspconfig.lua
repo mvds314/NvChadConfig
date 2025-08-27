@@ -335,7 +335,8 @@ lspconfig.texlab.setup {
     local bufopts = { noremap = true, silent = true }
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lb", "<cmd>TexlabBuild<CR>", bufopts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>TexlabForward<CR>", bufopts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fm", "<cmd>!latexindent % -l 99 -w<CR><cmd>edit!<CR>", bufopts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fm", "<cmd>!latexindent % -l 99 -w<CR><cmd>edit!<CR>", bufopts)
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fm", "<cmd>!tex-fmt % -n<CR><cmd>edit!<CR>", bufopts)
   end,
   capabilities = nvlsp.capabilities,
   filetypes = { "tex" },
