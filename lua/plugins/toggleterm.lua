@@ -282,7 +282,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("t", "<C-w>j", "<C-\\><C-n><C-w>j", { noremap = true })
     vim.keymap.set("t", "<C-w>k", "<C-\\><C-n><C-w>k", { noremap = true })
     vim.keymap.set("t", "<C-w>l", "<C-\\><C-n><C-w>l", { noremap = true })
-    vim.keymap.set({ "n", "i", "v" }, "<F5>", "<cmd>RunIpyFile<CR>", opts)
     vim.keymap.set("n", "<F9>", function()
       blink.current_line(50)
       vim.cmd("ToggleTermSendCurrentLine " .. vim.v.count1)
@@ -304,6 +303,15 @@ vim.api.nvim_create_autocmd("FileType", {
       blink.selection(50, start_line, end_line, start_col, end_col)
       vim.cmd("ToggleTermSendVisualSelection " .. vim.v.count1)
     end, opts)
+    vim.keymap.set({ "n", "i", "v" }, "<F5>", function()
+      if ipy_term == nil then
+        vim.cmd "RunIpyFile"
+      elseif not in_debug_mode() then
+        vim.cmd "RunIpyFile"
+      else
+        ipy_term:send("continue", false)
+      end
+    end, vim.tbl_extend("force", opts, { desc = "Run/Continue" }))
     vim.keymap.set("n", "<F10>", function()
       if ipy_term == nil then
         vim.notify("IPython terminal is not open", vim.log.levels.WARN)
@@ -313,7 +321,27 @@ vim.api.nvim_create_autocmd("FileType", {
       else
         ipy_term:send("next", false)
       end
-    end, { desc = "Step to next line in debugger" })
+    end, vim.tbl_extend("force", opts, { desc = "Step over" }))
+    vim.keymap.set("n", "<F11>", function()
+      if ipy_term == nil then
+        vim.notify("IPython terminal is not open", vim.log.levels.WARN)
+        return
+      elseif not in_debug_mode() then
+        vim.notify("Not in debug mode", vim.log.levels.WARN)
+      else
+        ipy_term:send("step", false)
+      end
+    end, vim.tbl_extend("force", opts, { desc = "Step into" }))
+    vim.keymap.set("n", "<S-F11>", function()
+      if ipy_term == nil then
+        vim.notify("IPython terminal is not open", vim.log.levels.WARN)
+        return
+      elseif not in_debug_mode() then
+        vim.notify("Not in debug mode", vim.log.levels.WARN)
+      else
+        ipy_term:send("r", false)
+      end
+    end, vim.tbl_extend("force", opts, { desc = "Step out/return" }))
   end,
 })
 
