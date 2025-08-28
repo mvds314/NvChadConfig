@@ -446,7 +446,10 @@ return {
       { "<leader>ccq", mode = "n", function()
         local input = vim.fn.input "Quick Chat: "
         if input ~= "" then
-          require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+          require("CopilotChat").ask(input, {
+            model = "gpt-4.1",
+            sticky = {"#buffers", "#gitdiff:staged", "#diagnostics:current" }
+          })
         end
       end, desc = "CopilotChat - Quick chat" },
       { "<leader>cch", mode = "n", function()
