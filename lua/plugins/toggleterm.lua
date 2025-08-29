@@ -229,7 +229,7 @@ local function in_debug_mode()
   end
   local lines = vim.api.nvim_buf_get_lines(ipy_term.bufnr, 0, -1, false)
   -- for i = math.max(1, #lines - 10), #lines do
-  for i = 1, #lines do
+  for i = #lines, 1, -1 do
     local line = lines[i]
     if line and line:match "%(Pdb%)" then
       return true
@@ -239,6 +239,8 @@ local function in_debug_mode()
       return true
     elseif line and line:match "^ipdb>" then
       return true
+    elseif line and line:match "^In %[%d+%]:" then
+      return false
     end
   end
   vim.notify("Not in debug mode", vim.log.levels.WARN)
