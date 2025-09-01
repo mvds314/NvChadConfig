@@ -212,7 +212,7 @@ lspconfig.rust_analyzer.setup {
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
   end,
   capabilities = nvlsp.capabilities,
-  filetypes = { "lua" },
+  filetypes = { "rust" },
   settings = {
     ["rust-analyzer"] = {
       cargo = {
