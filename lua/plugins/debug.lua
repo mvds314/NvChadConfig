@@ -3,6 +3,9 @@ return {
   { "epheien/termdbg", cmd = "TermDebug" },
   {
     "mfussenegger/nvim-dap",
+    config = function()
+      require "configs.codelldb"
+    end,
   },
   {
     "rcarriga/nvim-dap-ui",
