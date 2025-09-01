@@ -34,7 +34,20 @@ return {
       -- https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
       -- dofile(vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup {
-        ensure_installed = { "c", "html", "css", "bash", "python", "json", "lua", "vim", "vimdoc", "yaml", "latex" },
+        ensure_installed = {
+          "c",
+          "html",
+          "css",
+          "bash",
+          "python",
+          "json",
+          "lua",
+          "vim",
+          "vimdoc",
+          "yaml",
+          "latex",
+          "rust",
+        },
         autoinstall = true,
         highlight = {
           enable = true, -- false will disable the whole extension
@@ -333,6 +346,7 @@ return {
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
       "nvim-neotest/neotest-python",
+      "rouge8/neotest-rust",
     },
     config = function(_, _)
       require("neotest").setup {
@@ -346,6 +360,9 @@ return {
             runner = "pytest",
             python = "python",
             -- python = "~/mypython/bin/python",
+          },
+          require "neotest-rust" {
+            args = { "--nocapture" }, -- show test output
           },
         },
       }
@@ -383,6 +400,15 @@ return {
   --     require("refactoring").setup()
   --   end,
   -- },
+  -- Cargo.toml enhancements
+  {
+    "saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("crates").setup()
+    end,
+  },
   ---------------------------------------------- Completion ----------------------------------
   -- {
   --   "rafamadriz/friendly-snippets",
