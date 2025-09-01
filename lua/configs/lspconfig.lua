@@ -210,23 +210,6 @@ lspconfig.rust_analyzer.setup {
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-    if client.supports_method "textDocument/formatting" then
-      vim.api.nvim_clear_autocmds {
-        group = augroup,
-        buffer = bufnr,
-      }
-      -- https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format { async = false, timeout_ms = 10000 }
-        end,
-      })
-      vim.keymap.set("n", "<leader>fm", function()
-        vim.lsp.buf.format { async = true }
-      end, bufopts)
-    end
   end,
   capabilities = nvlsp.capabilities,
   filetypes = { "lua" },

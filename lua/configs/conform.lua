@@ -15,6 +15,7 @@ local options = {
     graphql = { "prettierd" },
     css = { "prettierd" },
     html = { "prettierd" },
+    rust = { "rustfmt" },
   },
 
   format_on_save = {
