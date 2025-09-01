@@ -211,7 +211,9 @@ lspconfig.rust_analyzer.setup {
     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
   end,
-  capabilities = nvlsp.capabilities,
+  capabilities = vim.tbl_extend("force", nvlsp.capabilities, {
+    offsetEncoding = { "utf-8" },
+  }),
   filetypes = { "rust" },
   settings = {
     ["rust-analyzer"] = {
