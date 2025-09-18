@@ -3,6 +3,7 @@ require("nvchad.configs.lspconfig").defaults()
 local servers = { "html", "cssls" }
 -- read :h vim.lsp.config for changing options of lsp servers
 local lspconfig = require "lspconfig"
+-- local lspconfig = vim.lsp.config
 local nvlsp = require "nvchad.configs.lspconfig"
 
 if vim.version().minor >= 11 then
@@ -26,7 +27,7 @@ local function python_on_attach(_, bufnr)
   -- https://docs.astral.sh/ruff/integrations/#language-server-protocol-official
   -- https://docs.astral.sh/ruff/integrations/#vim-neovim
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -154,7 +155,7 @@ lspconfig.ruff.setup {
     -- https://docs.astral.sh/ruff/integrations/#language-server-protocol-official
     -- https://docs.astral.sh/ruff/integrations/#vim-neovim
     -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -200,7 +201,7 @@ lspconfig.lua_ls.setup {
 --------------------------------------- Rust -------------------------------------------
 
 lspconfig.rust_analyzer.setup {
-  on_attach = function(client, bufnr)
+  on_attach = function(_, bufnr)
     -- Mappings.
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
