@@ -10,8 +10,8 @@ if vim.version().minor >= 11 then
   vim.lsp.enable(servers)
 else
   for _, lsp in ipairs(servers) do
-    if lspconfig[lsp] then
-      lspconfig[lsp].setup {
+    if vim.lsp.config(lsp) then
+      vim.lsp.config(lsp).setup {
         on_attach = nvlsp.on_attach,
         capabilities = nvlsp.capabilities,
       }
@@ -47,7 +47,7 @@ local function python_on_attach(_, bufnr)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 end
 
--- lspconfig.basedpyright.setup {
+-- vim.lsp.config.basedpyright.setup {
 --   on_attach = python_on_attach,
 --   capabilities = nvlsp.capabilities,
 --   filetypes = { "python" },
@@ -73,7 +73,7 @@ end
 --   single_file_support = true,
 -- }
 
--- lspconfig.pyright.setup {
+-- vim.lsp.config.pyright.setup {
 --   on_attach = python_on_attach,
 --   capabilities = nvlsp.capabilities,
 --   filetypes = { "python" },
@@ -93,7 +93,7 @@ end
 -- }
 
 -- Configure Pylyzer
--- lspconfig.pylyzer.setup {
+-- vim.lsp.config.pylyzer.setup {
 --   on_attach = python_on_attach,
 --   -- Add any specific configuration options for Pylyzer here
 --   capabilities = nvlsp.capabilities,
@@ -114,7 +114,7 @@ end
 --   },
 -- }
 
-lspconfig.jedi_language_server.setup {
+vim.lsp.config("jedi_language_server", {
   on_attach = python_on_attach,
   capabilities = nvlsp.capabilities,
   filetypes = { "python" },
@@ -128,10 +128,11 @@ lspconfig.jedi_language_server.setup {
     diagnostics = { enable = false },
     hover = { enable = true },
   },
-}
+})
+vim.lsp.enable "jedi_language_server"
 
 -- https://github.com/astral-sh/ruff-lsp/issues/177
-lspconfig.ruff.setup {
+vim.lsp.config("ruff", {
   on_attach = function(client, bufnr)
     -- disable some capabilities https://github.com/astral-sh/ruff-lsp/issues/78
     -- client.server_capabilities.documentFormattingProvider = false
@@ -173,11 +174,12 @@ lspconfig.ruff.setup {
       lineLength = 99,
     },
   },
-}
+})
+vim.lsp.enable "ruff"
 
 -------------------------------------- Lua LSPs -------------------------------------------
 
-lspconfig.lua_ls.setup {
+vim.lsp.config("lua_ls", {
   on_attach = nvlsp.on_attach,
   capabilities = nvlsp.capabilities,
   filetypes = { "lua" },
@@ -196,11 +198,12 @@ lspconfig.lua_ls.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable "lua_ls"
 
 --------------------------------------- Rust -------------------------------------------
 
-lspconfig.rust_analyzer.setup {
+vim.lsp.config("rust_analyzer", {
   on_attach = function(_, bufnr)
     -- Mappings.
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -240,37 +243,42 @@ lspconfig.rust_analyzer.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable "rust_analyzer"
 
 -------------------------------------- Other LSPs -------------------------------------------
 
-lspconfig.jsonls.setup {
+vim.lsp.config("jsonls", {
   on_attach = nvlsp.on_attach,
   capabilities = nvlsp.capabilities,
   filetypes = { "json" },
-}
+})
+vim.lsp.enable "jsonls"
 
-lspconfig.yamlls.setup {
+vim.lsp.config("yamlls", {
   on_attach = nvlsp.on_attach,
   capabilities = nvlsp.capabilities,
   filetypes = { "yaml" },
-}
+})
+vim.lsp.enable "yamlls"
 
-lspconfig.marksman.setup {
+vim.lsp.config("marksman", {
   on_attach = nvlsp.on_attach,
   capabilities = nvlsp.capabilities,
   filetypes = { "markdown" },
-}
+})
+vim.lsp.enable "marksman"
 
-lspconfig.bashls.setup {
+vim.lsp.config("bashls", {
   on_attach = nvlsp.on_attach,
   capabilities = nvlsp.capabilities,
   filetypes = { "sh" },
-}
+})
+vim.lsp.enable "bashls"
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- formatter for several filetypes, consider moving to this one for json, markdown, yaml and others
--- lspconfig.dprint.setup {
+-- vim.lsp.config.dprint.setup {
 -- on_attach = nvlsp.on_attach,
 -- capabilities = nvlsp.capabilities,
 -- filetypes = { "toml" },
@@ -280,7 +288,7 @@ lspconfig.bashls.setup {
 -- Doesn't seem to work for the TOML files I have
 -- https://taplo.tamasfe.dev/
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#taplo
--- lspconfig.taplo.setup {
+-- vim.lsp.config.taplo.setup {
 --   on_attach = function(client, bufnr)
 --     -- run manually with :lua print(vim.lsp.buf.format())
 --     if client.supports_method "textDocument/formatting" then
@@ -319,7 +327,7 @@ lspconfig.bashls.setup {
 
 -- Add a grammar checker for developers
 -- harper-ls
--- lspconfig.harper_ls.setup {
+-- vim.lsp.config.harper_ls.setup {
 --   on_attach = nvlsp.on_attach,
 --   capabilities = nvlsp.capabilities,
 --   filetypes = {
@@ -346,33 +354,35 @@ lspconfig.bashls.setup {
 -- Can be installed with Mason
 
 -- deprecated
--- lspconfig.pkgbuild_language_server.setup {
+-- vim.lsp.config.pkgbuild_language_server.setup {
 -- on_attach = nvlsp.on_attach,
 -- capabilities = nvlsp.capabilities,
 -- filetypes = { "PKGBUILD" },
 -- }
 
---lspconfig.azure_pipelines_ls.setup {
+--vim.lsp.config.azure_pipelines_ls.setup {
 --on_attach = nvlsp.on_attach,
 --capabilities = nvlsp.capabilities,
 --filetypes = { "yaml" },
 --}
 
-lspconfig.dockerls.setup {
+vim.lsp.config("dockerls", {
   on_attach = nvlsp.on_attach,
   capabilities = nvlsp.capabilities,
   --note dockerfiles are detected as conf files if they don't have the extension
   filetypes = { "dockerfile", "conf" },
-}
+})
+vim.lsp.enable "dockerls"
 
-lspconfig.vimls.setup {
+vim.lsp.config("vimls", {
   on_attach = nvlsp.on_attach,
   capabilities = nvlsp.capabilities,
   filetypes = { "vim" },
-}
+})
+vim.lsp.enable "vimls"
 
 -- TODO: make inverse search work?
-lspconfig.texlab.setup {
+vim.lsp.config("texlab", {
   on_attach = function(client, bufnr)
     -- Call the default on_attach function
     nvlsp.on_attach(client, bufnr)
@@ -411,7 +421,8 @@ lspconfig.texlab.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable "texlab"
 
 -- try digestif?
 -- It can be installed with Mason
@@ -425,7 +436,7 @@ lspconfig.texlab.setup {
 
 -- Check this one out?
 -- https://valentjn.github.io/ltex/
--- lspconfig.ltex.setup {
+-- vim.lsp.config.ltex.setup {
 -- on_attach = nvlsp.on_attach,
 -- capabilities = nvlsp.capabilities,
 -- filetypes = { "tex" },
