@@ -9,6 +9,7 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
+    ft = { "python", "rust" },
     dependencies = {
       "mfussenegger/nvim-dap",
       "LiadOz/nvim-dap-repl-highlights",

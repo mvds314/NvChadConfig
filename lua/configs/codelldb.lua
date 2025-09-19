@@ -8,6 +8,7 @@ dap.adapters.codelldb = {
     command = vim.fn.exepath "codelldb",
     args = { "--port", "${port}" },
   },
+  initialize_timeout_sec = 20, -- Wait up to 20 seconds for the adapter to start
 }
 dap.configurations.rust = {
   {
