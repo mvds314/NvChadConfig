@@ -5,6 +5,7 @@ local servers = { "html", "cssls" }
 local lspconfig = require "lspconfig"
 -- local lspconfig = vim.lsp.config
 local nvlsp = require "nvchad.configs.lspconfig"
+local util = require "lspconfig/util"
 
 if vim.version().minor >= 11 then
   vim.lsp.enable(servers)
@@ -219,6 +220,7 @@ vim.lsp.config("rust_analyzer", {
     offsetEncoding = { "utf-8" },
   }),
   filetypes = { "rust" },
+  root_dir = util.root_pattern("Cargo.toml", "rust-project.json"),
   settings = {
     ["rust-analyzer"] = {
       cargo = {

@@ -4,7 +4,8 @@ dap.adapters.codelldb = {
   type = "server",
   port = "${port}",
   executable = {
-    command = "C:/Users/ROB6027/AppData/Local/nvim-data/mason/packages/codelldb/extension/adapter/codelldb.exe",
+    -- Note Mason automatically adds codelldb to your PATH
+    command = vim.fn.exepath "codelldb",
     args = { "--port", "${port}" },
   },
 }
