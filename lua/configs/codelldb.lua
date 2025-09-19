@@ -1,5 +1,6 @@
 local dap = require "dap"
 
+-------------------------------- Debugger configuration --------------------------------
 dap.adapters.codelldb = {
   type = "server",
   port = "${port}",
@@ -22,3 +23,21 @@ dap.configurations.rust = {
     stopOnEntry = false,
   },
 }
+
+-------------------------------- Set up commands and mappings --------------------------------
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "rust",
+  callback = function(args)
+    local buf = args.buf
+    local opts = { buffer = buf, noremap = true, silent = true }
+    vim.keymap.set(
+      { "n", "i", "v" },
+      "<F5>",
+      "<cmd> DapContinue <CR>",
+      vim.tbl_extend("force", opts, { desc = "Run/Continue" })
+    )
+    vim.keymap.set("n", "<F10>", "<cmd> DapStepOver <CR>", vim.tbl_extend("force", opts, { desc = "Step over" }))
+    vim.keymap.set("n", "<F11>", "<cmd> DapStepInto <CR>", vim.tbl_extend("force", opts, { desc = "Step into" }))
+    vim.keymap.set("n", "<S-F11>", "<cmd> DapStepOut <CR>", vim.tbl_extend("force", opts, { desc = "Step out/return" }))
+  end,
+})
