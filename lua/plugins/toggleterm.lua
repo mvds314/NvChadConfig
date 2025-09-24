@@ -64,10 +64,10 @@ local run_python_file_in_ipython_terminal = function()
   file = string.gsub(file, "[\r\n]+$", "")
   -- Change to the file's directory before running
   local file_dir = vim.fn.fnamemodify(file, ":h")
-  ipy_term:send(string.format('cd "%s"', file_dir), false)
+  ipy_term:send(string.format('cd "%s"', file_dir), true)
   -- clear line and send to terminal by sending Ctrl+U
   local file_basename = vim.fn.fnamemodify(file, ":t")
-  ipy_term:send("\x15" .. string.format("%%run %s", file_basename), false)
+  ipy_term:send("\x15" .. string.format("%%run %s", file_basename), true)
   -- ipy_term:send("\x15" .. string.format("%%run %s", file), false)
 end
 
