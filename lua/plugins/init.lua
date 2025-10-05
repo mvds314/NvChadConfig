@@ -473,7 +473,8 @@ return {
         local input = vim.fn.input "Quick Chat: "
         if input ~= "" then
           require("CopilotChat").ask(input, {
-            model = "gpt-4.1",
+            -- model = "gpt-4.1",
+            model = "gpt-4o",
             sticky = {"#buffers", "#gitdiff:staged", "#diagnostics:current" }
           })
         end
