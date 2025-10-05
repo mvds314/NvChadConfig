@@ -467,26 +467,40 @@ return {
       "CopilotChatCommit",
       "CopilotChatCommitStaged",
     },
-    -- stylua: ignore
     keys = {
-      { "<leader>ccq", mode = "n", function()
-        local input = vim.fn.input "Quick Chat: "
-        if input ~= "" then
-          require("CopilotChat").ask(input, {
-            -- model = "gpt-4.1",
-            model = "gpt-4o",
-            sticky = {"#buffers", "#gitdiff:staged", "#diagnostics:current" }
-          })
-        end
-      end, desc = "CopilotChat - Quick chat" },
-      { "<leader>cch", mode = "n", function()
-        local actions = require "CopilotChat.actions"
-        require("CopilotChat.integrations.telescope").pick(actions.help_actions())
-      end, desc = "CopilotChat - Help actions" },
-      { "<leader>ccp", mode = "n", function()
-        local actions = require "CopilotChat.actions"
-        require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
-      end, desc = "CopilotChat - Prompt actions" },
+      {
+        "<leader>ccq",
+        mode = "n",
+        function()
+          local input = vim.fn.input "Quick Chat: "
+          if input ~= "" then
+            require("CopilotChat").ask(input, {
+              -- model = "gpt-4.1",
+              model = "gpt-4o",
+              sticky = { "#buffers", "#gitdiff:staged", "#diagnostics:current" },
+            })
+          end
+        end,
+        desc = "CopilotChat - Quick chat",
+      },
+      {
+        "<leader>cch",
+        mode = "n",
+        function()
+          local actions = require "CopilotChat.actions"
+          require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+        end,
+        desc = "CopilotChat - Help actions",
+      },
+      {
+        "<leader>ccp",
+        mode = "n",
+        function()
+          local actions = require "CopilotChat.actions"
+          require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+        end,
+        desc = "CopilotChat - Prompt actions",
+      },
     },
   },
   -- TODO: get more out of this plugin, maybe integrate copilot completions into it?
