@@ -23,7 +23,17 @@ else
   dir = os.getenv "HOME" .. "/Repos/togglepy.nvim"
 end
 if dir_exists(dir) then
-  table.insert(M, { dir = dir, lazy = false, enable = false, config = function() end })
+  table.insert(M, {
+    dir = dir,
+    lazy = false,
+    enable = false,
+    dependencies = {
+      "mfussenegger/nvim-dap", -- DAP core
+    },
+    config = function()
+      require("togglepy").setup { host = "localhost", port = 9001 }
+    end,
+  })
 end
 
 return M
