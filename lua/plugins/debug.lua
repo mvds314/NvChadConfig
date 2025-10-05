@@ -54,8 +54,8 @@ return {
   --   --   ft = "python",
   --   dependencies = {
   --     "mfussenegger/nvim-dap",
-  -- "rcarriga/nvim-dap-ui",
-  -- },
+  --     "rcarriga/nvim-dap-ui",
+  --   },
   --   config = function(_, _)
   --     -- local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
   --     local path = "python"
