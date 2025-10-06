@@ -477,7 +477,8 @@ return {
             require("CopilotChat").ask(input, {
               -- model = "gpt-4.1",
               model = "gpt-4o",
-              sticky = { "#buffers", "#gitdiff:staged", "#diagnostics:current" },
+              -- sticky = { "#buffers", "#gitdiff:staged", "#diagnostics:current" },
+              sticky = { "#buffer", "#buffers", "#gitdiff:staged", "#diagnostics:current" },
             })
           end
         end,
