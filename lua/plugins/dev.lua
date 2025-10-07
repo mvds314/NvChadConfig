@@ -25,14 +25,17 @@ end
 if dir_exists(dir) then
   table.insert(M, {
     dir = dir,
-    lazy = false,
-    enable = false,
+    -- lazy = false,
+    ft = "python",
+    enable = true,
     dependencies = {
       "mfussenegger/nvim-dap", -- DAP core
+      "akinsho/toggleterm.nvim",
     },
-    config = function()
-      require("togglepy").setup { host = "localhost", port = 9001 }
-    end,
+    -- config = function()
+    --   require("togglepy").setup { host = "localhost", port = 9000 }
+    --   -- require "togglepy.repl"
+    -- end,
   })
 end
 
