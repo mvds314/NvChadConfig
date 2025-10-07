@@ -472,13 +472,26 @@ return {
         "<leader>ccq",
         mode = "n",
         function()
+          -- Get content of all buffers
+          local buffers = vim.api.nvim_list_bufs()
+          local all_buffers_content = {}
+          for _, buf in ipairs(buffers) do
+            if vim.api.nvim_buf_get_option(buf, "bufhidden") == "" then
+              if not vim.api.nvim_buf_is_loaded(buf) then
+                table.insert(all_buffers_content, "#file:" .. vim.api.nvim_buf_get_name(buf))
+              else
+                table.insert(all_buffers_content, "#buffer:" .. buf)
+              end
+            end
+          end
+          -- Ask the question
           local input = vim.fn.input "Quick Chat: "
           if input ~= "" then
             require("CopilotChat").ask(input, {
               -- model = "gpt-4.1",
               model = "gpt-4o",
-              -- sticky = { "#buffers", "#gitdiff:staged", "#diagnostics:current" },
-              sticky = { "#buffer", "#buffers", "#gitdiff:staged", "#diagnostics:current" },
+              -- sticky = { "#buffer", "#buffers", "#gitdiff:staged", "#diagnostics:current" },
+              resource = all_buffers_content,
             })
           end
         end,
