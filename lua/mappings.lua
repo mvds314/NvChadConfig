@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd("FileType", {
       blink.entire_file(80)
       vim.cmd "source %"
     end, { desc = "Run lua file with Neovim's lua interpreter" })
-    map("n", "<F9>rl", function()
+    map("n", "<F9>", function()
       blink.current_line(80)
       vim.cmd ".lua"
     end, { desc = "Run current line in lua file with Neovim's lua interpreter" })
