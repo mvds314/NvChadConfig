@@ -28,6 +28,8 @@ if dir_exists(dir) then
     -- lazy = false,
     ft = "python",
     enable = true,
+    -- TODO: fix this, and generate the docs automatically
+    build = ":helptags " .. dir .. "/doc",
     dependencies = {
       "mfussenegger/nvim-dap", -- DAP core
       "akinsho/toggleterm.nvim",
