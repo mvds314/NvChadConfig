@@ -40,5 +40,10 @@ if dir_exists(dir) then
     -- end,
   })
 end
+-- Auto-generate helptags when saving a doc file
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = dir .. "/doc/*.txt",
+  command = "helptags " .. dir .. "/doc",
+})
 
 return M
