@@ -26,7 +26,7 @@ return {
       local nvimtscf = require "nvim-treesitter.configs"
       dapui.setup()
       dapuihl.setup()
-      require "configs.ipdab"
+      -- require "configs.ipdab"
       nvimtscf.setup {
         highlight = { enable = true },
         ensure_installed = { "dap_repl" },
