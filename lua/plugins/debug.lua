@@ -49,20 +49,20 @@ return {
       end
     end,
   },
-  -- {
-  --   "mfussenegger/nvim-dap-python",
-  --   --   ft = "python",
-  --   dependencies = {
-  --     "mfussenegger/nvim-dap",
-  --     "rcarriga/nvim-dap-ui",
-  --   },
-  --   config = function(_, _)
-  --     -- local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-  --     local path = "python"
-  --     require("dap-python").setup(path)
-  --     require "configs.ipdab"
-  --   end,
-  -- },
+  {
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+    },
+    config = function(_, _)
+      -- local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+      local path = "python"
+      require("dap-python").setup(path)
+      -- require "configs.ipdab"
+    end,
+  },
   {
     "theHamsta/nvim-dap-virtual-text",
     dependencies = { "mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter" },
