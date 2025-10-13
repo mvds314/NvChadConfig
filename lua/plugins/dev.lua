@@ -34,15 +34,14 @@ if dir_exists(dir) then
       "akinsho/toggleterm.nvim",
     },
     opts = {
-      host = "localhost",
-      port = 9000,
+      ipdab = {
+        host = "localhost",
+        port = 9000,
+      },
+      repl = {},
+      keys = {},
     },
-    keys = {
-      { "<C-w>h", "<C-\\><C-n><C-w>h", mode = "t", noremap = true, desc = "Go to left window" },
-      { "<C-w>j", "<C-\\><C-n><C-w>j", mode = "t", noremap = true, desc = "Go to lower window" },
-      { "<C-w>k", "<C-\\><C-n><C-w>k", mode = "t", noremap = true, desc = "Go to upper window" },
-      { "<C-w>l", "<C-\\><C-n><C-w>l", mode = "t", noremap = true, desc = "Go to right window" },
-    },
+    keys = {},
   })
 end
 -- Auto-generate helptags when saving a doc file
