@@ -19,15 +19,20 @@ map("t", "<C-[>", "<C-\\><C-n>")
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "lua",
-  callback = function()
+  callback = function(args)
+    local buf = args.buf or nil
+    if not buf then
+      vim.notify("Buffer not found for lua key mappings", vim.log.levels.ERROR)
+      return
+    end
     map("n", "<F5>", function()
       blink.entire_file(80)
       vim.cmd "source %"
-    end, { desc = "Run lua file with Neovim's lua interpreter" })
+    end, { buffer = buf, noremap = true, desc = "Run lua file with Neovim's lua interpreter" })
     map("n", "<F9>", function()
       blink.current_line(80)
       vim.cmd ".lua"
-    end, { desc = "Run current line in lua file with Neovim's lua interpreter" })
+    end, { buffer = buf, noremap = true, desc = "Run current line in lua file with Neovim's lua interpreter" })
     map("v", "<F9>", function()
       local start_pos = vim.fn.getpos "v"
       local end_pos = vim.fn.getpos "."
@@ -38,7 +43,7 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
       blink.selection(80, start_pos[2] - 1, end_pos[2], nil, nil)
       vim.cmd(string.format("%d,%dlua", start_pos[2], end_pos[2]))
-    end, { desc = "Run selected lines in lua file with Neovim's lua interpreter" })
+    end, { buffer = buf, noremap = true, desc = "Run selected lines in lua file with Neovim's lua interpreter" })
   end,
 })
 
