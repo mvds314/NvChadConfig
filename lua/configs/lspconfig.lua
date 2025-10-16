@@ -397,7 +397,7 @@ vim.lsp.config("texlab", {
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fm", "<cmd>!tex-fmt % -n<CR><cmd>edit!<CR>", bufopts)
   end,
   capabilities = nvlsp.capabilities,
-  filetypes = { "tex" },
+  filetypes = { "tex", "bib" },
   settings = {
     texlab = {
       -- Enable detailed logging:
