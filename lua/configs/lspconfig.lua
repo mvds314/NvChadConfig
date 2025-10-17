@@ -385,18 +385,43 @@ vim.lsp.config("vimls", {
 vim.lsp.enable "vimls"
 
 -- TODO: make inverse search work?
+local texlab_capabilities = vim.lsp.protocol.make_client_capabilities()
+texlab_capabilities.experimental = {
+  textDocumentBuild = true,
+  textDocumentForwardSearch = true,
+}
 vim.lsp.config("texlab", {
   on_attach = function(client, bufnr)
     -- Call the default on_attach function
     nvlsp.on_attach(client, bufnr)
     -- Add custom keymaps
+    vim.api.nvim_buf_create_user_command(bufnr, "TexlabBuild", function()
+      local params = { textDocument = { uri = vim.uri_from_bufnr(0) } }
+      vim.lsp.buf_request(0, "textDocument/build", params, function(err, result)
+        if err then
+          vim.notify("Build failed: " .. err.message, vim.log.levels.ERROR)
+        else
+          vim.notify("Build started", vim.log.levels.INFO)
+        end
+      end)
+    end, {})
+    vim.api.nvim_buf_create_user_command(bufnr, "TexlabForward", function()
+      local params = { textDocument = { uri = vim.uri_from_bufnr(0) } }
+      vim.lsp.buf_request(0, "textDocument/forwardSearch", params, function(err, result)
+        if err then
+          vim.notify("Forward search failed: " .. err.message, vim.log.levels.ERROR)
+        else
+          vim.notify("Forward search triggered", vim.log.levels.INFO)
+        end
+      end)
+    end, {})
     local bufopts = { noremap = true, silent = true }
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lb", "<cmd>TexlabBuild<CR>", bufopts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>TexlabForward<CR>", bufopts)
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fm", "<cmd>!latexindent % -l 99 -w<CR><cmd>edit!<CR>", bufopts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fm", "<cmd>!tex-fmt % -n<CR><cmd>edit!<CR>", bufopts)
   end,
-  capabilities = nvlsp.capabilities,
+  capabilities = texlab_capabilities,
   filetypes = { "tex", "bib" },
   settings = {
     texlab = {
@@ -425,7 +450,8 @@ vim.lsp.config("texlab", {
     },
   },
 })
-vim.lsp.enable "texlab"
+-- Disable this one for now, fix it first
+-- vim.lsp.enable "texlab"
 
 -- try digestif?
 -- It can be installed with Mason
