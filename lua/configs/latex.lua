@@ -44,6 +44,10 @@ vim.api.nvim_create_autocmd("FileType", {
     end
     -- Add the spell checking only for latex files
     vim.opt_local.spell = true
-    vim.opt_local.spelllang = { "en_us", "nl" }
+    vim.opt_local.spelllang = {
+      "en_us",
+      --TODO: make Dutch spelling work
+      "nl",
+    }
   end,
 })
