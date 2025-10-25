@@ -23,6 +23,34 @@ else
   dir = os.getenv "HOME" .. "/Repos/togglepy.nvim"
 end
 if dir_exists(dir) then
+  -- Move this part to the user specific config
+  local search_paths = {}
+  if is_windows then
+    -- Add all WinPython environments located at C:\Software\WPy64* folders
+    local wpy_handle = io.popen 'dir /b /ad "C:\\Software\\WPy64*" 2>nul'
+    if wpy_handle then
+      for folder in wpy_handle:lines() do
+        local wpy_python_handle = io.popen('dir /b /ad "C:\\Software\\' .. folder .. '\\python*" 2>nul')
+        if wpy_python_handle then
+          for subfolder in wpy_python_handle:lines() do
+            table.insert(search_paths, "C:\\Software\\" .. folder .. "\\" .. subfolder)
+          end
+          wpy_python_handle:close()
+        end
+        local envs_dir = "C:\\Software\\" .. folder .. "\\envs"
+        -- Add all subfolders of the environments folder
+        local envs_handle = io.popen('dir /b /ad "' .. envs_dir .. '" 2>nul')
+        if envs_handle then
+          for subenv in envs_handle:lines() do
+            table.insert(search_paths, envs_dir .. "\\" .. subenv .. "\\Scripts")
+          end
+          envs_handle:close()
+        end
+      end
+      wpy_handle:close()
+    end
+  end
+  print("The lenght of search_paths is " .. #search_paths)
   table.insert(M, {
     dir = dir,
     -- lazy = false,
@@ -38,7 +66,7 @@ if dir_exists(dir) then
         host = "localhost",
         port = 9000,
       },
-      repl = {},
+      repl = { search_paths = search_paths, add_miniconda = true, add_system_path = true, test = 1 },
       keys = {},
     },
     keys = {},
