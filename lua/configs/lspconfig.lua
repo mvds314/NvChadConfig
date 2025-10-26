@@ -426,7 +426,7 @@ vim.lsp.config("texlab", {
   settings = {
     texlab = {
       -- Enable detailed logging:
-      logFile = os.getenv "LOCALAPPDATA" .. "\\Temp\\texlab.log",
+      -- logFile = os.getenv "LOCALAPPDATA" .. "\\Temp\\texlab.log",
       logLevel = "trace",
       chktex = { onOpenAndSave = true, onEdit = true },
       bibtexFormatter = "texlab",
