@@ -49,6 +49,8 @@ if dir_exists(dir) then
       end
       wpy_handle:close()
     end
+  else
+    search_paths = { "~/mypython/bin" }
   end
   print("The length  of search_paths is " .. #search_paths)
   table.insert(M, {
