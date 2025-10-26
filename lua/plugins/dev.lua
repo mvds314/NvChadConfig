@@ -67,7 +67,7 @@ if dir_exists(dir) then
         host = "localhost",
         port = 9000,
       },
-      repl = { search_paths = search_paths, add_miniconda = true, add_system_path = true },
+      repl = { search_paths = vim.deepcopy(search_paths), add_miniconda = true, add_system_path = true },
       keys = {},
     },
     keys = {},
