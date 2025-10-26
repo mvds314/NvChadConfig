@@ -52,7 +52,6 @@ if dir_exists(dir) then
   else
     search_paths = { "~/mypython/bin" }
   end
-  print("The length  of search_paths is " .. #search_paths)
   table.insert(M, {
     dir = dir,
     -- lazy = false,
@@ -68,7 +67,7 @@ if dir_exists(dir) then
         host = "localhost",
         port = 9000,
       },
-      repl = { search_paths = search_paths, add_miniconda = true, add_system_path = true, test = 1 },
+      repl = { search_paths = search_paths, add_miniconda = true, add_system_path = true },
       keys = {},
     },
     keys = {},
