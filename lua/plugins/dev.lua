@@ -50,7 +50,7 @@ if dir_exists(dir) then
       wpy_handle:close()
     end
   end
-  print("The lenght of search_paths is " .. #search_paths)
+  print("The length  of search_paths is " .. #search_paths)
   table.insert(M, {
     dir = dir,
     -- lazy = false,
