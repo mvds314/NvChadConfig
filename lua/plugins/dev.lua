@@ -23,7 +23,6 @@ else
   dir = os.getenv "HOME" .. "/Repos/togglepy.nvim"
 end
 if dir_exists(dir) then
-  -- Move this part to the user specific config
   local search_paths = {}
   if is_windows then
     -- Add all WinPython environments located at C:\Software\WPy64* folders
@@ -67,7 +66,7 @@ if dir_exists(dir) then
         host = "localhost",
         port = 9000,
       },
-      repl = { search_paths = vim.deepcopy(search_paths), add_miniconda = true, add_system_path = true },
+      repl = { search_paths = search_paths, add_miniconda = true, add_system_path = true },
       keys = {},
     },
     keys = {},
