@@ -24,7 +24,8 @@ return {
       local dapui = require "dapui"
       local dapuihl = require "nvim-dap-repl-highlights"
       local nvimtscf = require "nvim-treesitter.configs"
-      dapui.setup()
+      -- default config for dapui is to not show the elements
+      dapui.setup { layouts = { { elements = {}, size = 40, position = "left" } } }
       dapuihl.setup()
       -- require "configs.ipdab"
       nvimtscf.setup {
