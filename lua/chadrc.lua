@@ -41,7 +41,7 @@ M.mason.pkgs = {
   "debugpy",
   "lua-language-server",
   "stylua",
-  -- "ltex-ls",
+  "ltex-ls",
   "latexindent",
   -- "codespell",
   "harper-ls",

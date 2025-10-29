@@ -26,7 +26,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 ------------------------------------- Python LSPs -------------------------------------------
 local function python_on_attach(_, bufnr)
   -- https://docs.astral.sh/ruff/integrations/#language-server-protocol-official
-  -- https://docs.astral.sh/ruff/integrations/#vim-neovim
+  -- https://docs.astral.sh/ruff/integrations/#vim-neovimlsp
   -- Enable completion triggered by <c-x><c-o>
   vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
@@ -472,3 +472,17 @@ vim.lsp.config("texlab", {
 -- filetypes = { "tex" },
 -- settings = { texlab = { diagnostics = { ignoredPatterns = { "Overfull \\[hv]box", "Unused label" } } } },
 -- }
+-- vim.lsp.config("ltex", {
+--   on_attach = nvlsp.on_attach,
+--   capabilities = nvlsp.capabilities,
+--   filetypes = { "markdown", "text", "tex", "gitcommit" },
+--   settings = {
+--     ltex = {
+--       language = "en-US",
+--       additionalRules = {
+--         enablePickyRules = true, -- optional: for more stylistic suggestions
+--       },
+--     },
+--   },
+-- })
+-- vim.lsp.enable "ltex"
