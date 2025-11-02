@@ -27,7 +27,6 @@ return {
       -- default config for dapui is to not show the elements
       dapui.setup { layouts = { { elements = {}, size = 40, position = "left" } } }
       dapuihl.setup()
-      -- require "configs.ipdab"
       nvimtscf.setup {
         highlight = { enable = true },
         ensure_installed = { "dap_repl" },
@@ -61,7 +60,6 @@ return {
   --     -- local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
   --     local path = "python"
   --     require("dap-python").setup(path)
-  --     -- require "configs.ipdab"
   --   end,
   -- },
   {
