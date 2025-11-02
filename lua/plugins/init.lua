@@ -428,6 +428,10 @@ return {
       vim.g.copilot_tab_fallback = ""
       -- The mapping is set to other key, see custom/lua/mappings
       -- or run <leader>ch to see copilot mapping section
+      -- Disable Copilot on startup
+      -- vim.schedule(function()
+      --   vim.cmd "Copilot disable"
+      -- end)
     end,
   },
   -- {
