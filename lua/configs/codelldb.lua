@@ -24,7 +24,8 @@ dap.configurations.rust = {
   },
 }
 
--------------------------------- Set up commands and mappings --------------------------------
+-------------------------------- Set up commands and mappings for rust buffers --------------------------------
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "rust",
   callback = function(args)
