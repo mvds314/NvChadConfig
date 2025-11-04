@@ -5,7 +5,7 @@ local servers = { "html", "cssls" }
 local lspconfig = require "lspconfig"
 -- local lspconfig = vim.lsp.config
 local nvlsp = require "nvchad.configs.lspconfig"
-local util = require "lspconfig/util"
+local util = require "lspconfig.util"
 
 if vim.version().minor >= 11 then
   vim.lsp.enable(servers)
@@ -204,10 +204,11 @@ vim.lsp.config("lua_ls", {
 vim.lsp.enable "lua_ls"
 
 --------------------------------------- Rust -------------------------------------------
-
 vim.lsp.config("rust_analyzer", {
-  on_attach = function(_, bufnr)
-    -- Mappings.
+  on_attach = function(client, bufnr)
+    -- Call the default on_attach function
+    nvlsp.on_attach(client, bufnr)
+    -- Add some mappings.
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
@@ -217,26 +218,17 @@ vim.lsp.config("rust_analyzer", {
     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
   end,
-  capabilities = vim.tbl_extend("force", nvlsp.capabilities, {
-    offsetEncoding = { "utf-8" },
-  }),
+  capabilities = nvlsp.capabilities,
   filetypes = { "rust" },
-  root_dir = util.root_pattern("Cargo.toml", "rust-project.json"),
   settings = {
     ["rust-analyzer"] = {
-      cargo = {
-        allFeatures = true,
-      },
+      cargo = { allFeatures = true },
+      diagnostics = { enable = true },
       checkOnSave = {
         enable = true,
         command = "clippy", -- use clippy diagnostics
       },
-      procMacro = {
-        enable = true,
-      },
-      diagnostics = {
-        enable = true,
-      },
+      procMacro = { enable = true },
       inlayHints = {
         lifetimeElisionHints = { enable = "always" },
         bindingModeHints = { enable = true },
