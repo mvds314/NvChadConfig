@@ -1,6 +1,6 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local servers = { "html", "cssls" }
+local servers = { "html", "cssls", "jsonls", "yamlls", "marksman", "dockerls", "vimls", "dockerls", "vimls", "bashls" }
 -- read :h vim.lsp.config for changing options of lsp servers
 local lspconfig = require "lspconfig"
 -- local lspconfig = vim.lsp.config
@@ -244,34 +244,6 @@ vim.lsp.enable "rust_analyzer"
 
 -------------------------------------- Other LSPs -------------------------------------------
 
-vim.lsp.config("jsonls", {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
-  filetypes = { "json" },
-})
-vim.lsp.enable "jsonls"
-
-vim.lsp.config("yamlls", {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
-  filetypes = { "yaml" },
-})
-vim.lsp.enable "yamlls"
-
-vim.lsp.config("marksman", {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
-  filetypes = { "markdown" },
-})
-vim.lsp.enable "marksman"
-
-vim.lsp.config("bashls", {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
-  filetypes = { "sh" },
-})
-vim.lsp.enable "bashls"
-
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- formatter for several filetypes, consider moving to this one for json, markdown, yaml and others
 -- vim.lsp.config.dprint.setup {
@@ -361,21 +333,6 @@ vim.lsp.enable "bashls"
 --capabilities = nvlsp.capabilities,
 --filetypes = { "yaml" },
 --}
-
-vim.lsp.config("dockerls", {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
-  --note dockerfiles are detected as conf files if they don't have the extension
-  filetypes = { "dockerfile", "conf" },
-})
-vim.lsp.enable "dockerls"
-
-vim.lsp.config("vimls", {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
-  filetypes = { "vim" },
-})
-vim.lsp.enable "vimls"
 
 -- TODO: make inverse search work?
 local texlab_capabilities = vim.lsp.protocol.make_client_capabilities()
