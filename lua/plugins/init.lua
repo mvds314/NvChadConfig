@@ -47,7 +47,9 @@ return {
           "latex",
           "rust",
         },
-        autoinstall = true,
+        auto_install = true,
+        ignore_install = {}, -- List of parsers to ignore installing
+        sync_install = false,
         highlight = {
           enable = true, -- false will disable the whole extension
           -- disable = { "tex", "latex" }, -- list of language that will be disabled
