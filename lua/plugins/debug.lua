@@ -25,28 +25,16 @@ return {
       local dapuihl = require "nvim-dap-repl-highlights"
       local nvimtscf = require "nvim-treesitter.configs"
       -- default config for dapui is to not show the elements
-      dapui.setup { layouts = { { elements = {}, size = 40, position = "left" } } }
+      dapui.setup()
       dapuihl.setup()
       nvimtscf.setup {
         highlight = { enable = true },
         ensure_installed = { "dap_repl" },
       }
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open()
-        vim.notify("DAP UI opened", vim.log.levels.INFO, { title = "DAP" })
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
-        vim.notify("DAP UI closed before termination", vim.log.levels.INFO, { title = "DAP" })
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
-        vim.notify("DAP UI closed before exiting", vim.log.levels.INFO, { title = "DAP" })
-      end
-      dap.listeners.after.disconnect["dapui_config"] = function()
-        dapui.close()
-        vim.notify("DAP UI closed after disconnecting", vim.log.levels.INFO, { title = "DAP" })
-      end
+      dap.listeners.after.event_initialized["default_dapui_config"] = dapui.open
+      dap.listeners.before.event_terminated["default_dapui_config"] = dapui.close
+      dap.listeners.before.event_exited["default_dapui_config"] = dapui.close
+      dap.listeners.after.disconnect["default_dapui_config"] = dapui.close
     end,
   },
   -- {
