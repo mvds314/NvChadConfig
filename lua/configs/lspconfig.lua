@@ -210,13 +210,28 @@ vim.lsp.config("rust_analyzer", {
     nvlsp.on_attach(client, bufnr)
     -- Add some mappings.
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.table.extend({}, bufopts, { desc = "Rust Go to Definition" }))
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.table.extend({}, bufopts, { desc = "Rust Hover" }))
+    vim.keymap.set(
+      "n",
+      "gi",
+      vim.lsp.buf.implementation,
+      vim.table.extend({}, bufopts, { desc = "Rust Go to Implementation" })
+    )
+    vim.keymap.set(
+      "n",
+      "<C-k>",
+      vim.lsp.buf.signature_help,
+      vim.table.extend({}, bufopts, { desc = "Rust Signature Help" })
+    )
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, vim.table.extend({}, bufopts, { desc = "Rust Rename" }))
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.table.extend({}, bufopts, { desc = "Rust Go to References" }))
+    vim.keymap.set(
+      "n",
+      "<leader>ca",
+      vim.lsp.buf.code_action,
+      vim.table.extend({}, bufopts, { desc = "Rust Code Action" })
+    )
     vim.keymap.set("n", "<leader>rd", function()
       vim.lsp.buf_request(0, "textDocument/diagnostics", {}, function() end)
     end, vim.table.extend({}, bufopts, { desc = "Rust Analyzer: Force recheck diagnostics" }))
