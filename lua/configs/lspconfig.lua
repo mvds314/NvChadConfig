@@ -217,6 +217,9 @@ vim.lsp.config("rust_analyzer", {
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set("n", "<leader>rd", function()
+      vim.lsp.buf_request(0, "textDocument/diagnostics", {}, function() end)
+    end, vim.table.extend({}, bufopts, { desc = "Rust Analyzer: Force recheck diagnostics" }))
   end,
   capabilities = nvlsp.capabilities,
   filetypes = { "rust" },
