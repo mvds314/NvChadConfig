@@ -107,7 +107,7 @@ return {
   },
   {
     "stevearc/aerial.nvim",
-    ft = { "python", "lua", "tex" },
+    ft = { "python", "lua", "tex", "rust" },
     config = function(_, _)
       local aerial = require "aerial"
       aerial.setup {
