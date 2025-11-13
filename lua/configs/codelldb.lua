@@ -37,6 +37,18 @@ vim.api.nvim_create_autocmd("FileType", {
       "<cmd> DapContinue <CR>",
       vim.tbl_extend("force", opts, { desc = "Run/Continue" })
     )
+    vim.keymap.set(
+      "n",
+      "<F8>",
+      "<cmd> DapToggleBreakpoint <CR>",
+      vim.tbl_extend("force", opts, { desc = "Toggle breakpoint" })
+    )
+    vim.keymap.set(
+      "n",
+      "<F9>",
+      ":lua require('dap').run_to_cursor()<CR>",
+      vim.tbl_extend("force", opts, { desc = "Run to cursor" })
+    )
     vim.keymap.set("n", "<F10>", "<cmd> DapStepOver <CR>", vim.tbl_extend("force", opts, { desc = "Step over" }))
     vim.keymap.set("n", "<F11>", "<cmd> DapStepInto <CR>", vim.tbl_extend("force", opts, { desc = "Step into" }))
     vim.keymap.set("n", "<S-F11>", "<cmd> DapStepOut <CR>", vim.tbl_extend("force", opts, { desc = "Step out/return" }))
