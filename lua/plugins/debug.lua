@@ -1,4 +1,3 @@
---TODO: do more with debugging
 return {
   -- Not so useful
   -- { "epheien/termdbg", cmd = "TermDebug" },
