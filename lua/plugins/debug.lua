@@ -1,6 +1,7 @@
 --TODO: do more with debugging
 return {
-  { "epheien/termdbg", cmd = "TermDebug" },
+  -- Not so useful
+  -- { "epheien/termdbg", cmd = "TermDebug" },
   {
     "mfussenegger/nvim-dap",
     config = function()
@@ -37,6 +38,7 @@ return {
       dap.listeners.after.disconnect["default_dapui_config"] = dapui.close
     end,
   },
+  -- Deprecated in favor of togglepy.nvim
   -- {
   --   "mfussenegger/nvim-dap-python",
   --   ft = "python",
