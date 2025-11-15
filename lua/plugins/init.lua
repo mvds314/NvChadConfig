@@ -183,69 +183,69 @@ return {
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   },
   -------------------------------- REPLS --------------------------------
-  --TODO: get more out of Iron.nvim
-  {
-    "Vigemus/iron.nvim",
-    ft = "python",
-    config = function(_, _)
-      local iron = require "iron.core"
-      iron.setup {
-        config = {
-          --  should_map_plug = false,
-          repl_definition = {
-            python = {
-              command = "ipython",
-              format = function(lines)
-                -- Automatically enable autoreload
-                table.insert(lines, 1, "%load_ext autoreload")
-                table.insert(lines, 2, "%autoreload 2")
-                return lines
-              end,
-            },
-            -- python = {command = { "ipython" }},
-            -- sh = {command = { "zsh" }}
-          },
-          close_winow_on_exit = true,
-          -- Setup with repl in new buffline tab
-          -- scratch_repl = false,
-          -- buflisted = true,
-          -- repl_open_cmd = "tabnew",
-          -- Setup with repl on the side
-          scratch_repl = true,
-          buflisted = false,
-          repl_open_cmd = "belowright vertical 120 split",
-          -- Other configs
-          -- repl_open_cmd = "belowright vertical 120 split",
-          -- repl_open_cmd = "new",
-          -- repl_open_cmd = require("iron.view").split.vertical.botright(0.5),
-          -- repl_open_cmd = "vsplit enew win",
-          -- repl_open_cmd = function()
-          --   vim.cmd "vsplit" -- Create a vertical split
-          --   vim.cmd "enew"   -- Open a new empty buffer in the split
-          --   vim.cmd "wincmd l" -- Move to the right split
-          --   vim.cmd "enew"   -- Open another new empty buffer in the right split
-          -- end,
-        },
-        keymaps = {
-          send_motion = "<space>sc",
-          visual_send = "<space>sc",
-          send_file = "<space>sf",
-          send_line = "<space>sl",
-          send_until_cursor = "<space>su",
-          send_mark = "<space>sm",
-          mark_motion = "<space>mc",
-          mark_visual = "<space>mc",
-          remove_mark = "<space>md",
-          cr = "<space>s<cr>",
-          interrupt = "<space>s<space>",
-          exit = "<space>sq",
-          clear = "<space>cl",
-        },
-        ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
-      }
-    end,
-  },
-  --TODO: try the following REPLs
+  -- Deprecated in favor of togglepy.nvim
+  -- {
+  --   "Vigemus/iron.nvim",
+  --   ft = "python",
+  --   config = function(_, _)
+  --     local iron = require "iron.core"
+  --     iron.setup {
+  --       config = {
+  --         --  should_map_plug = false,
+  --         repl_definition = {
+  --           python = {
+  --             command = "ipython",
+  --             format = function(lines)
+  --               -- Automatically enable autoreload
+  --               table.insert(lines, 1, "%load_ext autoreload")
+  --               table.insert(lines, 2, "%autoreload 2")
+  --               return lines
+  --             end,
+  --           },
+  --           -- python = {command = { "ipython" }},
+  --           -- sh = {command = { "zsh" }}
+  --         },
+  --         close_winow_on_exit = true,
+  --         -- Setup with repl in new buffline tab
+  --         -- scratch_repl = false,
+  --         -- buflisted = true,
+  --         -- repl_open_cmd = "tabnew",
+  --         -- Setup with repl on the side
+  --         scratch_repl = true,
+  --         buflisted = false,
+  --         repl_open_cmd = "belowright vertical 120 split",
+  --         -- Other configs
+  --         -- repl_open_cmd = "belowright vertical 120 split",
+  --         -- repl_open_cmd = "new",
+  --         -- repl_open_cmd = require("iron.view").split.vertical.botright(0.5),
+  --         -- repl_open_cmd = "vsplit enew win",
+  --         -- repl_open_cmd = function()
+  --         --   vim.cmd "vsplit" -- Create a vertical split
+  --         --   vim.cmd "enew"   -- Open a new empty buffer in the split
+  --         --   vim.cmd "wincmd l" -- Move to the right split
+  --         --   vim.cmd "enew"   -- Open another new empty buffer in the right split
+  --         -- end,
+  --       },
+  --       keymaps = {
+  --         send_motion = "<space>sc",
+  --         visual_send = "<space>sc",
+  --         send_file = "<space>sf",
+  --         send_line = "<space>sl",
+  --         send_until_cursor = "<space>su",
+  --         send_mark = "<space>sm",
+  --         mark_motion = "<space>mc",
+  --         mark_visual = "<space>mc",
+  --         remove_mark = "<space>md",
+  --         cr = "<space>s<cr>",
+  --         interrupt = "<space>s<space>",
+  --         exit = "<space>sq",
+  --         clear = "<space>cl",
+  --       },
+  --       ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
+  --     }
+  --   end,
+  -- },
+  -- Alternative REPLs
   --https://github.com/Olical/conjure
   --https://github.com/hanschen/vim-ipython-cell
   --nvim-terminal
