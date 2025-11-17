@@ -79,7 +79,7 @@ return {
       }
     elseif is_linux then
       conf.extensions.whaler = {
-        directories = { "~/Repos", vim.fs.joinpath(vim.fn.stdpath "data", "lazy") },
+        directories = { "~/Repos", "~/WSLRepos", vim.fs.joinpath(vim.fn.stdpath "data", "lazy") },
         oneoff_directories = {
           vim.fn.stdpath "config",
         },
