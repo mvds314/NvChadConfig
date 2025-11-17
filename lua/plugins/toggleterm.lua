@@ -12,6 +12,10 @@ return {
     insert_mappings = true,
     persist_size = true,
     direction = "float", -- Default direction for terminals
+    on_open = function(term)
+      vim.notify("Toggling terminal and navigating to " .. vim.fn.getcwd(), vim.log.levels.INFO)
+      vim.api.nvim_chan_send(term.job_id, "cd " .. vim.fn.getcwd() .. "\n")
+    end,
   },
   keys = {
     { "<C-\\>", mode = { "i", "t", "n" }, "<cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
