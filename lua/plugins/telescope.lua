@@ -78,8 +78,16 @@ return {
         auto_cwd = true, -- Whether to automatically change current working directory. By default is `true`
       }
     elseif is_linux then
+      local directories = { "~/Repos", "~/WSLRepos", vim.fs.joinpath(vim.fn.stdpath "data", "lazy") }
+      local existing_directories = {}
+      for _, folder in ipairs(directories) do
+        local expanded_folder = vim.fn.expand(folder)
+        if vim.loop.fs_stat(expanded_folder) then
+          table.insert(existing_directories, folder)
+        end
+      end
       conf.extensions.whaler = {
-        directories = { "~/Repos", "~/WSLRepos", vim.fs.joinpath(vim.fn.stdpath "data", "lazy") },
+        directories = existing_directories,
         oneoff_directories = {
           vim.fn.stdpath "config",
         },
