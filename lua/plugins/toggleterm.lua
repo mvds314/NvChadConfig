@@ -13,7 +13,11 @@ return {
     persist_size = true,
     direction = "float", -- Default direction for terminals
     on_open = function(term)
-      vim.api.nvim_chan_send(term.job_id, "cd " .. vim.fn.getcwd() .. "\n")
+      -- Only run this logic the first time
+      if not term._initialized then
+        term._initialized = true -- Mark the terminal as initialized
+        vim.api.nvim_chan_send(term.job_id, "cd " .. vim.fn.getcwd() .. "\n")
+      end
     end,
   },
   keys = {
