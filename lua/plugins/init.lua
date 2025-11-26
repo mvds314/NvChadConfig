@@ -336,6 +336,22 @@ return {
     keys = {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
     },
+    config = function()
+      -- Set keymap to open
+      vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", { noremap = true, silent = true })
+      -- Keymaps for LazyGit buffer only
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "lazygit",
+        callback = function(args)
+          local buf = args.buf
+          local opts = { buffer = buf, noremap = true, silent = true }
+          -- close buffer with 'q'
+          vim.keymap.set("n", "q", "<cmd>close<CR>", opts)
+          -- Remap Esc to work properly in lazygit buffer
+          vim.keymap.set({ "i", "n", "t" }, "<Esc>", "<Esc>", opts)
+        end,
+      })
+    end,
   },
   ----------------------------------- Programming stuff -----------------------------------
   -- TODO: get more out of this plugin
