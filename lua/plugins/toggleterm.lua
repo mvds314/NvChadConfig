@@ -16,7 +16,7 @@ return {
       -- Only run this logic the first time
       if not term._initialized then
         term._initialized = true -- Mark the terminal as initialized
-        vim.api.nvim_chan_send(term.job_id, "cd " .. vim.fn.getcwd() .. "\n")
+        vim.api.nvim_chan_send(term.job_id, "cd " .. vim.fn.getcwd() .. "\r\n")
       end
     end,
   },
