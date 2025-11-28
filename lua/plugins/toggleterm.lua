@@ -16,7 +16,12 @@ return {
       -- Only run this logic the first time
       if not term._initialized then
         term._initialized = true -- Mark the terminal as initialized
-        vim.api.nvim_chan_send(term.job_id, "cd " .. vim.fn.getcwd() .. "\r\n")
+        local is_windows = vim.fn.has "win64" == 1 or vim.fn.has "win32" == 1 or vim.fn.has "win16" == 1
+        if is_windows then
+          vim.api.nvim_chan_send(term.job_id, "cd " .. vim.fn.getcwd() .. "\r\n")
+        else
+          vim.api.nvim_chan_send(term.job_id, "cd " .. vim.fn.getcwd() .. "\n")
+        end
       end
     end,
   },
