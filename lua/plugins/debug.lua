@@ -31,7 +31,12 @@ return {
         highlight = { enable = true },
         ensure_installed = { "dap_repl" },
       }
-      dap.listeners.after.event_initialized["default_dapui_config"] = dapui.open
+      dap.listeners.after.event_initialized["default_dapui_config"] = function()
+        local config = dap.session().config
+        if config.name ~= "Attach to ipdab (manual %run)" then
+          dapui.open()
+        end
+      end
       dap.listeners.before.event_terminated["default_dapui_config"] = dapui.close
       dap.listeners.before.event_exited["default_dapui_config"] = dapui.close
       dap.listeners.after.disconnect["default_dapui_config"] = dapui.close
