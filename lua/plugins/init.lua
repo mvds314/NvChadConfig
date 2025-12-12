@@ -50,21 +50,33 @@ return {
         auto_install = true,
         ignore_install = {}, -- List of parsers to ignore installing
         sync_install = false,
-        highlight = {
-          enable = true, -- false will disable the whole extension
-          -- disable = { "tex", "latex" }, -- list of language that will be disabled
-          disable = function(lang, buf) -- Disable for large files
-            local max_filesize = 1000 * 1024 -- 1000 KB
-            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-            if ok and stats and stats.size > max_filesize then
-              return true
-            end
-          end,
-          use_languagetree = true,
+        parser_install_directory = nil, -- Use default directory
+        modules = {
+          highlight = {
+            module_path = "nvim-treesitter.highlight",
+            enable = true, -- false will disable the whole extension
+            -- disable = { "tex", "latex" }, -- list of language that will be disabled
+            disable = function(lang, buf) -- Disable for large files
+              local max_filesize = 1000 * 1024 -- 1000 KB
+              local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+              if ok and stats and stats.size > max_filesize then
+                return true
+              end
+            end,
+            use_languagetree = true,
+            custom_captures = {},
+            is_supported = function(lang)
+              return require("nvim-treesitter.query").has_highlights(lang)
+            end,
+          },
+          -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+          -- parser_install_dir = os.getenv "HOME" .. "/.config/nvim/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+          indent = {
+            module_path = "nvim-treesitter.indent",
+            enable = true,
+            is_supported = require("nvim-treesitter.query").has_indents,
+          },
         },
-        -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-        -- parser_install_dir = os.getenv "HOME" .. "/.config/nvim/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-        indent = { enable = true },
       }
     end,
   },
