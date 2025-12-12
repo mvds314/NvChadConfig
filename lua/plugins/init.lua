@@ -68,6 +68,25 @@ return {
       }
     end,
   },
+  {
+    "andymass/vim-matchup",
+    lazy = false, -- load at startup
+    init = function()
+      -- Ensure mappings are created and % is overridden
+      vim.g.matchup_mappings_enabled = 1
+      vim.g.matchup_override_vim = 1
+    end,
+    config = function()
+      require("nvim-treesitter.configs").setup {
+        matchup = { enable = true },
+      }
+      -- optional UX/perf
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      vim.g.matchup_matchparen_deferred = 1
+      vim.g.matchup_matchparen_timeout = 200
+      vim.g.matchup_matchparen_nomode = "i"
+    end,
+  },
   ----------------------------- Navigation -----------------------------
   -- { "psliwka/vim-smoothie", event = "BufEnter" },
   {
