@@ -51,7 +51,7 @@ else
   search_paths = { "~/mypython/bin" }
 end
 
-local local_dev = false
+local local_dev = true
 if dir_exists(dir) and local_dev then
   table.insert(M, {
     dir = dir,
