@@ -463,39 +463,95 @@ return {
   --   "rafamadriz/friendly-snippets",
   --   enabled = false,
   -- },
-  {
-    "github/copilot.vim",
-    lazy = "VeryLazy",
-    cmd = { "CopilotChat" },
-    event = "BufEnter",
-    -- https://github.com/NvChad/NvChad/issues/2020
-    config = function()
-      -- Mapping tab is already used by NvChad
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_assume_mapped = true
-      vim.g.copilot_tab_fallback = ""
-      -- The mapping is set to other key, see custom/lua/mappings
-      -- or run <leader>ch to see copilot mapping section
-      -- Disable Copilot on startup
-      -- vim.schedule(function()
-      --   vim.cmd "Copilot disable"
-      -- end)
-    end,
-  },
+  -- {
+  --   "github/copilot.vim",
+  --   lazy = "VeryLazy",
+  --   cmd = { "CopilotChat" },
+  --   event = "BufEnter",
+  --   -- https://github.com/NvChad/NvChad/issues/2020
+  --   config = function()
+  --     -- Mapping tab is already used by NvChad
+  --     vim.g.copilot_no_tab_map = true
+  --     vim.g.copilot_assume_mapped = true
+  --     vim.g.copilot_tab_fallback = ""
+  --     -- The mapping is set to other key, see custom/lua/mappings
+  --     -- or run <leader>ch to see copilot mapping section
+  --     -- Disable Copilot on startup
+  --     -- vim.schedule(function()
+  --     --   vim.cmd "Copilot disable"
+  --     -- end)
+  --   end,
+  -- },
   -- {
   --   "zbirenbaum/copilot.lua",
-  --   cmd = "Copilot",
+  --  requires = {
+  -- "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+  -- },
+  --   cmd = {"Copilot", "CopilotChat"},
   --   event = "InsertEnter",
   --   config = function()
   --     require("copilot").setup {}
   --   end,
   -- },
   {
+    "zbirenbaum/copilot.lua",
+    -- Optional: NES support (multi-line, diff-based suggestions) requires Copilot LSP:
+    -- dependencies = { "copilotlsp-nvim/copilot-lsp" }, -- enable later if you want NES
+    cmd = { "Copilot" },
+    event = "InsertEnter", -- lazy load when you start typing
+    build = ":Copilot auth", -- will prompt login on first install
+    opts = {
+      -- Keep ghost-text off if you prefer nvim-cmp (see section 3), or enable here:
+      suggestion = {
+        enabled = true, -- set to false if you’ll use copilot-cmp
+        auto_trigger = true,
+        -- Don’t bind <Tab> (NvChad uses it). We’ll map our own keys in config below.
+        keymap = {
+          accept = false, -- Disables default <Tab> mapping
+          next = "<M-]>", -- similar to LazyVim defaults
+          prev = "<M-[>",
+        },
+      },
+      panel = { enabled = false }, -- minimal UI; enable if you want the side panel
+      filetypes = {
+        markdown = true,
+        help = true,
+        -- add/override per your workflow
+      },
+    },
+    config = function(_, opts)
+      require("copilot").setup(opts)
+      -- Your own insert-mode mappings (no Tab conflicts with NvChad):
+      local map = vim.keymap.set
+      -- Accept entire suggestion
+      map("i", "<C-j>", function()
+        local ok, s = pcall(require, "copilot.suggestion")
+        if ok and s.is_visible() then
+          s.accept()
+        end
+      end, { desc = "Copilot: accept suggestion" })
+      -- Accept by word / line (optional, handy when ghost text is enabled)
+      map("i", "<C-l>", function()
+        local ok, s = pcall(require, "copilot.suggestion")
+        if ok and s.is_visible() then
+          s.accept_word()
+        end
+      end, { desc = "Copilot: accept word" })
+      map("i", "<C-k>", function()
+        local ok, s = pcall(require, "copilot.suggestion")
+        if ok and s.is_visible() then
+          s.accept_line()
+        end
+      end, { desc = "Copilot: accept line" })
+    end,
+  },
+  {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "main",
     dependencies = {
-      -- { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-      { "github/copilot.vim" },
+      -- Copilot.lua or copilot.vim, not sure if there are really required
+      { "zbirenbaum/copilot.lua" },
+      -- { "github/copilot.vim" },
       { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
     },
     -- Only on MacOS or Linux

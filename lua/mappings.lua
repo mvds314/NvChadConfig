@@ -86,12 +86,21 @@ map("n", "[g", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "Go to previo
 map("n", "<leader>a", "<cmd>AerialToggle!<CR>", { desc = "Aereal Toggle" })
 
 ------------------------------------------- Copilot -------------------------------------------------
-map("i", "<C-e>", function()
-  local suggestion = vim.fn["copilot#Accept"]()
-  -- suggestion = vim.fn.feedkeys(suggestion:gsub("\r\n", "\n"), "")
-  -- suggestion = vim.api.nvim_replace_termcodes(suggestion, true, true, true) -- Properly handle termcodes
-  vim.fn.feedkeys(suggestion, "n")
-end, { desc = "Copilot Accept" })
+-- TODO: this are the old mappings for copilot.vim, remove them later
+-- map("i", "<C-e>", function()
+--   local suggestion = vim.fn["copilot#Accept"]()
+--   -- suggestion = vim.fn.feedkeys(suggestion:gsub("\r\n", "\n"), "")
+--   -- suggestion = vim.api.nvim_replace_termcodes(suggestion, true, true, true) -- Properly handle termcodes
+--   vim.fn.feedkeys(suggestion, "n")
+-- end, { desc = "Copilot Accept" })
+
+-- Accept Copilot suggestion with <C-e>
+vim.keymap.set("i", "<C-e>", function()
+  local ok, s = pcall(require, "copilot.suggestion")
+  if ok and s.is_visible() then
+    s.accept() -- inserts the suggestion directly
+  end
+end, { desc = "Copilot: accept suggestion" })
 
 ------------------------------------------- Harpoon -------------------------------------------------
 map("n", "<leader>qa", function()
