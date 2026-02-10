@@ -560,6 +560,7 @@ return {
       "CopilotChatFixDiagnostic",
       "CopilotChatCommit",
       "CopilotChatCommitStaged",
+      "CopilotChatModels",
     },
     keys = {
       {
