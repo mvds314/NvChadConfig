@@ -536,10 +536,8 @@ return {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "main",
     dependencies = {
-      -- Copilot.lua or copilot.vim, not sure if there are really required
-      { "zbirenbaum/copilot.lua" },
-      -- { "github/copilot.vim" },
-      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+      "nvim-lua/plenary.nvim", -- for curl, log wrapper
+      "telescope.nvim",
     },
     -- Only on MacOS or Linux
     build = vim.fn.has "unix" == 1 and "make tiktoken" or nil,
