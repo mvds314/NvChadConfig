@@ -497,7 +497,7 @@ return {
         auto_trigger = true,
         -- Don’t bind <Tab> (NvChad uses it). We’ll map our own keys in config below.
         keymap = {
-          accept = false, -- Disables default <Tab> mapping
+          accept = "<C-e>",
           next = "<M-]>", -- similar to LazyVim defaults
           prev = "<M-[>",
         },
@@ -517,13 +517,6 @@ return {
       require("copilot").setup(opts)
       -- Your own insert-mode mappings (no Tab conflicts with NvChad):
       local map = vim.keymap.set
-      -- Accept entire suggestion
-      map("i", "<C-e>", function()
-        local ok, s = pcall(require, "copilot.suggestion")
-        if ok and s.is_visible() then
-          s.accept()
-        end
-      end, { desc = "Copilot: accept suggestion" })
       -- Accept by word / line (optional, handy when ghost text is enabled)
       map("i", "<C-l>", function()
         local ok, s = pcall(require, "copilot.suggestion")
