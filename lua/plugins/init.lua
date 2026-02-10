@@ -566,18 +566,19 @@ return {
         "<leader>ccq",
         mode = "n",
         function()
+          -- Look at the the file functions.lua inside the copilotchat plugin for more details on how to use resources and sticky
           -- Get content of all buffers
-          local buffers = vim.api.nvim_list_bufs()
-          local all_buffers_content = {}
-          for _, buf in ipairs(buffers) do
-            if vim.api.nvim_buf_get_option(buf, "bufhidden") == "" then
-              if not vim.api.nvim_buf_is_loaded(buf) then
-                table.insert(all_buffers_content, "#file:" .. vim.api.nvim_buf_get_name(buf))
-              else
-                table.insert(all_buffers_content, "#buffer:" .. buf)
-              end
-            end
-          end
+          -- local buffers = vim.api.nvim_list_bufs()
+          -- local all_buffers_content = {}
+          -- for _, buf in ipairs(buffers) do
+          --   if vim.api.nvim_buf_get_option(buf, "bufhidden") == "" then
+          --     if not vim.api.nvim_buf_is_loaded(buf) then
+          --       table.insert(all_buffers_content, "#file:" .. vim.api.nvim_buf_get_name(buf))
+          --     else
+          --       table.insert(all_buffers_content, "#buffer:" .. buf)
+          --     end
+          --   end
+          -- end
           -- Ask the question
           local input = vim.fn.input "Quick Chat: "
           if input ~= "" then
@@ -586,6 +587,7 @@ return {
               model = "gpt-4o",
               -- tools = { "@copilot" },
               -- sticky = { "#buffer", "#buffers", "#gitdiff:staged", "#diagnostics:current" },
+              sticky = { "#buffer:visible", "#gitdiff:staged", "#diagnostics:current" },
               -- resources = all_buffers_content,
               sticky = all_buffers_content,
             })
