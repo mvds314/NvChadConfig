@@ -463,6 +463,7 @@ return {
   --   "rafamadriz/friendly-snippets",
   --   enabled = false,
   -- },
+  -- TODO: copilot.vim is now replace by copilot.lua, remove this code later
   -- {
   --   "github/copilot.vim",
   --   lazy = "VeryLazy",
@@ -482,22 +483,11 @@ return {
   --     -- end)
   --   end,
   -- },
-  -- {
-  --   "zbirenbaum/copilot.lua",
-  --  requires = {
-  -- "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
-  -- },
-  --   cmd = {"Copilot", "CopilotChat"},
-  --   event = "InsertEnter",
-  --   config = function()
-  --     require("copilot").setup {}
-  --   end,
-  -- },
   {
     "zbirenbaum/copilot.lua",
     -- Optional: NES support (multi-line, diff-based suggestions) requires Copilot LSP:
     -- dependencies = { "copilotlsp-nvim/copilot-lsp" }, -- enable later if you want NES
-    cmd = { "Copilot" },
+    cmd = { "Copilot", "CopilotChat" },
     event = "InsertEnter", -- lazy load when you start typing
     build = ":Copilot auth", -- will prompt login on first install
     opts = {
