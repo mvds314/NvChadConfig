@@ -506,6 +506,10 @@ return {
       filetypes = {
         markdown = true,
         help = true,
+        lua = true,
+        latex = true,
+        python = true,
+        rust = true,
         -- add/override per your workflow
       },
     },
@@ -514,7 +518,7 @@ return {
       -- Your own insert-mode mappings (no Tab conflicts with NvChad):
       local map = vim.keymap.set
       -- Accept entire suggestion
-      map("i", "<C-j>", function()
+      map("i", "<C-e>", function()
         local ok, s = pcall(require, "copilot.suggestion")
         if ok and s.is_visible() then
           s.accept()
@@ -524,15 +528,15 @@ return {
       map("i", "<C-l>", function()
         local ok, s = pcall(require, "copilot.suggestion")
         if ok and s.is_visible() then
-          s.accept_word()
-        end
-      end, { desc = "Copilot: accept word" })
-      map("i", "<C-k>", function()
-        local ok, s = pcall(require, "copilot.suggestion")
-        if ok and s.is_visible() then
           s.accept_line()
         end
       end, { desc = "Copilot: accept line" })
+      map("i", "<C-k>", function()
+        local ok, s = pcall(require, "copilot.suggestion")
+        if ok and s.is_visible() then
+          s.accept_word() -- Accept the next word after accepting the line
+        end
+      end, { desc = "Copilot: accept word" })
     end,
   },
   {

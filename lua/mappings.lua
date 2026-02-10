@@ -94,14 +94,6 @@ map("n", "<leader>a", "<cmd>AerialToggle!<CR>", { desc = "Aereal Toggle" })
 --   vim.fn.feedkeys(suggestion, "n")
 -- end, { desc = "Copilot Accept" })
 
--- Accept Copilot suggestion with <C-e>
-vim.keymap.set("i", "<C-e>", function()
-  local ok, s = pcall(require, "copilot.suggestion")
-  if ok and s.is_visible() then
-    s.accept() -- inserts the suggestion directly
-  end
-end, { desc = "Copilot: accept suggestion" })
-
 ------------------------------------------- Harpoon -------------------------------------------------
 map("n", "<leader>qa", function()
   require("harpoon.mark").add_file()
