@@ -589,7 +589,7 @@ return {
               -- sticky = { "#buffer", "#buffers", "#gitdiff:staged", "#diagnostics:current" },
               sticky = { "#buffer:visible", "#gitdiff:staged", "#diagnostics:current" },
               -- resources = all_buffers_content,
-              sticky = all_buffers_content,
+              -- sticky = all_buffers_content,
             })
           end
         end,
