@@ -102,6 +102,21 @@ return {
     end
     return conf
   end,
+  config = function(_, opts)
+    -- Load manually, otherwise ui-select does not work properly
+    require("telescope").setup(opts)
+    local ok, telescope = pcall(require, "telescope")
+    if not ok then
+      return
+    end
+    -- Ensure ui-select actually overrides vim.ui.select / vim.ui.input
+    local conf = require "nvchad.configs.telescope"
+    for _, ext in ipairs(conf.extensions_list) do
+      if conf.extensions[ext] then
+        pcall(telescope.load_extension, ext)
+      end
+    end
+  end,
   keys = {
     { "<leader>fd", mode = "n", "<cmd>Telescope whaler<CR>", desc = "Whaler" },
     { "<leader>fr", mode = "n", "<cmd>Telescope resume<CR>", desc = "Resume last search" },
