@@ -585,7 +585,8 @@ return {
           if input ~= "" then
             require("CopilotChat").ask(input, {
               -- model = "gpt-4.1",
-              model = "gpt-4o",
+              -- model = "gpt-4o",
+              model = "gpt-5.2-codex",
               -- tools = { "@copilot" },
               -- sticky = { "#buffer", "#buffers", "#gitdiff:staged", "#diagnostics:current" },
               sticky = { "#buffer:visible", "#gitdiff:staged", "#diagnostics:current" },
