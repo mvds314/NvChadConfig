@@ -586,7 +586,6 @@ return {
             require("CopilotChat").ask(input, {
               -- model = "gpt-4.1",
               -- model = "gpt-4o",
-              -- model = "gpt-5.2-codex",
               -- model = "gpt-5.2",
               -- use the default model, as selected by running :CopilotChatModels
               model = require("CopilotChat.config")["model"],
@@ -619,6 +618,27 @@ return {
         desc = "CopilotChat - Prompt actions",
       },
     },
+  },
+  {
+    "ravitemer/mcphub.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "MCPHub",
+    build = "npm install -g mcp-hub@latest",
+    config = function()
+      require("mcphub").setup {
+        -- See here for the configuration options: https://ravitemer.github.io/mcphub.nvim/configuration.html
+        use_bundled_binary = false,
+        config = vim.fn.stdpath "config" .. "/mcp-hub/servers.json",
+        extensions = {
+          copilotchat = {
+            enabled = true,
+            convert_tools_to_functions = true, -- `@python-refactor__...`
+            convert_resources_to_functions = true, -- expose resources too
+            add_mcp_prefix = false,
+          },
+        },
+      }
+    end,
   },
   -- TODO: get more out of this plugin, maybe integrate copilot completions into it?
   {
