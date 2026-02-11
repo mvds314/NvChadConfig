@@ -586,7 +586,10 @@ return {
             require("CopilotChat").ask(input, {
               -- model = "gpt-4.1",
               -- model = "gpt-4o",
-              model = "gpt-5.2-codex",
+              -- model = "gpt-5.2-codex",
+              -- model = "gpt-5.2",
+              -- use the default model, as selected by running :CopilotChatModels
+              model = require("CopilotChat.config")["model"],
               -- tools = { "@copilot" },
               -- sticky = { "#buffer", "#buffers", "#gitdiff:staged", "#diagnostics:current" },
               sticky = { "#buffer:visible", "#gitdiff:staged", "#diagnostics:current" },
