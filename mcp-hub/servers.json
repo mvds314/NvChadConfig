@@ -1,14 +1,26 @@
 {
   "mcpServers": {
     "python-refactor": {
-      "disabled": false,
       "args": [
         "--from",
         "git+https://github.com/slamer59/mcp-python-refactoring.git",
         "mcp-python-refactoring",
         "server"
       ],
+      "disabled": false,
       "command": "uvx"
+    },
+    "ruff": {
+      "args": [
+        "check",
+        "--stdin-filename",
+        "{file}"
+      ],
+      "disabled": false,
+      "command": "ruff",
+      "autoApprove": [
+        
+      ]
     }
   }
 }
