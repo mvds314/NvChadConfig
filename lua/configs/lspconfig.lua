@@ -364,10 +364,10 @@ vim.lsp.enable "rust_analyzer"
 
 -- TODO: make inverse search work?
 local texlab_capabilities = vim.lsp.protocol.make_client_capabilities()
-texlab_capabilities.experimental = {
-  textDocumentBuild = true,
-  textDocumentForwardSearch = true,
-}
+-- texlab_capabilities.experimental = {
+--   textDocumentBuild = true,
+--   textDocumentForwardSearch = true,
+-- }
 vim.lsp.config("texlab", {
   on_attach = function(client, bufnr)
     -- Call the default on_attach function
