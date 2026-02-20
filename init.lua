@@ -35,6 +35,32 @@ dofile(vim.g.base46_cache .. "statusline")
 require "options"
 require "autocmds"
 
+-- Python host setup
+-- TODO: consider making part of TogglePy.nvim
+local py = require("util.python").autodetect_python_host()
+if py then
+  vim.g.python3_host_prog = py
+  -- Optional: notify the chosen interpreter once (quiet if you prefer)
+  -- vim.schedule(function()
+  --   vim.notify(("Python host set to: %s"):format(py), vim.log.levels.INFO, { title = "Neovim Python" })
+  -- end)
+else
+  -- Not found or pynvim missing -> give actionable guidance
+  vim.schedule(function()
+    vim.notify("Neovim could not auto-detect a usable Python host.", vim.log.levels.WARN, { title = "Neovim Python" })
+  end)
+end
+
+local enable_providers = {
+  "python3_provider",
+  "node_provider",
+  -- and so on
+}
+for _, plugin in pairs(enable_providers) do
+  vim.g["loaded_" .. plugin] = nil
+  vim.cmd("runtime " .. plugin)
+end
+
 vim.schedule(function()
   require "mappings"
 end)
