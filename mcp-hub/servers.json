@@ -1,20 +1,12 @@
 {
+  "nativeMCPServers": {
+    "neovim": { "disabled": false },
+    "mcphub": { "disabled": false }
+  },
   "mcpServers": {
-    "python-refactor": {
-      "args": [
-        "--from",
-        "git+https://github.com/slamer59/mcp-python-refactoring.git",
-        "mcp-python-refactoring",
-        "server"
-      ],
-      "disabled": false,
-      "command": "uvx"
-    },
-    "ruff": {
-      "args": ["check", "--stdin-filename", "{file}"],
-      "disabled": false,
-      "command": "ruff",
-      "autoApprove": []
+    "time": {
+      "command": "uvx",
+      "args": ["mcp-server-time"]
     }
   }
 }
