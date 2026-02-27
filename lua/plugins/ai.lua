@@ -80,6 +80,10 @@ return {
     opts = {
       -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/375
       allow_insecure = true, -- Allow insecure connections fixes curl problems
+      auto_select_tools = true,
+      model = "claude-opus-4.6", -- default model, can be overridden per question
+      -- model = "gpt-5.3-codex",
+      -- model = "gemini-3.1-pro-preview",
       -- debug = true, -- Enable debugging
     },
     cmd = {
@@ -123,6 +127,7 @@ return {
               -- model = "gpt-4.1",
               -- model = "gpt-4o",
               -- model = "gpt-5.2",
+              -- model = "claude-opus-4.6"
               -- use the default model, as selected by running :CopilotChatModels
               model = require("CopilotChat.config")["model"],
               -- tools = { "@copilot" },
