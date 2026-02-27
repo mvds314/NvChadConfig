@@ -1,24 +1,4 @@
 return {
-  -- TODO: copilot.vim is now replace by copilot.lua, remove this code later
-  -- {
-  --   "github/copilot.vim",
-  --   lazy = "VeryLazy",
-  --   cmd = { "CopilotChat" },
-  --   event = "BufEnter",
-  --   -- https://github.com/NvChad/NvChad/issues/2020
-  --   config = function()
-  --     -- Mapping tab is already used by NvChad
-  --     vim.g.copilot_no_tab_map = true
-  --     vim.g.copilot_assume_mapped = true
-  --     vim.g.copilot_tab_fallback = ""
-  --     -- The mapping is set to other key, see custom/lua/mappings
-  --     -- or run <leader>ch to see copilot mapping section
-  --     -- Disable Copilot on startup
-  --     -- vim.schedule(function()
-  --     --   vim.cmd "Copilot disable"
-  --     -- end)
-  --   end,
-  -- },
   {
     "zbirenbaum/copilot.lua",
     -- Optional: NES support (multi-line, diff-based suggestions) requires Copilot LSP:
