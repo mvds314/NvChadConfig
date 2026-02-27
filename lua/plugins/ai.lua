@@ -140,6 +140,7 @@ return {
         end,
         desc = "CopilotChat - Quick chat",
       },
+      -- TODO: fix these action mappings
       {
         "<leader>cch",
         mode = "n",
