@@ -85,6 +85,10 @@ return {
       -- model = "gpt-5.3-codex",
       -- model = "gemini-3.1-pro-preview",
       -- debug = true, -- Enable debugging
+      output = {
+        -- TODO: this does not seem to work yet -> fix it
+        qflist = true, -- <-- enables quickfix integration
+      },
     },
     cmd = {
       "CopilotChat",
@@ -133,6 +137,10 @@ return {
               tools = { "@copilot" },
               -- sticky = { "#buffer", "#buffers", "#gitdiff:staged", "#diagnostics:current" },
               sticky = { "#buffer:visible", "#gitdiff:staged", "#diagnostics:current" },
+              -- TODO: this does not seem to work yet -> fix it
+              output = {
+                qflist = true, -- enable quickfix integration for this question
+              },
               -- resources = all_buffers_content,
               -- sticky = all_buffers_content,
             })
