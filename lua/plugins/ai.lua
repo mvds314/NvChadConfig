@@ -130,7 +130,7 @@ return {
               -- model = "claude-opus-4.6"
               -- use the default model, as selected by running :CopilotChatModels
               model = require("CopilotChat.config")["model"],
-              -- tools = { "@copilot" },
+              tools = { "@copilot" },
               -- sticky = { "#buffer", "#buffers", "#gitdiff:staged", "#diagnostics:current" },
               sticky = { "#buffer:visible", "#gitdiff:staged", "#diagnostics:current" },
               -- resources = all_buffers_content,
