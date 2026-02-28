@@ -135,8 +135,9 @@ return {
         "<leader>cch",
         mode = "n",
         function()
-          local actions = require "CopilotChat.actions"
-          require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+          require("CopilotChat").select_prompt {
+            prompt_type = "help",
+          }
         end,
         desc = "CopilotChat - Help actions",
       },
@@ -144,8 +145,7 @@ return {
         "<leader>ccp",
         mode = "n",
         function()
-          local actions = require "CopilotChat.actions"
-          require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+          require("CopilotChat").select_prompt()
         end,
         desc = "CopilotChat - Prompt actions",
       },
