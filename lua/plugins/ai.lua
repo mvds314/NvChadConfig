@@ -3,9 +3,8 @@ return {
     "zbirenbaum/copilot.lua",
     -- Optional: NES support (multi-line, diff-based suggestions) requires Copilot LSP:
     -- dependencies = { "copilotlsp-nvim/copilot-lsp" }, -- enable later if you want NES
-    -- cmd = { "Copilot", "CopilotChat", "AvanteAsk" },
-    -- event = "InsertEnter", -- lazy load when you start typing
-    lazy = false,
+    cmd = { "Copilot", "CopilotChat", "AvanteAsk" },
+    event = "InsertEnter", -- lazy load when you start typing
     priority = 1000, -- make sure to load before other plugins (e.g. avante)
     build = ":Copilot auth", -- will prompt login on first install
     opts = {
@@ -187,7 +186,6 @@ return {
       or "make",
     cmd = "AvanteAsk",
     priority = 900, -- make sure to load after copilot and copilotchat
-    -- event = "VeryLazy",
     lazy = true,
     version = false, -- Never set this value to "*"! Never!
     ---@module 'avante'
