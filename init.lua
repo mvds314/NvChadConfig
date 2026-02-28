@@ -4,6 +4,11 @@ vim.g.mapleader = " "
 -- Make cursos a vertical line in command mode
 vim.opt.guicursor = "n-v:block,i-c:ver25,r-cr:hor20,o:hor50"
 
+-- ASCII fallbacks (safe everywhere)
+vim.fn.sign_define("AvanteInputPromptSign", { text = ">", texthl = "Question", numhl = "" })
+vim.fn.sign_define("AvanteInputContinueSign", { text = ".", texthl = "NonText", numhl = "" })
+vim.fn.sign_define("AvanteInputSubmitSign", { text = "+", texthl = "String", numhl = "" })
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
