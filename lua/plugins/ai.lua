@@ -189,6 +189,7 @@ return {
     lazy = true,
     version = false, -- Never set this value to "*"! Never!
     ---@module 'avante'
+    ---@diagnostic disable-next-line: undefined-doc-name
     ---@type avante.Config
     opts = {
       -- add any opts here
