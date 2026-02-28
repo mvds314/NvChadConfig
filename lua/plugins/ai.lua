@@ -71,6 +71,15 @@ return {
         -- TODO: this does not seem to work yet -> fix it
         qflist = true, -- <-- enables quickfix integration
       },
+      prompts = {
+        -- Example prompts
+        Yarrr = {
+          prompt = "Explain the buffer pirate style.",
+          system_prompt = "You are fascinated by pirates, so please respond in pirate speak.",
+          mapping = "<leader>ccx",
+          description = "pirate buffer explainer",
+        },
+      },
     },
     cmd = {
       "CopilotChat",
@@ -130,7 +139,6 @@ return {
         end,
         desc = "CopilotChat - Quick chat",
       },
-      -- TODO: fix these action mappings
       {
         "<leader>cch",
         mode = "n",
@@ -142,8 +150,20 @@ return {
         desc = "CopilotChat - Help actions",
       },
       {
+        "<leader>cch",
+        mode = "v",
+        function()
+          -- Escape visual mode to ensure '< and '> marks are set
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "nx", false)
+          require("CopilotChat").select_prompt {
+            prompt_type = "help",
+          }
+        end,
+        desc = "CopilotChat - Help actions",
+      },
+      {
         "<leader>ccp",
-        mode = "n",
+        mode = { "n", "v" },
         function()
           require("CopilotChat").select_prompt()
         end,
