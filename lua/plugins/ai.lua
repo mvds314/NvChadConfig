@@ -290,7 +290,15 @@ return {
     },
   },
   -- Unfortunately, sidekick seems unusable due to this but https://github.com/folke/sidekick.nvim/issues/258
-  { "folke/sidekick.nvim", cmd = "Sidekick", opts = {
-    nes = { enabled = false },
-  } },
+  {
+    "folke/sidekick.nvim",
+    lazy = false,
+    -- cmd = "Sidekick",
+    opts = {
+      cli = {
+        copilot = { cmd = { "gh copilot", "--alt-screen" } },
+      },
+      nes = { enabled = false },
+    },
+  },
 }
