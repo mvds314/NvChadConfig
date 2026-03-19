@@ -2,7 +2,7 @@ return {
   {
     "zbirenbaum/copilot.lua",
     -- Optional: NES support (multi-line, diff-based suggestions) requires Copilot LSP:
-    -- dependencies = { "copilotlsp-nvim/copilot-lsp" }, -- enable later if you want NES
+    dependencies = { "copilotlsp-nvim/copilot-lsp" }, -- enable later if you want NES
     cmd = { "Copilot", "CopilotChat", "AvanteAsk" },
     event = "InsertEnter", -- lazy load when you start typing
     priority = 1000, -- make sure to load before other plugins (e.g. avante)
@@ -20,6 +20,16 @@ return {
         },
       },
       panel = { enabled = false }, -- minimal UI; enable if you want the side panel
+      -- TODO: enable NES,but fix it with an appropriate keymap that works well without conflicts
+      nes = {
+        enabled = false,
+        auto_trigger = true,
+        keymap = {
+          accept_and_goto = "<C-Tab>",
+          dismiss = "<Esc>", -- cancel
+          accept = false,
+        },
+      },
       filetypes = {
         markdown = true,
         help = true,
