@@ -22,11 +22,11 @@ return {
       panel = { enabled = false }, -- minimal UI; enable if you want the side panel
       -- TODO: enable NES,but fix it with an appropriate keymap that works well without conflicts
       nes = {
-        enabled = false,
+        enabled = true,
         auto_trigger = true,
         keymap = {
-          accept_and_goto = "<C-Tab>",
-          dismiss = "<Esc>", -- cancel
+          accept_and_goto = "<C-a>",
+          dismiss = "<C-q>", -- cancel
           accept = false,
         },
       },
