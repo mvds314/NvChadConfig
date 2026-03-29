@@ -300,5 +300,22 @@ return {
       },
       nes = { enabled = false },
     },
+    config = function(_, opts)
+      require("sidekick").setup(opts)
+      -- Keymaps for SideKick buffer only
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "sidekick_terminal",
+        callback = function(args)
+          local buf = args.buf
+          local kmopts = { buffer = buf, noremap = true, silent = true }
+          -- In terminal mode: Esc exits to normal mode
+          vim.keymap.set({ "t" }, "<Esc>", "<C-\\><C-N>", kmopts)
+          -- In normal mode: Esc sends escape to the terminal (cancels copilot CLI response)
+          vim.keymap.set({ "n" }, "<Esc>", function()
+            vim.api.nvim_chan_send(vim.b.terminal_job_id, "\27")
+          end, kmopts)
+        end,
+      })
+    end,
   },
 }
