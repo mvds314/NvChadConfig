@@ -35,7 +35,12 @@ local opts = {
     require("none-ls.formatting.tex_fmt").with { filetypes = { "tex" }, extra_args = { "--nowrap" } },
     -- other spell checkers I tried
     -- null_ls.builtins.diagnostics.vale,
-    null_ls.builtins.diagnostics.proselint.with { filetypes = { "markdown", "tex" } },
+    null_ls.builtins.diagnostics.proselint.with {
+      filetypes = { "markdown", "tex" },
+      filter = function(diagnostic)
+        return not diagnostic.message:match "curly quotes"
+      end,
+    },
     null_ls.builtins.code_actions.proselint.with { filetypes = { "markdown", "tex" } },
     -- chktex does not work well when using \input{myfile.tex}
     -- null_ls.builtins.diagnostics.chktex,
