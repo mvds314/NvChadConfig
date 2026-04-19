@@ -28,56 +28,43 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     -- opts = {},
     config = function(_, _)
-      -- https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
-      -- dofile(vim.g.base46_cache .. "syntax")
-      require("nvim-treesitter.configs").setup {
-        ensure_installed = {
-          "c",
-          "html",
-          "css",
-          "bash",
-          "python",
-          "json",
-          "lua",
-          "vim",
-          "vimdoc",
-          "yaml",
-          "latex",
-          "rust",
-        },
-        auto_install = true,
-        ignore_install = {}, -- List of parsers to ignore installing
-        sync_install = false,
-        parser_install_directory = nil, -- Use default directory
-        modules = {
-          highlight = {
-            module_path = "nvim-treesitter.highlight",
-            enable = true, -- false will disable the whole extension
-            -- disable = { "tex", "latex" }, -- list of language that will be disabled
-            disable = function(lang, buf) -- Disable for large files
-              local max_filesize = 1000 * 1024 -- 1000 KB
-              local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-              if ok and stats and stats.size > max_filesize then
-                return true
-              end
-            end,
-            use_languagetree = true,
-            custom_captures = {},
-            is_supported = function(lang)
-              return require("nvim-treesitter.query").has_highlights(lang)
-            end,
-          },
-          -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-          -- parser_install_dir = os.getenv "HOME" .. "/.config/nvim/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-          indent = {
-            module_path = "nvim-treesitter.indent",
-            enable = true,
-            is_supported = require("nvim-treesitter.query").has_indents,
-          },
-        },
-      }
+      -- The main branch (nvim-treesitter rewrite for Nvim 0.11+) uses a new API.
+      -- Highlight and indent are now built-in Neovim features; setup() only configures
+      -- the install dir and auto-installs parsers.
+      require("nvim-treesitter").setup {}
+
+      -- Auto-install parsers when opening a buffer whose language is not yet installed.
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+          local lang = vim.treesitter.language.get_lang(args.match)
+          if lang and not pcall(vim.treesitter.language.inspect, lang) then
+            require("nvim-treesitter").install({ lang })
+          end
+        end,
+      })
+
+      -- Disable treesitter for very large files to avoid slowdowns.
+      vim.api.nvim_create_autocmd("BufReadPre", {
+        callback = function(args)
+          local max_filesize = 1000 * 1024 -- 1000 KB
+          local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(args.buf))
+          if ok and stats and stats.size > max_filesize then
+            vim.treesitter.stop(args.buf)
+          end
+        end,
+      })
+
+      -- Ensure parsers are pre-installed for common languages.
+      require("nvim-treesitter").install({
+        "c", "html", "css", "bash", "python", "json", "lua", "vim", "vimdoc", "yaml", "rust",
+      })
+
+      -- Enable highlight and indent via built-in Neovim API.
+      vim.opt.foldmethod = vim.opt.foldmethod:get() -- keep existing
+      vim.treesitter.start = vim.treesitter.start -- ensure loaded
     end,
   },
   {
@@ -89,9 +76,8 @@ return {
       vim.g.matchup_override_vim = 1
     end,
     config = function()
-      require("nvim-treesitter.configs").setup {
-        matchup = { enable = true },
-      }
+      -- vim-matchup treesitter integration is enabled via global vars (not nvim-treesitter.configs)
+      vim.g.matchup_treesitter_enabled = 1
       -- optional UX/perf
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
       vim.g.matchup_matchparen_deferred = 1
