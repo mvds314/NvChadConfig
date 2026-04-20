@@ -30,7 +30,7 @@ vim.cmd [[
   endif
 ]]
 
-M.mason.pkgs = {
+M.mason = { pkgs = {
   -- "pyright",
   -- "python-lsp-server",
   "jedi-language-server",
@@ -65,7 +65,7 @@ M.mason.pkgs = {
   "hadolint",
   "bash-language-server",
   "shfmt",
-}
+} }
 
 -- hl_override = {
 -- 	Comment = { italic = true },
