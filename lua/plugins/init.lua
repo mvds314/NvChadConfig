@@ -41,7 +41,7 @@ return {
         callback = function(args)
           local lang = vim.treesitter.language.get_lang(args.match)
           if lang and not pcall(vim.treesitter.language.inspect, lang) then
-            require("nvim-treesitter").install({ lang })
+            require("nvim-treesitter").install { lang }
           end
         end,
       })
@@ -58,13 +58,20 @@ return {
       })
 
       -- Ensure parsers are pre-installed for common languages.
-      require("nvim-treesitter").install({
-        "c", "html", "css", "bash", "python", "json", "lua", "vim", "vimdoc", "yaml", "rust",
-      })
-
+      require("nvim-treesitter").install {
+        "c",
+        "html",
+        "css",
+        "bash",
+        "python",
+        "json",
+        "lua",
+        "vim",
+        "vimdoc",
+        "yaml",
+        "rust",
+      }
       -- Enable highlight and indent via built-in Neovim API.
-      vim.opt.foldmethod = vim.opt.foldmethod:get() -- keep existing
-      vim.treesitter.start = vim.treesitter.start -- ensure loaded
     end,
   },
   {
