@@ -1,6 +1,6 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local servers = { "html", "cssls", "jsonls", "yamlls", "marksman", "dockerls", "vimls", "dockerls", "vimls", "bashls" }
+local servers = { "html", "cssls", "jsonls", "yamlls", "marksman", "dockerls", "vimls", "bashls" }
 -- read :h vim.lsp.config for changing options of lsp servers
 local lspconfig = require "lspconfig"
 -- local lspconfig = vim.lsp.config
@@ -11,12 +11,10 @@ if vim.version().minor >= 11 then
   vim.lsp.enable(servers)
 else
   for _, lsp in ipairs(servers) do
-    if vim.lsp.config(lsp) then
-      vim.lsp.config(lsp).setup {
-        on_attach = nvlsp.on_attach,
-        capabilities = nvlsp.capabilities,
-      }
-    end
+    lspconfig[lsp].setup {
+      on_attach = nvlsp.on_attach,
+      capabilities = nvlsp.capabilities,
+    }
   end
 end
 
