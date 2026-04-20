@@ -22,7 +22,7 @@ return {
   -- https://github.com/xiyaowong/telescope-emoji.nvim
   -- neoclip
   -- cmd = { "Telescope", "Telescope whaler" },
-  lazy = "VeryLazy",
+  event = "VeryLazy",
   opts = function()
     -- Retrieve NvChad default configuration
     local conf = require "nvchad.configs.telescope"
