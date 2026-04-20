@@ -20,14 +20,11 @@ return {
       local dap = require "dap"
       local dapui = require "dapui"
       local dapuihl = require "nvim-dap-repl-highlights"
-      local nvimtscf = require "nvim-treesitter.configs"
       -- default config for dapui is to not show the elements
       dapui.setup()
       dapuihl.setup()
-      nvimtscf.setup {
-        highlight = { enable = true },
-        ensure_installed = { "dap_repl" },
-      }
+      -- main-branch nvim-treesitter API (nvim-treesitter.configs no longer exists)
+      require("nvim-treesitter").install { "dap_repl" }
       dap.listeners.after.event_initialized["default_dapui_config"] = function()
         local config = dap.session().config
         if config.name ~= "Attach to ipdab (manual %run)" then
