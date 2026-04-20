@@ -83,6 +83,14 @@ return {
       vim.g.matchup_matchparen_deferred = 1
       vim.g.matchup_matchparen_timeout = 200
       vim.g.matchup_matchparen_nomode = "i"
+      -- Disable for telescope buffers (no treesitter parser for those filetypes)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "TelescopePrompt", "TelescopeResults", "TelescopePreview" },
+        callback = function()
+          vim.b.matchup_matchparen_enabled = 0
+          vim.b.matchup_treesitter_enabled = 0
+        end,
+      })
     end,
   },
   ----------------------------- Navigation -----------------------------
