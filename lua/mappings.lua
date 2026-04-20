@@ -71,7 +71,7 @@ end, { desc = "Terminate and close DAP UI" })
 map("n", "<leader>dh", function()
   require("dap.ui.widgets").hover()
 end, { desc = "Hover" })
-map("n", "<leader>dh", function()
+map("n", "<leader>dp", function()
   require("dap.ui.widgets").preview()
 end, { desc = "Preview" })
 
