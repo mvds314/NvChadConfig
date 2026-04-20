@@ -86,7 +86,7 @@ return {
       local existing_directories = {}
       for _, folder in ipairs(directories) do
         local expanded_folder = vim.fn.expand(folder)
-        if vim.loop.fs_stat(expanded_folder) then
+        if vim.uv.fs_stat(expanded_folder) then
           table.insert(existing_directories, folder)
         end
       end
