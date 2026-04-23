@@ -37,8 +37,15 @@ return {
       require("nvim-treesitter").setup {}
 
       -- Auto-install parsers when opening a buffer whose language is not yet installed.
+      -- Skip UI/special filetypes that have no treesitter parser.
+      local ts_excluded_ft = {
+        lazy = true, mason = true, noice = true,
+        checkhealth = true, help = true, lspinfo = true,
+        ["null-ls-info"] = true,
+      }
       vim.api.nvim_create_autocmd("FileType", {
         callback = function(args)
+          if ts_excluded_ft[args.match] then return end
           local lang = vim.treesitter.language.get_lang(args.match)
           if lang and not pcall(vim.treesitter.language.inspect, lang) then
             require("nvim-treesitter").install { lang }
