@@ -2,7 +2,7 @@ return {
   {
     "zbirenbaum/copilot.lua",
     -- Optional: NES support (multi-line, diff-based suggestions) requires Copilot LSP:
-    dependencies = { "copilotlsp-nvim/copilot-lsp" }, -- enable later if you want NES
+    dependencies = { "copilotlsp-nvim/copilot-lsp" }, -- required for NES
     cmd = { "Copilot", "CopilotChat", "AvanteAsk" },
     event = "InsertEnter", -- lazy load when you start typing
     priority = 1000, -- make sure to load before other plugins (e.g. avante)
@@ -20,15 +20,21 @@ return {
         },
       },
       panel = { enabled = false }, -- minimal UI; enable if you want the side panel
-      -- TODO: enable NES,but fix it with an appropriate keymap that works well without conflicts
+      -- TODO: enable NES, but fix it with an appropriate keymap that works well without conflicts
+      -- NES requires copilot-lsp; disable both together if Mullvad tracker blocking causes issues
       nes = {
         enabled = true,
         auto_trigger = true,
         keymap = {
           accept_and_goto = "<C-a>",
-          dismiss = "<C-q>", -- cancel
+          dismiss = "<C-q>",
           accept = false,
         },
+      },
+      -- Suppress error notifications from blocked endpoints (e.g. workspace embeddings
+      -- blocked by Mullvad tracker DNS filter). Errors still go to the log file.
+      logger = {
+        print_log_level = vim.log.levels.OFF,
       },
       filetypes = {
         markdown = true,
