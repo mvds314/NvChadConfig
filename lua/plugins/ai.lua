@@ -202,7 +202,7 @@ return {
       or "make",
     cmd = "AvanteAsk",
     priority = 900, -- make sure to load after copilot and copilotchat
-    lazy = true,
+    event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
     ---@module 'avante'
     ---@diagnostic disable-next-line: undefined-doc-name
