@@ -118,9 +118,9 @@ return {
     end,
     -- stylua: ignore
     keys = {
-      { "<leader>fj", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "<leader>fj", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash" },
       { "<leader>ft", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "<leader>fS", mode = { "n" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      { "<leader>fS", mode = { "n" },           function() require("flash").toggle() end,     desc = "Toggle Flash Search" },
       -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
       -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
@@ -131,10 +131,10 @@ return {
     opts = {},
     -- stylua: ignore
     keys = {
-      { "s", mode = "n", function() require("substitute").operator() end, desc = "Substitute" },
-      { "ss", mode = "n", function() require("substitute").line() end, desc = "Substitute Line" },
-      { "S", mode = "n", function() require("substitute").eol() end, desc = "Substitute EOL" },
-      { "s", mode = "x", function() require("substitute").visual() end, desc = "Substitute Visual" },
+      { "s",  mode = "n", function() require("substitute").operator() end, desc = "Substitute" },
+      { "ss", mode = "n", function() require("substitute").line() end,     desc = "Substitute Line" },
+      { "S",  mode = "n", function() require("substitute").eol() end,      desc = "Substitute EOL" },
+      { "s",  mode = "x", function() require("substitute").visual() end,   desc = "Substitute Visual" },
     },
   },
   {
@@ -185,12 +185,12 @@ return {
           -- If the current node is a directory get children status
           if gs == nil then
             gs = (node.git_status.dir.direct ~= nil and node.git_status.dir.direct[1])
-              or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
+                or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
           end
           -- If the file is untracked, unstaged or partially staged, we stage it
           if gs == "??" or gs == "MM" or gs == "AM" or gs == " M" then
             vim.cmd("silent !git add " .. node.absolute_path)
-          -- If the file is staged, we unstage
+            -- If the file is staged, we unstage
           elseif gs == "M " or gs == "A " then
             vim.cmd("silent !git restore --staged " .. node.absolute_path)
           end
@@ -338,19 +338,19 @@ return {
     -- lazy = false,
     cmd = "Neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- Required
+      "nvim-lua/plenary.nvim",         -- Required
       "nvim-telescope/telescope.nvim", -- Optional
-      "sindrets/diffview.nvim", -- Optional
+      "sindrets/diffview.nvim",        -- Optional
       -- "ibhagwan/fzf-lua", -- optional
     },
     config = true,
     opts = {},
     -- stylua: ignore
-    keys={
-      { "<leader>gs", mode = 'n', "<cmd>Neogit<CR>", desc = "Neogit status" },
+    keys = {
+      { "<leader>gs", mode = 'n', "<cmd>Neogit<CR>",        desc = "Neogit status" },
       { "<leader>gc", mode = 'n', "<cmd>Neogit commit<CR>", desc = "Neogit commit" },
-      { "<leader>gp", mode = 'n', "<cmd>Neogit push<CR>", desc = "Neogit push" },
-      { "<leader>gl", mode = 'n', "<cmd>Neogit pull<CR>", desc = "Neogit pull" },
+      { "<leader>gp", mode = 'n', "<cmd>Neogit push<CR>",   desc = "Neogit push" },
+      { "<leader>gl", mode = 'n', "<cmd>Neogit pull<CR>",   desc = "Neogit pull" },
       { "<leader>gb", mode = 'n', "<cmd>Neogit branch<CR>", desc = "Neogit branch" },
     },
   },
@@ -422,14 +422,14 @@ return {
       }
     end,
     keys = {
-      { "<leader>tn", mode = "n", "<cmd>lua require('neotest').run.run()<CR>", desc = "Run nearest test" },
+      { "<leader>tn", mode = "n", "<cmd>lua require('neotest').run.run()<CR>",        desc = "Run nearest test" },
       {
         "<leader>tf",
         mode = "n",
         "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>",
         desc = "Run all tests in file",
       },
-      { "<leader>to", mode = "n", "<cmd>lua require('neotest').output.open()<CR>", desc = "Open test output" },
+      { "<leader>to", mode = "n", "<cmd>lua require('neotest').output.open()<CR>",    desc = "Open test output" },
       { "<leader>ts", mode = "n", "<cmd>lua require('neotest').summary.toggle()<CR>", desc = "View test summary" },
     },
   },
@@ -512,4 +512,15 @@ return {
   -- 		},
   -- 	},
   -- },
+
+  --------------------------------- Markdown rendering ---------------------------------------------------
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "Avante" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {},
+  },
 }
