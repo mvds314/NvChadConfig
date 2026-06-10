@@ -79,6 +79,71 @@ return {
     end,
   },
   {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    lazy = false,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("nvim-treesitter-textobjects").setup {
+        select = {
+          lookahead = true,
+          selection_modes = {
+            ["@parameter.outer"] = "v",
+            ["@function.outer"] = "V",
+            ["@class.outer"] = "V",
+          },
+        },
+        move = {
+          set_jumps = true,
+        },
+      }
+
+      -- Select textobjects
+      for _, mode in ipairs { "x", "o" } do
+        vim.keymap.set(mode, "af", function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+        end, { desc = "around function" })
+        vim.keymap.set(mode, "if", function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+        end, { desc = "inside function" })
+        vim.keymap.set(mode, "ac", function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
+        end, { desc = "around class" })
+        vim.keymap.set(mode, "ic", function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
+        end, { desc = "inside class" })
+        vim.keymap.set(mode, "aa", function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@parameter.outer", "textobjects")
+        end, { desc = "around argument" })
+        vim.keymap.set(mode, "ia", function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@parameter.inner", "textobjects")
+        end, { desc = "inside argument" })
+      end
+
+      -- Move to next/prev function
+      vim.keymap.set({ "n", "x", "o" }, "]m", function()
+        require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
+      end, { desc = "Next function start" })
+      vim.keymap.set({ "n", "x", "o" }, "]M", function()
+        require("nvim-treesitter-textobjects.move").goto_next_end("@function.outer", "textobjects")
+      end, { desc = "Next function end" })
+      vim.keymap.set({ "n", "x", "o" }, "[m", function()
+        require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
+      end, { desc = "Prev function start" })
+      vim.keymap.set({ "n", "x", "o" }, "[M", function()
+        require("nvim-treesitter-textobjects.move").goto_previous_end("@function.outer", "textobjects")
+      end, { desc = "Prev function end" })
+
+      -- Swap parameters
+      vim.keymap.set("n", "<leader>sp", function()
+        require("nvim-treesitter-textobjects.swap").swap_next "@parameter.inner"
+      end, { desc = "Swap param next" })
+      vim.keymap.set("n", "<leader>sP", function()
+        require("nvim-treesitter-textobjects.swap").swap_previous "@parameter.inner"
+      end, { desc = "Swap param prev" })
+    end,
+  },
+  {
     "andymass/vim-matchup",
     lazy = false, -- load at startup
     init = function()
