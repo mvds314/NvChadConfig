@@ -24,7 +24,7 @@ return {
       -- NES requires copilot-lsp; disable both together if Mullvad tracker blocking causes issues
       nes = {
         enabled = true,
-        auto_trigger = true,
+        auto_trigger = false,
         keymap = {
           accept_and_goto = "<C-a>",
           dismiss = "<C-q>",
@@ -63,6 +63,13 @@ return {
           s.accept_word() -- Accept the next word after accepting the line
         end
       end, { desc = "Copilot: accept word" })
+      -- Manually request a Next Edit Suggestion (nes.auto_trigger is false).
+      map({ "n", "i" }, "<C-s>", function()
+        local ok, nes = pcall(require, "copilot-lsp.nes")
+        if ok then
+          nes.request_nes "copilot"
+        end
+      end, { desc = "Copilot NES: request suggestion" })
     end,
   },
   {
