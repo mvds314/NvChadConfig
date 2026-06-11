@@ -23,7 +23,7 @@ return {
       -- TODO: enable NES, but fix it with an appropriate keymap that works well without conflicts
       -- NES requires copilot-lsp; disable both together if Mullvad tracker blocking causes issues
       nes = {
-        enabled = true,
+        enabled = false,
         auto_trigger = false,
         keymap = {
           accept_and_goto = "<C-a>",
