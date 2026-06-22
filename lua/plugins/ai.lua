@@ -314,6 +314,16 @@ return {
     "folke/sidekick.nvim",
     lazy = false,
     -- cmd = "Sidekick",
+    keys = {
+      {
+        "<leader>sk",
+        function()
+          require("sidekick.cli").toggle()
+        end,
+        mode = { "n", "x" },
+        desc = "Sidekick toggle CLI",
+      },
+    },
     opts = {
       cli = {
         copilot = { cmd = { "gh copilot", "--alt-screen" } },
