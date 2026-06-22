@@ -316,7 +316,7 @@ return {
     -- cmd = "Sidekick",
     keys = {
       {
-        "<leader>sk",
+        "<C-/>",
         function()
           require("sidekick.cli").toggle()
         end,
