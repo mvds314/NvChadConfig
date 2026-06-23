@@ -101,4 +101,15 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   command = "helptags " .. dir .. "/doc",
 })
 
+-- Fixes window resizing quirk with vsplit python files and toggleterm
+vim.api.nvim_create_autocmd({ "TermOpen", "TermClose" }, {
+  pattern = "term://*toggleterm#*",
+  callback = function()
+    vim.schedule(function()
+      vim.notify("Resizing windows to fix toggleterm layout", vim.log.levels.INFO)
+      vim.cmd "wincmd ="
+    end)
+  end,
+})
+
 return M
