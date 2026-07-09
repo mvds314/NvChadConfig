@@ -2,22 +2,25 @@
 local sep = package.config:sub(1, 1)
 local spell_dir = vim.fn.stdpath "config" .. sep .. "spell"
 local files = {
-  -- TODO: download these files automatically if they are missing
-  -- Download some dic file, and generate them with :mkspell ~/.config/nvim/spell/nl nl.dic
-  -- "nl.utf-8.spl",
-  -- "nl.utf-8.sug",
+  "en.utf-8.spl",
+  "en.utf-8.sug",
+  "nl.utf-8.spl",
+  "nl.utf-8.sug",
 }
 
--- TODO: this url is not working
 local base_url = "https://ftp.nluug.nl/pub/vim/runtime/spell/"
 
 -- Function to download a file using curl
 local function download_file(filename)
   local url = base_url .. filename
   local output_path = vim.fn.fnamemodify(spell_dir, ":p") .. filename
-  local cmd = string.format("curl -fLo '%s' --create-dirs '%s'", output_path, url)
-  print(cmd)
-  os.execute(cmd)
+  -- Use double quotes: single quotes are not treated as quoting on Windows (cmd.exe)
+  local cmd = string.format('curl -fLo "%s" --create-dirs "%s"', output_path, url)
+  vim.notify(cmd, vim.log.levels.DEBUG)
+  vim.fn.system(cmd)
+  if vim.v.shell_error ~= 0 then
+    vim.notify("Failed to download spell file: " .. filename, vim.log.levels.ERROR)
+  end
 end
 
 local files_downloaded = false
@@ -46,8 +49,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = true
     vim.opt_local.spelllang = {
       "en_us",
-      --TODO: make Dutch spelling work
-      -- "nl",
+      "nl",
     }
   end,
 })
