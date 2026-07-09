@@ -5,8 +5,9 @@ return {
     event = "VeryLazy",
     opts = {
       surrounds = {
-        -- Custom "bold" surround: wraps text in ** ** (Markdown bold)
-        ["b"] = {
+        -- Custom "bold" surround: wraps text in ** ** (Markdown bold).
+        -- Bound to "*" since "b" is a reserved default alias for ")".
+        ["*"] = {
           add = { "**", "**" },
         },
       },
