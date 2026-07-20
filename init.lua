@@ -4,6 +4,14 @@ vim.g.mapleader = " "
 -- Make cursos a vertical line in command mode
 vim.opt.guicursor = "n-v:block,i-c:ver25,r-cr:hor20,o:hor50"
 
+-- GUI font: read by all GUI clients (nvim-qt, Neovide, goneovim...), ignored by
+-- the terminal. NOTE: nvim-qt still prints "Unknown font: Cascadia Code,..." at
+-- startup because Neovim 0.12's DEFAULT guifont is a comma-separated fallback list
+-- that nvim-qt validates before this line runs. That warning is cosmetic (this
+-- font is what actually gets applied) and cannot be suppressed from config in
+-- nvim-qt. Maintained GUIs like Neovide handle the fallback list and don't warn.
+vim.opt.guifont = "FiraCode Nerd Font Mono:h11"
+
 -- ASCII fallbacks (safe everywhere)
 vim.fn.sign_define("AvanteInputPromptSign", { text = ">", texthl = "Question", numhl = "" })
 vim.fn.sign_define("AvanteInputContinueSign", { text = ".", texthl = "NonText", numhl = "" })
