@@ -250,7 +250,7 @@ return {
           -- If the current node is a directory get children status
           if gs == nil then
             gs = (node.git_status.dir.direct ~= nil and node.git_status.dir.direct[1])
-                or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
+              or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
           end
           -- If the file is untracked, unstaged or partially staged, we stage it
           if gs == "??" or gs == "MM" or gs == "AM" or gs == " M" then
@@ -403,9 +403,9 @@ return {
     -- lazy = false,
     cmd = "Neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim",         -- Required
+      "nvim-lua/plenary.nvim", -- Required
       "nvim-telescope/telescope.nvim", -- Optional
-      "sindrets/diffview.nvim",        -- Optional
+      "sindrets/diffview.nvim", -- Optional
       -- "ibhagwan/fzf-lua", -- optional
     },
     config = true,
@@ -487,14 +487,14 @@ return {
       }
     end,
     keys = {
-      { "<leader>tn", mode = "n", "<cmd>lua require('neotest').run.run()<CR>",        desc = "Run nearest test" },
+      { "<leader>tn", mode = "n", "<cmd>lua require('neotest').run.run()<CR>", desc = "Run nearest test" },
       {
         "<leader>tf",
         mode = "n",
         "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>",
         desc = "Run all tests in file",
       },
-      { "<leader>to", mode = "n", "<cmd>lua require('neotest').output.open()<CR>",    desc = "Open test output" },
+      { "<leader>to", mode = "n", "<cmd>lua require('neotest').output.open()<CR>", desc = "Open test output" },
       { "<leader>ts", mode = "n", "<cmd>lua require('neotest').summary.toggle()<CR>", desc = "View test summary" },
     },
   },
