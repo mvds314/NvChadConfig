@@ -301,11 +301,24 @@ return {
       {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
-        opts = {
-          input = { insert_only = false },
-          -- Avoid routing selects through Telescope; use Dressing's builtin
-          select = { backend = { "builtin" } },
-        },
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        opts = function()
+          return {
+            input = { insert_only = false },
+            select = {
+              -- Keep the Telescope dropdown for generic vim.ui.select consumers
+              -- (e.g. nvim-dap's "Select configuration" prompt).
+              backend = { "telescope", "builtin" },
+              telescope = require("telescope.themes").get_dropdown {},
+              get_config = function(opts)
+                -- Avante's own selects misbehave through Telescope.
+                if opts and type(opts.kind) == "string" and opts.kind:lower():find "avante" then
+                  return { backend = { "builtin" } }
+                end
+              end,
+            },
+          }
+        end,
       },
     },
   },
