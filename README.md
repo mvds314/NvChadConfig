@@ -17,3 +17,7 @@ The config is optimized for:
 - Edititing: json, yaml, bash, markdown, lua, docker ...
 
 The config is largely based on [this one](https://www.youtube.com/watch?v=4BnVeOUeZxc), and has migrated to breaking changes as introduced in [NvChad 2.5](https://nvchad.com/news/v2.5_release/).
+
+## Notes
+
+- `yetone/avante.nvim` uses `bash build.sh` on Linux/macOS so it downloads prebuilt native libraries during install/update instead of requiring local Rust/Cargo. To force a local source build, run `make BUILD_FROM_SOURCE=true` in the plugin directory.

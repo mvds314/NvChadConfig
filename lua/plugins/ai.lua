@@ -204,10 +204,10 @@ return {
   },
   {
     "yetone/avante.nvim",
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    -- ⚠️ must add this setting! ! !
+    -- Use prebuilt libs by default (no local Rust/Cargo required on Linux/macOS).
+    -- Build from source manually with: `make BUILD_FROM_SOURCE=true`
     build = vim.fn.has "win32" ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-      or "make",
+      or "bash build.sh",
     cmd = "AvanteAsk",
     priority = 900, -- make sure to load after copilot and copilotchat
     event = "VeryLazy",
