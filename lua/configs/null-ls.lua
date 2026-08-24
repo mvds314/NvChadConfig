@@ -38,7 +38,7 @@ local opts = {
     null_ls.builtins.diagnostics.proselint.with {
       filetypes = { "markdown", "tex" },
       filter = function(diagnostic)
-        return not diagnostic.message:match "curly quotes"
+        return not (diagnostic.message and diagnostic.message:match "curly quotes")
       end,
     },
     null_ls.builtins.code_actions.proselint.with { filetypes = { "markdown", "tex" } },
