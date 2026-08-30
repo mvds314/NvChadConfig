@@ -211,7 +211,9 @@ return {
     cmd = "AvanteAsk",
     priority = 900, -- make sure to load after copilot and copilotchat
     event = "VeryLazy",
-    version = false, -- Never set this value to "*"! Never!
+    -- Main currently resolves to v0.2.0, whose release artifacts were removed after
+    -- the repository transfer. Pin the latest release with published prebuilt libs.
+    version = "v0.2.3",
     ---@module 'avante'
     ---@diagnostic disable-next-line: undefined-doc-name
     ---@type avante.Config
