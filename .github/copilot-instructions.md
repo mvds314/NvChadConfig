@@ -16,7 +16,7 @@ lua/plugins/          — Plugin specs imported by lazy.nvim
   init.lua            — Core plugins (LSP, treesitter, navigation, UI)
   ai.lua              — Copilot, CopilotChat, Avante
   debug.lua           — nvim-dap + dap-python + dapui
-  dev.lua             — Local dev plugins (togglepy.nvim, myplugin.nvim)
+  dev.lua             — Local dev plugins (togglepy.nvim, myplugin.nvim, temporary copilot.lua checkout)
   luasnip.lua         — Snippet configuration
   telescope.lua       — Telescope + extensions
   toggleterm.lua      — Terminal integration
@@ -83,3 +83,5 @@ Lint with `luacheck` or the `lua-language-server` (configured in `.luarc.json` �
 
 ### Local plugin development
 `lua/plugins/dev.lua` loads local checkouts of `togglepy.nvim` and `myplugin.nvim` from `~/Repos/` when the directories exist. Set `local_dev = false` to force the published version from GitHub.
+
+It also temporarily overrides `zbirenbaum/copilot.lua` with `~/Repos/copilot.lua` (branch `fix/windows-msys-sysname`, which makes MinGW/MSYS2 Neovim builds detected as Windows) when that directory exists; set `copilot_local = false` to use the published plugin. Only `dir` is overridden — the copilot.lua spec itself stays in `ai.lua`. Lazy omits local plugins from `lazy-lock.json`, so don't commit a lock file that drops `copilot.lua`. Remove the block once the fix is released upstream.

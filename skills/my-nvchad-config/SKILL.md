@@ -44,7 +44,7 @@ lua/plugins/          Plugin specs, auto-imported via { import = "plugins" }:
   init.lua              Core plugins (LSP, treesitter, navigation, UI, flash).
   ai.lua               Copilot, CopilotChat, Avante.
   debug.lua            nvim-dap + dap-python + dapui.
-  dev.lua              Local dev plugins (togglepy.nvim, myplugin.nvim) + WinPython discovery.
+  dev.lua              Local dev plugins (togglepy.nvim, myplugin.nvim, temporary copilot.lua checkout) + WinPython discovery.
   luasnip.lua          Snippet configuration.
   surround.lua         Surround plugin.
   telescope.lua        Telescope + extensions.
@@ -118,6 +118,9 @@ spell/                LaTeX/English spell files.
 **Local plugin development**
 - `lua/plugins/dev.lua` loads local checkouts of `togglepy.nvim` and `myplugin.nvim`
   from `~/Repos/` when present. Set `local_dev = false` to force the published GitHub version.
+- It also temporarily overrides `zbirenbaum/copilot.lua` with `~/Repos/copilot.lua`
+  (MinGW/MSYS2 Windows-detection fix) when present. Set `copilot_local = false` to use the
+  published plugin. Only `dir` is overridden; the spec stays in `ai.lua`. Remove once released upstream.
 
 ## Making changes safely
 

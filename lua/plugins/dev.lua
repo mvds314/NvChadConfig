@@ -95,6 +95,15 @@ else
     keys = {},
   })
 end
+
+-- Temporary: local copilot.lua checkout with the MinGW/MSYS Windows-detection fix
+-- (mvds314/copilot.lua branch fix/windows-msys-sysname). Remove once released upstream.
+local copilot_local = true
+local copilot_dir = (is_windows and os.getenv "USERPROFILE" or os.getenv "HOME") .. "/Repos/copilot.lua"
+if copilot_local and dir_exists(copilot_dir) then
+  table.insert(M, { "zbirenbaum/copilot.lua", dir = copilot_dir })
+end
+
 -- Auto-generate helptags when saving a doc file
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = dir .. "/doc/*.txt",
