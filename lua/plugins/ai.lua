@@ -222,8 +222,17 @@ return {
       -- add any opts here
       -- this file can contain specific instructions for your project
       instructions_file = "avante.md",
-      -- for example
-      provider = "copilot",
+      -- Avante only reads hosts.json/apps.json, not the newer copilot.lua auth.db. Without them its copilot
+      -- provider throws during setup, so fall back to claude until a legacy token file exists.
+      provider = (function()
+        local dir = vim.fn.expand(vim.env.XDG_CONFIG_HOME or (vim.fn.has "win32" ~= 0 and vim.env.LOCALAPPDATA or "~/.config"))
+        for _, f in ipairs { "hosts.json", "apps.json" } do
+          if vim.uv.fs_stat(dir .. "/github-copilot/" .. f) then
+            return "copilot"
+          end
+        end
+        return "claude"
+      end)(),
       -- input = {
       -- provider = "nui", -- default if you omit this
       -- conceal = true, -- <-- disable conceal to remove the error
