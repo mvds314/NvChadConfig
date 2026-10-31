@@ -78,6 +78,10 @@ Lint with `luacheck` or the `lua-language-server` (configured in `.luarc.json` â
 - File-type-specific mappings (e.g., `<F5>` to source a Lua file) are registered inside `FileType` autocommands, not at the top level.
 - DAP mappings use `<leader>d*`; Harpoon uses `<leader>q*` and `<leader>1`â€“`4`.
 
+### Copilot authentication (GitHub Enterprise)
+`copilot.lua` reads its auth host from the `COPILOT_AUTH_PROVIDER_URL` environment variable (`auth_provider_url` in `lua/plugins/ai.lua`). Never hardcode the URL in the repo; set it in the untracked `~/.bashrc.local` (Linux) or user environment variables (Windows). If unset, it defaults to github.com.
+- Logins are cached in `~/.config/github-copilot/` (`apps.json` and `auth.db`, `%LOCALAPPDATA%\github-copilot\` on Windows). To switch accounts, close Neovim, remove the old login from both (back them up first), then run `:Copilot auth`.
+
 ### MCP integration
 `mcp-hub/servers.json` configures MCP servers for the `mcphub.nvim` plugin. Add new servers there. The `neovim` and `mcphub` native servers are enabled; a `time` server is wired via `uvx`.
 

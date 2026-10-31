@@ -8,6 +8,7 @@ return {
     priority = 1000, -- make sure to load before other plugins (e.g. avante)
     build = ":Copilot auth", -- will prompt login on first install
     opts = {
+      auth_provider_url = vim.env.COPILOT_AUTH_PROVIDER_URL, -- e.g. set in your shell profile; nil = github.com
       -- Keep ghost-text off if you prefer nvim-cmp (see section 3), or enable here:
       suggestion = {
         enabled = true, -- set to false if you’ll use copilot-cmp
